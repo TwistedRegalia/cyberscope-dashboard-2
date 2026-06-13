@@ -61,8 +61,8 @@ Metadata tambahan: `speaker_role` (R1-R5) sebagai dimensi terpisah, bukan label 
 | 3 | YouTube Data API v3 | ⏳ Belum (hanya untuk scraping tambahan jika diperlukan) |
 | 4 | Tweet scraping (Jalur C) | ⏳ Belum (hanya untuk scraping tambahan) |
 | 5 | Filter & Dedup | ✅ SELESAI — output `unified_dataset.csv` (48.496 baris) |
-| 6 | Preprocessing | 🔜 **BERIKUTNYA** |
-| 7 | Snorkel Labeling Functions | ⏳ Belum |
+| 6 | Preprocessing | ✅ SELESAI — output `preprocessed_dataset.csv` (48.496 baris, 18 kolom) |
+| 7 | Snorkel Labeling Functions | 🔜 **BERIKUTNYA** |
 | 8 | Gold Standard Annotation | ⏳ Belum |
 
 ---
@@ -125,22 +125,32 @@ Catat untuk Bab 3 & Bab 4 tesis:
 
 ---
 
-## 8. PHASE 6 — PREPROCESSING (Langkah Berikutnya)
+## 8. PHASE 6 — PREPROCESSING (✅ SELESAI, 14 Jun 2026)
 
-Tujuan: transformasi teks bersih → siap tokenisasi IndoBERT.
+Tujuan: transformasi teks bersih → siap tokenisasi IndoBERT. Script: `src/phase6_preprocess.py`.
 
-Komponen yang harus dibangun (lihat detail di `01_Technical_Roadmap.md` Bagian 8):
+Komponen yang dibangun (detail di `01_Technical_Roadmap.md` Bagian 8):
 
 1. **Case folding** — lowercase
 2. **URL/mention/hashtag handling** — URL→[URL], @user→[USER], #judol→ekstrak "judol"
-3. **Emoji handling** — emoji emosi (😢😡💸)→tag, decorative→strip
-4. **Slang normalization** — kamus slang Indonesia (gw→saya, gak→tidak) + PERTAHANKAN slang cybercrime (gacor, rungkad — bermakna)
-5. **Stemming Sastrawi** — opsional, untuk fitur tambahan
-6. **Stopword** — JANGAN buang untuk BERT, hanya untuk fitur Tier-2
+3. **Emoji handling** — emoji emosi (😢😡💸)→tag `[EMOSI_SEDIH/MARAH/UANG/TAKUT/WASPADA]`, decorative→strip
+4. **Slang normalization** — kamus slang Indonesia (gw→saya, gak→tidak; 88 entri di `data/slang_dictionary.csv`) + PERTAHANKAN slang cybercrime (gacor, rungkad, maxwin, pinjol — bermakna). Filler (sih/deh/wkwk) TIDAK dibuang (itu pembuangan konteks).
+5. **Stemming Sastrawi** — kolom terpisah `text_stemmed` (opsional)
+6. **Stopword** — TIDAK dibuang (BERT butuh konteks penuh)
 
-**Output Phase 6:** `preprocessed_dataset.csv` dengan kolom `text_original`, `text_clean`, `text_normalized`.
+**Output Phase 6:** `data/preprocessed_dataset.csv` (48.496 baris, 18 kolom). Kolom BARU disisipkan setelah `text`:
+- `text_clean` — input utama IndoBERT (konteks penuh, tanpa buang stopword/stemming)
+- `text_normalized` — `text_clean` + slang→baku (cyber slang dipertahankan)
+- `text_stemmed` — Sastrawi, kolom terpisah
 
-**PENTING:** Pertahankan `text_original`. Transformasi di kolom terpisah agar tidak ada information loss.
+**PENTING:** Kolom `text` (= "text_original" pada roadmap) dipertahankan apa adanya; semua 15 kolom existing byte-identik. Transformasi di kolom terpisah → tidak ada information loss.
+
+**⚠️ Catatan `text_stemmed`:** Stemming Sastrawi punya **limitasi diketahui** (over-stemming yang kadang mengubah makna, mis. `sebelumnya`→`belum`). Karena itu `text_stemmed` **TIDAK dipakai sebagai input IndoBERT** — hanya disediakan sebagai opsi fitur **Tier-2 / baseline TF-IDF**. Pipeline BERT memakai `text_clean` (atau `text_normalized`) yang tidak distem.
+
+**Temuan QC pasca-run (text_clean, setelah strip tag):**
+- Baris yang menjadi degenerate KARENA preprocessing (orig ≥5 kata → <3 kata bermakna): **hanya 3** (emoji/timestamp junk). Tag-only (cuma `[URL]`/`[EMOSI]`): **30** (0.06%).
+- `<3 kata bermakna` total 2.091 (4.31%) — tapi 2.088 di antaranya MEMANG komentar pendek dari asalnya ("kasihan bgt", "sudah nonton"), BUKAN artefak preprocessing.
+- Kesimpulan: jauh di bawah ambang diskusi (>500) untuk degradasi preprocessing → tidak perlu filter tambahan. Komentar pendek genuine = urusan relevansi Snorkel (Phase 7), bukan Phase 6.
 
 ---
 
