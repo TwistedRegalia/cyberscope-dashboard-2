@@ -16,7 +16,20 @@ import re
 # ============================================================
 # PATTERN PER VEKTOR (Tier 1 + 2 + 3 digabung untuk discovery)
 # Disusun dari Pattern Library Documentation E-ICTT v2.1
+#
+# v1.1 (2026-06) — Refinement anchor untuk menurunkan rasio NO_HINT:
+#   1. Bug morfologi: bare anchor (pinjol, otp, qris, judol, apk, hack, ...)
+#      kini menerima suffix klitik Indonesia via SUF (-nya, -ku, -mu, -lah,
+#      -kah, -in, -an), mis. "pinjolnya", "otpku", "qrisnya".
+#   2. Narasi korban implisit: "kena tipu", "ditipu", "korban penipuan",
+#      "saldo/rekening terkuras", "uang/duit raib", "akun keluar sendiri".
+#   3. Eufemisme/slang: "joki pinjol", "jual beli ktp/data", "verify nomor hp",
+#      "togel", "scatter", "max win", bentuk disensor (jud*l, sl*t).
+#   CATATAN: Tetap Tier-3 DISCOVERY (diagnostik). Label final = Snorkel (Phase 7).
 # ============================================================
+
+# Suffix klitik/imbuhan Indonesia untuk handling morfologi pada bare anchor.
+SUF = r"(?:nya|ku|mu|lah|kah|in|an)?"
 
 PATTERNS = {
     "phishing_rekayasa_sosial": [
@@ -26,7 +39,14 @@ PATTERNS = {
         r"(?:link|tautan|url)\W{0,20}(?:mencurigakan|aneh|gak\s*jelas|phising|tipu|nipu|palsu|bohongan)",
         r"(?:klaim|dapat|menang|dapet)\W{0,15}(?:hadiah|kuota|pulsa|undian|voucher|cashback|reward)",
         r"(?:modus|trik|cara)\W{0,20}(?:penipu(?:an)?|scam|tipu|nipu|fraud)",
-        r"\botp\b", r"\brekayasa\s*sosial\b", r"\bsoceng\b", r"\bsocial\s*engineering\b",
+        rf"\botp{SUF}\b", r"\brekayasa\s*sosial\b", rf"\bsoceng{SUF}\b", r"\bsocial\s*engineering\b",
+        # --- DISCOVERY v1.1: narasi korban / scam implisit (banyak di NO_HINT) ---
+        rf"\b(?:di|ke|ter)?tipu{SUF}\b", rf"\b(?:me)?nipu{SUF}\b",
+        r"\bkorban\W{0,15}(?:penipu(?:an)?|scam|tipu)",
+        r"\bkena\W{0,8}(?:tipu|scam)",
+        rf"\bmodus{SUF}\d?\b",
+        r"\bmengatasnamakan\b", r"\bcatut\w*\s+nama\b",
+        r"\batas\s*nama\W{0,15}(?:bank|bca|bri|bni|mandiri|shopee|cs|pln|kurir)",
     ],
     "penipuan_ewallet_qris": [
         r"\bqris\b\W{0,15}(?:palsu|tempel|fake|bohongan|aspal|tipu|bodong)",
@@ -34,22 +54,31 @@ PATTERNS = {
         r"(?:salah\s*transfer|salah\s*kirim|kelebihan)\W{0,40}(?:scan|qr|qris)",
         r"(?:ovo|dana|gopay|shopeepay|linkaja)\W{0,30}(?:tipu|nipu|scam|penipu(?:an)?|bobol|hack)",
         r"\bqr(?:is)?\b\W{0,40}(?:parkir(?:an)?|kotak\s*amal|masjid|mushola)",
-        r"\bqris\b", r"\be[\s-]*wallet\b", r"\bdompet\s*digital\b",
+        rf"\bqris{SUF}\b", r"\be[\s-]*wallet\b", r"\bdompet\s*digital\b",
+        # --- DISCOVERY v1.1: narasi saldo/rekening terkuras (eufemisme korban) ---
+        r"\b(?:rekening|saldo|atm|dana)\W{0,8}(?:ter)?kuras\w*",
+        r"\bsaldo\W{0,8}(?:raib|amblas|kesedot|kesot|ludes|lenyap|melayang|berkurang|hilang)",
+        r"\b(?:uang|duit|dana)\W{0,12}(?:raib|hilang|lenyap|melayang|amblas|ludes)\b",
     ],
     "malware_apk": [
         r"\.?apk\b\W{0,30}(?:undangan|nikah|kurir|j[\s&]*t|jne|sicepat|paket|tilang|surat|kartu)",
         r"\.?apk\b\W{0,30}(?:penipu(?:an)?|tipu|nipu|scam|bahaya|virus|malware|trojan)",
         r"(?:kena|install|pasang|download|terkecoh)\W{0,15}(?:file\s*)?\.?apk\b",
         r"\.?apk\b\W{0,30}(?:wa|whatsapp|telegram|sms|dm|kirim(?:an)?)",
-        r"\bsniffing\b", r"\bmalware\b", r"\.apk\b", r"\bapk\b",
+        r"\bsniffing\b", r"\bmalware\b", r"\.apk\b", rf"\bapk{SUF}\b",
     ],
     "judi_online_pinjol": [
         r"\b(?:gacor|maxwin|rungkad|anti[\s-]*rungkad|wd\s*lancar|jp[\s-]*gede)\b",
         r"\b(?:judi\s*online|judol|jdl|judi\s*slot|slot\s*online|casino\s*online|togel\s*online)\b",
-        r"\bpinjol\b\W{0,15}(?:ilegal|gak\s*resmi|tidak\s*terdaftar|bodong|nakal|abal)",
+        r"\bpinjol\w*\W{0,15}(?:ilegal|gak\s*resmi|tidak\s*terdaftar|bodong|nakal|abal)",
         r"(?:diteror|teror|ancam(?:an)?|kasar|galak)\W{0,30}(?:pinjol|debt\s*collector|dc\b|penagih)",
         r"(?:pinjaman|pinjam|hutang|utang)\W{0,15}(?:online|app|aplikasi)",
-        r"\bpinjol\b", r"\bjudol\b", r"\bslot\b", r"\bpinjaman\s*online\b", r"\bjudi\b",
+        rf"\bpinjol{SUF}\b", rf"\bjudol{SUF}\b", r"\bslot\b", r"\bpinjaman\s*online\b", rf"\bjudi{SUF}\b",
+        # --- DISCOVERY v1.1: slang & eufemisme judi/pinjol (termasuk bentuk disensor) ---
+        r"\bjoki\s+pinjol\b", r"\bgalbay\b", r"\bgestun\b",
+        rf"\btogel{SUF}\b", r"\bscatter\b", r"\bmax\s*win\b",
+        r"\bdepo(?:sit)?\W{0,10}(?:scatter|maxwin|max\s*win|wd)",
+        r"\bj[\*u]d[\*o]l\b", r"\bsl[\*o]t\b", r"\bwd\b\W{0,5}(?:lancar|gede|terus)",
     ],
     "peretasan_pencurian_identitas": [
         r"(?:akun)\W{0,20}(?:ig|instagram|wa|whatsapp|fb|facebook|twitter|tiktok|tt|telegram|tg)\W{0,30}(?:diretas|dihack|dibobol|dibajak|dicuri|hilang|kena\s*hack)",
@@ -58,7 +87,11 @@ PATTERNS = {
         r"(?:sim[\s-]*swap|tukar\s*sim|nomor\s*diambil\s*alih|nomor\s*dibajak)",
         r"(?:curi|dicuri|pencurian|hilang)\W{0,20}(?:data|identitas|nik|ktp|kk)",
         r"\b(?:doxing|doxxing)\b",
-        r"(?:diretas|dihack|dibajak|dibobol)", r"\bhack\b", r"\bretas\b", r"\bpencurian\s*identitas\b",
+        r"(?:diretas|dihack|dibajak|dibobol)", rf"\bhack{SUF}\b", rf"\bretas{SUF}\b", r"\bpencurian\s*identitas\b",
+        # --- DISCOVERY v1.1: akun takeover & jual-beli identitas ---
+        r"\bakun\W{0,25}(?:di(?:curi|bobol|hack|retas|bajak|ambil\s*alih)|kebobol|kebajak|keluar\s+sendiri|raib)",
+        r"\b(?:jual\s*beli|jualbeli|jasa|sewa)\W{0,5}(?:ktp|data\s*pribadi|data|rekening|akun)\b",
+        r"\bverif\w*\s+nomor\W{0,8}(?:hp|wa|telepon)",
     ],
     "deepfake_penipuan_ai": [
         r"\b(?:deepfake|deep\s*fake)\b",
