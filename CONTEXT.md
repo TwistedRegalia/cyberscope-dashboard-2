@@ -95,9 +95,10 @@ Catat untuk Bab 3 & Bab 4 tesis:
 
 3. **Selection bias YouTube:** Hanya 18 video sumber. Top 5 video = 50% data. Inilah alasan utama stratified scraping tambahan untuk vektor lemah.
 
-4. **Vector hint 77% NO_HINT di Phase 5** — ini ARTEFAK anchor discovery yang konservatif, BUKAN indikasi 77% data tidak relevan. Keputusan relevansi sebenarnya = tugas Snorkel (Phase 7). Vector hint hanya diagnostik kasar.
+4. **Vector hint NO_HINT 77.4% → 70.2% setelah anchor v1.1 (14 Jun 2026).** Refinement `src/anchor_patterns.py` (morfologi suffix + narasi korban implisit + eufemisme/slang) menurunkan NO_HINT dari 77.4% ke 70.2%, dengan 3.509 baris newly-hinted (presisi ~80%) dan 0 lost. Recompute bersifat **row-stable** (`src/refresh_vector_hint.py` — hanya kolom `vector_hint` berubah, kolom lain byte-identik). Tidak dipaksa ke target 45-55% karena terverifikasi via sampel bahwa sisa NO_HINT mayoritas **genuine off-topic** (komentar fan YouTube pada 18 video, mis. "BRI di hati", "mantap bang"). Vector hint tetap **diagnostik kasar** — keputusan relevansi + label = tugas Snorkel (Phase 7). Laporan: `data/vector_hint_refresh_report.md`.
+   - ⚠️ **Diawasi di Phase 7:** `phishing_rekayasa_sosial` hint melonjak 3.7% → 10.4% karena pattern narasi scam generik ("kena tipu/ditipu/modus/korban penipuan"). Ini bucket "scam umbrella" yang menyerap narasi korban tak-spesifik. **Pastikan LF phishing di Snorkel TIDAK menjadi keranjang semua penipuan** — gunakan amplifier kredensial/OTP/institusi (Pattern Library 1.6) untuk membatasi, dan biarkan hierarki prioritas E-ICTT 5.2 + LF vektor spesifik mengoreksi mis-attribution.
 
-5. **Bug morfologi pattern:** `\bpinjol\b` melewatkan "pinjolnya/pinjolku". Perbaiki di pattern library Snorkel — tambah handling suffix Indonesia (-nya, -ku, -mu, -lah).
+5. **Bug morfologi pattern — SUDAH DIPERBAIKI di `anchor_patterns.py` v1.1.** `\bpinjol\b` dulu melewatkan "pinjolnya/pinjolku"; sekarang bare anchor menerima suffix klitik ID via konstanta `SUF` (-nya/-ku/-mu/-lah/-kah/-in/-an). Saat porting ke Snorkel LF (Phase 7), bawa handling suffix yang sama.
 
 ---
 
