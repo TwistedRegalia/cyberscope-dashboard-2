@@ -3,24 +3,27 @@
 Read-only QC pada kode terintegrasi. Dataset: `preprocessed_dataset.csv` (48,496 baris).
 Target roadmap: coverage >60% (ruang label), conflict <30%.
 
-> **Verifikasi reproducibility (14 Jun 2026):** re-run `phase7_pipeline.py` lokal
-> menghasilkan distribusi & confidence IDENTIK dengan output zip (relevan 7.979 /
-> tidak_relevan 40.517; layer1/layer2/speaker_role identik; |Δconf| = 0). Integrasi sahih.
-
-> **Temuan kritis — 11 dead LF: bug vs scarcity.** Probe intent pada `text_clean`:
-> - `lf_ewallet_t1_saldo_platform` (dead) padahal **39 baris** match intent saldo+platform+loss
->   (mis. "dana saldo hilang tiba2", "saldoku tbtb berkurang 100k") → **POLA TERLALU KETAT** (adjacency platform-saldo), bukan scarcity. Recall ewallet (kini 23) bisa naik tanpa scraping.
-> - `lf_deepfake_t1_suara_keluarga` (dead) padahal **62 baris** match suara+mirip/ai → **POLA TERLALU KETAT** (wajib tail minta/transfer).
-> - `lf_peretasan_t1_simswap` (dead) → **0 baris** match intent sim-swap → **SCARCITY ASLI** (perlu scraping).
-> Implikasi: sebagian undercount kelas lemah = bug pola Tier-1 (fixable murah), sisanya = data benar-benar tidak ada (scraping). Tangani keduanya sebelum gold standard.
+> **Reproducibility (14 Jun 2026):** re-run `phase7_pipeline.py` lokal = output zip
+> IDENTIK (relevan 7.979/tidak_relevan 40.517, |Δconf|=0). Integrasi sahih.
+>
+> **Dead-LF refine (A&B):** dari 11 dead LF awal → **9** setelah memperbaiki 2 LF
+> deepfake (`ai_content_scam`, `tokoh_publik`): drop tail content-type / prefix
+> "video", anchor AI+scam / tokoh+investasi TETAP wajib. Deepfake relevan **58 → 62**;
+> conflict tetap 1.6%, Layer-1 conflict 0.00% (tanpa regresi).
+>
+> **KOREKSI temuan awal:** klaim "39 ewallet / 62 deepfake intent" di versi QC
+> sebelumnya adalah **overcount** (co-occurrence token, bukan adjacency anchor).
+> Probe adjacency-preserving menunjukkan recovery sebenarnya KECIL: deepfake +4
+> (presisi 4/4), ewallet saldo_platform +3 (marginal, di-skip). Mayoritas dead LF
+> kelas lemah = **scarcity asli** → target scraping (lihat CONTEXT §6).
 
 ## 1. Vektor LFs (Layer 2)
 
 - Jumlah LF: **46**
-- Coverage gabungan (>=1 vektor LF firing): **30.1%** (14,610 baris)
+- Coverage gabungan (>=1 vektor LF firing): **30.1%** (14,613 baris)
 - Overlap (>=2 LF firing): **13.7%**
 - Conflict (>=2 vektor BERBEDA firing): **1.6%**
-- Dead LF (coverage 0): **11** → ['lf_phish_t2_hadiah_link', 'lf_judi_t2_pinjaman_bunga', 'lf_ewallet_t1_saldo_platform', 'lf_ewallet_t1_scan_balik', 'lf_ewallet_t2_qr_lokasi_publik', 'lf_ewallet_t3_promo_palsu', 'lf_malware_t2_bank_drained', 'lf_peretasan_t1_simswap', 'lf_deepfake_t1_suara_keluarga', 'lf_deepfake_t2_ai_content_scam', 'lf_deepfake_t2_tokoh_publik']
+- Dead LF (coverage 0): **9** → ['lf_phish_t2_hadiah_link', 'lf_judi_t2_pinjaman_bunga', 'lf_ewallet_t1_saldo_platform', 'lf_ewallet_t1_scan_balik', 'lf_ewallet_t2_qr_lokasi_publik', 'lf_ewallet_t3_promo_palsu', 'lf_malware_t2_bank_drained', 'lf_peretasan_t1_simswap', 'lf_deepfake_t1_suara_keluarga']
 
 ### Per-LF (vektor)
 
@@ -35,7 +38,7 @@ Target roadmap: coverage >60% (ruang label), conflict <30%.
 | lf_phish_t2_undangan_file      |   6 | [np.int64(0)] |     0.0001 |     0      |      0      |
 | lf_phish_t2_anchor_gate        |   7 | [np.int64(0)] |     0.0107 |     0.0083 |      0.0035 |
 | lf_phish_t3_korban_strict      |   8 | [np.int64(0)] |     0      |     0      |      0      |
-| lf_phish_t3_discovery          |   9 | [np.int64(0)] |     0.1105 |     0.017  |      0.011  |
+| lf_phish_t3_discovery          |   9 | [np.int64(0)] |     0.1105 |     0.0171 |      0.0111 |
 | lf_judi_t1_slang               |  10 | [np.int64(3)] |     0.0082 |     0.0075 |      0.0004 |
 | lf_judi_t1_eksplisit           |  11 | [np.int64(3)] |     0.1079 |     0.1079 |      0.0062 |
 | lf_judi_t1_pinjol_ilegal       |  12 | [np.int64(3)] |     0.0006 |     0.0006 |      0.0002 |
@@ -69,8 +72,8 @@ Target roadmap: coverage >60% (ruang label), conflict <30%.
 | lf_deepfake_t1_eksplisit       |  40 | [np.int64(5)] |     0.0011 |     0.0011 |      0.0003 |
 | lf_deepfake_t1_voice_clone     |  41 | [np.int64(5)] |     0.0001 |     0.0001 |      0      |
 | lf_deepfake_t1_suara_keluarga  |  42 | []            |     0      |     0      |      0      |
-| lf_deepfake_t2_ai_content_scam |  43 | []            |     0      |     0      |      0      |
-| lf_deepfake_t2_tokoh_publik    |  44 | []            |     0      |     0      |      0      |
+| lf_deepfake_t2_ai_content_scam |  43 | [np.int64(5)] |     0.0001 |     0.0001 |      0      |
+| lf_deepfake_t2_tokoh_publik    |  44 | [np.int64(5)] |     0.0001 |     0      |      0      |
 | lf_deepfake_t3_discovery       |  45 | [np.int64(5)] |     0.0024 |     0.0016 |      0.0007 |
 
 ## 2. Layer-1 LFs (relevansi)

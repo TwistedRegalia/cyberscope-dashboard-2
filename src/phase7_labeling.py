@@ -367,16 +367,21 @@ def lf_deepfake_t1_suara_keluarga(x):
     """Tier1 — modus voice-clone keluarga minta transfer."""
     return DEEPFAKE if _RE_DF_KELUARGA.search(_txt(x)) else ABSTAIN
 
-_RE_DF_AICONTENT = re.compile(r"(?:ai|chat\s*gpt|chatgpt|gemini|llm)\W{0,30}(?:scam|tipu|nipu|penipu(?:an)?|fraud|generated)\W{0,30}(?:konten|content|gambar|foto|video|teks)", _F)
+# v1.1 refine (QC dead-LF): anchor AI+scam tetap WAJIB; tail content-type
+# (konten/gambar/foto) dilepas karena membuat LF mati tanpa menambah presisi.
+_RE_DF_AICONTENT = re.compile(r"(?:\bai\b|chat\s*gpt|chatgpt|gemini|llm|kecerdasan\s*buatan|artificial)\W{0,40}(?:scam|tipu|nipu|penipu(?:an)?|fraud|palsu|hoax|manipulasi|dipalsukan)", _F)
 @labeling_function()
 def lf_deepfake_t2_ai_content_scam(x):
-    """Tier2 — konten AI-generated untuk penipuan."""
+    """Tier2 — konten/aktivitas AI untuk penipuan. Anchor: AI + scam (wajib)."""
     return DEEPFAKE if _RE_DF_AICONTENT.search(_txt(x)) else ABSTAIN
 
-_RE_DF_TOKOH = re.compile(r"(?:video|klip)\W{0,15}(?:jokowi|prabowo|sri\s*mulyani|erick\s*thohir|ridwan\s*kamil|anies|gibran)\W{0,40}(?:promosi|endorse|investasi|crypto|trading|bagi[\s-]*bagi)", _F)
+# v1.1 refine (QC dead-LF): anchor tokoh+investasi/giveaway tetap WAJIB; prefix
+# "video/klip" dilepas (modus sering ditulis tanpa kata "video", mis. "jokowi
+# bagi bagi ... depo dulu"). Tambah giveaway/saham ke anchor scam.
+_RE_DF_TOKOH = re.compile(r"(?:jokowi|prabowo|sri\s*mulyani|erick\s*thohir|ridwan\s*kamil|anies|gibran)\W{0,50}(?:promosi|endorse|investasi|crypto|trading|bagi[\s-]*bagi|giveaway|saham)", _F)
 @labeling_function()
 def lf_deepfake_t2_tokoh_publik(x):
-    """Tier2 — deepfake tokoh publik untuk promosi scam investasi."""
+    """Tier2 — deepfake tokoh publik untuk promosi scam investasi/giveaway."""
     return DEEPFAKE if _RE_DF_TOKOH.search(_txt(x)) else ABSTAIN
 
 # ============================================================

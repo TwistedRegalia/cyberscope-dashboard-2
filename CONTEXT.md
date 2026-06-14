@@ -101,6 +101,11 @@ Catat untuk Bab 3 & Bab 4 tesis:
 
 5. **Bug morfologi pattern — SUDAH DIPERBAIKI di `anchor_patterns.py` v1.1.** `\bpinjol\b` dulu melewatkan "pinjolnya/pinjolku"; sekarang bare anchor menerima suffix klitik ID via konstanta `SUF` (-nya/-ku/-mu/-lah/-kah/-in/-an). Saat porting ke Snorkel LF (Phase 7), bawa handling suffix yang sama.
 
+6. **QC Phase 7 + refine dead LF (14 Jun 2026).** Reproducibility pipeline terverifikasi (re-run = output zip IDENTIK). LFAnalysis: conflict vektor 1,6% (« target <30%), Layer-1 konflik relevan-vs-tidak_relevan 0,00%. Dari **11 dead LF** (coverage 0), 8 di kelas lemah diprobe:
+   - **3 bug pola (terlalu ketat):** 2 diperbaiki = deepfake `ai_content_scam` (drop tail "konten/gambar") + `tokoh_publik` (drop prefix "video/klip"), anchor tetap wajib → **deepfake relevan 58 → 62**, dead LF 11 → 9. 1 dilewati = ewallet `saldo_platform` (recovery +3 marginal, ada borderline gagal-topup) → diselesaikan via scraping.
+   - **5 scarcity asli (recovery 0):** `ewallet_scan_balik`, `ewallet_qr_lokasi_publik`, `ewallet_promo_palsu`, `malware_bank_drained`, `deepfake_suara_keluarga` → **konfirmasi target scraping terarah** (modus ini memang tidak ada di data 18-video + X snapshot).
+   - ⚠️ **Koreksi:** klaim awal "39 ewallet / 62 deepfake intent = bug fixable" adalah **overcount** — itu co-occurrence token, bukan adjacency anchor. Probe yang menjaga anchor menunjukkan recovery sebenarnya kecil (deepfake +4 presisi 4/4). Pengungkit utama kelas lemah = **scraping**, bukan refine LF. Laporan: `docs/phase7_qc_report.md` (script: `src/phase7_qc.py`).
+
 ---
 
 ## 7. SKEMA unified_dataset.csv (Output Phase 5)
