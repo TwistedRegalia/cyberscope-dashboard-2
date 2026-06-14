@@ -62,8 +62,9 @@ Metadata tambahan: `speaker_role` (R1-R5) sebagai dimensi terpisah, bukan label 
 | 4 | Tweet scraping (Jalur C) | ⏳ Belum (hanya untuk scraping tambahan) |
 | 5 | Filter & Dedup | ✅ SELESAI — output `unified_dataset.csv` (48.496 baris) |
 | 6 | Preprocessing | ✅ SELESAI — output `preprocessed_dataset.csv` (48.496 baris, 18 kolom) |
-| 7 | Snorkel Labeling Functions | 🔜 **BERIKUTNYA** |
-| 8 | Gold Standard Annotation | ⏳ Belum |
+| 7 | Snorkel Labeling Functions | ✅ SELESAI — pipeline penuh terakit, `weak_labeled_dataset.csv` (lihat `docs/phase7_snorkel_report.md`) |
+| 7.1 | Scraping 3 vektor lemah (paralel) | ⏳ Berjalan — ewallet/malware/deepfake < 1.000 → re-run setelah masuk |
+| 8 | Gold Standard Annotation | 🔜 **BERIKUTNYA** — sampling 357 dari weak_labeled_dataset.csv |
 
 ---
 
