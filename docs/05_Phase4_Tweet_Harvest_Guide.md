@@ -4,19 +4,23 @@ Panduan menjalankan `src/phase4_tweet_harvest.py` untuk scraping tweets per vekt
 
 ## Prerequisites
 
-```bash
-# Install Tweet Harvest
-pip install tweet-harvest
+> ⚠️ **KOREKSI TOOL (20 Jun 2026):** Tweet Harvest yang benar adalah **CLI Node.js + Chromium**
+> (Helmi Satria), dijalankan via `npx tweet-harvest@latest` — **BUKAN** paket pip, dan **BUKAN**
+> pakai developer bearer token. Autentikasi memakai **cookie `auth_token`** dari sesi browser X
+> yang sudah login. Script `src/phase4_tweet_harvest.py` sudah disesuaikan ke interface ini.
 
-# Set up Twitter API access
-# Option 1: Via Tweet Harvest CLI
-tweet-harvest --auth
+```powershell
+# 1. Pastikan Node.js + npx terpasang (sudah ada di mesin ini: Node v24)
+npx --version
 
-# Option 2: Manual Bearer token
-export TWITTER_BEARER_TOKEN="your-bearer-token"
+# 2. Ambil cookie auth_token dari akun X (PAKAI AKUN SEKUNDER):
+#    login x.com → F12 (DevTools) → Application → Cookies → https://x.com
+#    → salin VALUE cookie bernama `auth_token`
+$env:TWITTER_AUTH_TOKEN = "paste-auth-token-cookie-disini"
 ```
 
-**Catatan:** Bearer token perlu dari Twitter Developer Portal atau via Tweet Harvest auth flow.
+**Catatan:** `auth_token` adalah cookie sesi, bukan token developer. Jangan dibagikan.
+Tweet Harvest menjalankan Chromium lokal (run pertama mengunduh ~150MB browser Playwright).
 
 ---
 
@@ -56,29 +60,35 @@ Script membaca dari `data/query_spec.json`, yang sudah berisi 6-7 queries per ve
 - Pencurian identitas / data / foto
 - Jasa hack / jasa bobol / hacker
 
-Setiap query: `lang:id` (Indonesia only), limit 500 tweets (konservatif, hindari ban).
+Setiap query: `lang:id` di-embed langsung di dalam string query (CLI ini **tidak** punya flag
+`--lang`). Twitter mengembalikan kode bahasa `in` untuk Indonesia, jadi merge memfilter `lang=='in'`
+(konsisten Decision #2). Limit 500 tweets per query (konservatif, hindari ban).
 
 ---
 
 ## Eksekusi
 
-### Langkah 1: Verifikasi dependencies
+### Langkah 1: Verifikasi tool
 
-```bash
-python -c "import tweet_harvest; print(tweet_harvest.__version__)"
-# Expected: 2.7.1 atau lebih baru
+```powershell
+npx --yes tweet-harvest@latest --help   # harus tampil "Tweet Harvest [v2.7.1]"
+echo $env:TWITTER_AUTH_TOKEN             # harus tidak kosong
 ```
 
 ### Langkah 2: Jalankan script
 
-```bash
+```powershell
 python src/phase4_tweet_harvest.py
 ```
 
 **Output:**
-- `raw_additional_tweets/{vektor}/q{idx}.jsonl` → raw Tweet Harvest output
-- `raw_additional_tweets/{vektor}/q{idx}.csv` → converted untuk phase5_consolidate.py
-- `raw_additional_tweets/_summary.json` → metadata (timestamp, jumlah tweets, failed queries)
+- `raw_additional_tweets/{vektor}/q{idx}.csv` → native Tweet Harvest schema
+  (kolom identik `sesi*.csv` lama: `full_text`, `id_str`, `created_at`, `username`,
+  `favorite_count`, `reply_count`, `lang`, `in_reply_to_screen_name`, …)
+- `raw_additional_tweets/_summary.json` → metadata (timestamp, jumlah tweets, failed/empty queries)
+
+> Tidak ada lagi langkah konversi JSONL → CSV: Tweet Harvest menulis CSV langsung, dan
+> `src/phase5_consolidate_additional.py` membaca skema native ini apa adanya.
 
 ### Langkah 3: Monitor progress
 
@@ -124,7 +134,7 @@ Setelah Phase 4 selesai:
 1. **Verifikasi output:**
    ```bash
    ls -lh raw_additional_tweets/
-   # Seharusnya ada: penipuan_ewallet_qris/, malware_apk/, deepfake_penipuan_ai/, peretasan_pencurien_identitas/, _summary.json
+   # Seharusnya ada: penipuan_ewallet_qris/, malware_apk/, deepfake_penipuan_ai/, peretasan_pencurian_identitas/, _summary.json
    ```
 
 2. **Count total tweets:**

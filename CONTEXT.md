@@ -82,6 +82,8 @@ Jangan ubah keputusan ini tanpa alasan kuat — semuanya hasil diskusi panjang:
 
 4. **Scraping tambahan:** Direncanakan untuk 3 vektor lemah (malware_apk, penipuan_ewallet_qris, deepfake_penipuan_ai), via YouTube + X. EKSEKUSI DITUNDA sampai distribusi pasca-Snorkel diketahui. Threshold: vektor dengan < 1.000 sampel relevan setelah Snorkel.
 
+   **Strategi: scraping dari sumber baru (bukan probe refinement dari data lama).** Probe *relevance-lever* (refine dead-LF Phase 7 untuk menyelamatkan relevansi dari 18 video lama) **sengaja dilewati — keputusan sadar**, konsisten dengan kesimpulan Temuan #6 (§6: pengungkit utama kelas lemah = scraping, bukan refine LF). Alasan: LF probe pada 18 video existing sudah menciptakan selection bias (5 video = 50% data). Menyelamatkan sisanya via pattern refinement menghadapi law of diminishing returns (recovery kecil, anchor tetap ketat). Sebaliknya, scraping sumber baru (YouTube channel berbeda + query X baru) memberikan **volume + diversity sekaligus**, menghindari over-fitting ke 18 video existing, dan memberi spatial coverage yang lebih luas di discourse landscape. Ini trade-off: scraping lebih mahal (manual curation + API calls) tapi hasil lebih defensible metodologis (explicit sampling protocol, no hidden selection bias).
+
 5. **Tweet scraping tool:** Jalur C — Tweet Harvest v2.7.1 sebagai primary (gratis), Apify `apidojo/twitter-scraper-lite` sebagai backup (hanya jika ada trigger: akun banned, volume kurang, dll). Apify perlu paid plan + WAJIB set spending limit dulu.
 
 6. **Balance:** Kejar balance VEKTOR, bukan balance platform. Rasio 85:15 YouTube:X tidak masalah.
