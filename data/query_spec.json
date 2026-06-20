@@ -1,0 +1,50 @@
+{
+  "penipuan_ewallet_qris": {
+    "queries": [
+      "\"qris palsu\" OR \"qris tempel\" OR \"qris bodong\" lang:id",
+      "(saldo) (ovo OR dana OR gopay) (hilang OR raib OR amblas) lang:id",
+      "(\"scan qr\" OR \"scan barcode\" OR \"scan qris\") (balik OR refund OR \"salah transfer\") lang:id",
+      "(cashback OR \"top up\" OR promo) (ovo OR dana OR gopay) (palsu OR tipu) lang:id",
+      "(admin OR cs) (dana OR ovo OR gopay) (palsu OR tipu) lang:id",
+      "\"qris kotak amal\" OR \"qris parkiran\" OR \"qris spbu\" lang:id"
+    ],
+    "limit": 500,
+    "lang": "id"
+  },
+  "malware_apk": {
+    "queries": [
+      "\"apk undangan\" OR \"apk nikah\" (rekening OR mbanking OR saldo OR terkuras) lang:id",
+      "\"apk kurir\" OR \"apk paket\" OR \"apk jnt\" lang:id",
+      "\"apk tilang\" OR \"apk pajak\" OR \"apk pln\" OR \"apk bpjs\" lang:id",
+      "(\"kena apk\" OR \"install apk\") (saldo OR rekening OR bobol OR terkuras) lang:id",
+      "(\"sniffing\" OR \"sniff\") (apk OR mbanking OR rekening) lang:id",
+      "\"apk sumber\" OR \"apk dari mana\" OR \"download apk\" (bahaya OR hati-hati) lang:id"
+    ],
+    "limit": 500,
+    "lang": "id"
+  },
+  "deepfake_penipuan_ai": {
+    "queries": [
+      "(\"voice cloning\" OR \"suara ai\" OR \"voice ai\") (mirip OR anak OR keluarga) (transfer OR minta) lang:id",
+      "\"deepfake\" (jokowi OR prabowo OR \"sri mulyani\" OR \"menteri\") (investasi OR crypto OR giveaway) lang:id",
+      "\"deepfake\" (penipuan OR scam OR tipu OR bodong) lang:id",
+      "(\"ai\" OR \"video call\" OR \"videocall\") (palsu OR editan OR deepfake) (penipuan OR sextortion) lang:id",
+      "\"deepfake\" (suara OR video) (mirip OR palsu) lang:id",
+      "\"deteksi deepfake\" OR \"cek deepfake\" OR \"cara tahu deepfake\" lang:id"
+    ],
+    "limit": 500,
+    "lang": "id"
+  },
+  "peretasan_pencurian_identitas": {
+    "queries": [
+      "(akun OR email OR instagram OR facebook) (diretas OR hack OR bobol) lang:id",
+      "\"kebocoran data\" OR \"data bocor\" OR \"privacy breach\" lang:id",
+      "(\"sim swap\" OR \"sim swapping\" OR \"nomor sim\") (hack OR pencurian) lang:id",
+      "(doxing OR \"doks pribadi\" OR \"alamat dibocorkan\") lang:id",
+      "(pencurian OR curi) (identitas OR data OR foto) lang:id",
+      "\"jasa hack\" OR \"jasa bobol\" OR \"hacker online\" lang:id"
+    ],
+    "limit": 500,
+    "lang": "id"
+  }
+}

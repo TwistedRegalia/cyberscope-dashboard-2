@@ -63,8 +63,10 @@ Metadata tambahan: `speaker_role` (R1-R5) sebagai dimensi terpisah, bukan label 
 | 5 | Filter & Dedup | ✅ SELESAI — output `unified_dataset.csv` (48.496 baris) |
 | 6 | Preprocessing | ✅ SELESAI — output `preprocessed_dataset.csv` (48.496 baris, 18 kolom) |
 | 7 | Snorkel Labeling Functions | ✅ SELESAI — pipeline penuh terakit, `weak_labeled_dataset.csv` (lihat `docs/phase7_snorkel_report.md`) |
-| 7.1 | Scraping 3 vektor lemah (paralel) | ⏳ Berjalan — ewallet/malware/deepfake < 1.000 → re-run setelah masuk |
-| 8 | Gold Standard Annotation | 🔜 **BERIKUTNYA** — sampling 357 dari weak_labeled_dataset.csv |
+| 3 (scraping) | YouTube API v3 Scraper | ✅ SIAP — script: `src/phase3_youtube_scrape.py`, input: `data/video_candidates.csv` |
+| 4 (scraping) | Tweet Harvest Query Runner | ✅ SIAP — script: `src/phase4_tweet_harvest.py`, input: `data/query_spec.json` |
+| 7.1 | Scraping 4 vektor lemah (paralel) | ⏳ READY FOR USER EXECUTION — ewallet/malware/deepfake/peretasan < 1.000 → run scripts + merge |
+| 8 | Gold Standard Annotation | 🔜 **BERIKUTNYA** — sampling 357 dari weak_labeled_dataset.csv (post-merge) |
 
 ---
 
@@ -175,6 +177,77 @@ Perbaikan yang harus dilakukan di sini:
 
 ---
 
+## 9a. PHASE 3 — YouTube Data API v3 Scraper
+
+**Script:** `src/phase3_youtube_scrape.py`
+
+**Input Requirements:**
+- `YOUTUBE_API_KEY` env var (obtain from Google Cloud Console)
+- `data/video_candidates.csv` — user-filled spreadsheet dengan kolom:
+  - `vektor` (penipuan_ewallet_qris, malware_apk, deepfake_penipuan_ai, peretasan_pencurian_identitas)
+  - `video_id` (dari URL youtube.com/watch?v=**VIDEO_ID**)
+  - `video_title`, `channel_name`, `channel_type` (berita/edukasi/storytelling)
+  - `publish_date`, `comment_count`, `verified_topic` (Ya/Tidak), `notes`
+
+**Protocol untuk mengisi video_candidates.csv** (lihat `docs/03_Phase2_Scraping_Plan.md` Bagian 2):
+1. Gunakan search query per vektor (Bagian 2.3)
+2. Filter dengan kriteria inklusi (Bagian 2.1): topik eksplisit, min 300 komentar, komentar aktif (tidak disabled), publikasi 2022-2026, berbahasa Indonesia
+3. Hindari kriteria eksklusi (Bagian 2.2): jangan pilih 18 video existing (lihat Lampiran A), hindari spam, topik campur, engagement palsu
+4. Target 5-6 video unik per vektor lemah dari ≥3 tipe channel berbeda
+5. Catat untuk setiap video: judul, nama channel, tipe channel, tanggal publikasi, estimasi komentar
+
+**Eksekusi:**
+```bash
+export YOUTUBE_API_KEY="your-api-key-here"
+python src/phase3_youtube_scrape.py
+```
+
+**Output:** `raw_additional_youtube/{vektor}/{video_id}.csv` dengan kolom: comment_id, author, text, likes, replies, published_at, is_reply
+
+**Dependencies:**
+```bash
+pip install google-auth-oauthlib google-auth-httplib2 google-api-python-client
+```
+
+---
+
+## 9b. PHASE 4 — Tweet Harvest Query Runner
+
+**Script:** `src/phase4_tweet_harvest.py`
+
+**Input Requirements:**
+- Tweet Harvest CLI installed: `pip install tweet-harvest`
+- X/Twitter API credentials (Bearer token) — set up via Tweet Harvest auth
+- `data/query_spec.json` — query specification (sudah auto-generated dengan queries per vektor)
+
+**Query Specification** (`query_spec.json`):
+- 6-7 queries per vektor yang menargetkan 5 scarcity modus + keragaman
+- Contoh ewallet (X-driven, 9.2% retention):
+  - QRIS palsu/tempel lokasi publik
+  - Scan QR "balik"/refund ⚑ scarcity
+  - Promo cashback e-wallet palsu ⚑ scarcity
+  - Saldo OVO/DANA raib
+  - Admin/CS palsu
+- Limit per query: 500 tweets konservatif (hindari rate-limit ban)
+- Rentang temporal: 2023-01-01 sampai 2026-06-20 (Twitter Harvest bersifat snapshot, lihat Temuan #1)
+
+**Eksekusi:**
+```bash
+python src/phase4_tweet_harvest.py
+```
+
+**Output:** 
+- `raw_additional_tweets/{vektor}/q{idx}.jsonl` (raw Tweet Harvest output)
+- Auto-convert ke `raw_additional_tweets/{vektor}/q{idx}.csv` untuk compatibility dengan phase5_consolidate.py
+- `raw_additional_tweets/_summary.json` — metadata eksekusi
+
+**Catatan:**
+- Tweet Harvest mungkin memerlukan akun X sekunder (mitigasi rate-limit ban)
+- Jeda 2 detik antar-query otomatis di script
+- Output timestamp kemungkinan snapshot (lihat Temuan #1)
+
+---
+
 ## 10. FILE INVENTORY (Bawa ke Project)
 
 Letakkan semua file ini di project Anda:
@@ -190,11 +263,25 @@ Letakkan semua file ini di project Anda:
 - `anchor_patterns.py` — pattern library Python (untuk filter & dasar Snorkel)
 - `phase5_consolidate.py` — script konsolidasi (reproducibility, sudah dijalankan)
 - `audit_dataset.py` — script audit (Phase 0, reusable)
+- `phase6_preprocess.py` — text preprocessing pipeline (Phase 6, sudah dijalankan)
+- `phase7_pipeline.py` — Snorkel aggregation (Phase 7, sudah dijalankan)
+- `phase7_labeling.py` — 46 labeling functions per vektor (Phase 7)
+- `phase7_layer1.py` — Layer-1 relevance filter LFs (Phase 7)
+- `phase7_qc.py` — LF quality control via LFAnalysis (Phase 7)
+- `refresh_vector_hint.py` — recompute vector_hint only (row-stable, Phase 5 refinement)
+- `phase3_youtube_scrape.py` — YouTube API v3 comment scraper (Phase 3, baru)
+- `phase4_tweet_harvest.py` — Tweet Harvest query runner (Phase 4, baru)
 
 ### Data (folder `data/`)
 - `unified_dataset.csv` — OUTPUT PHASE 5, INPUT PHASE 6 (48.496 baris)
-- Folder raw CSV (59 file) — simpan untuk reproducibility
-- `master_dataset.csv` lama — arsip pembanding (jangan dipakai untuk training)
+- `preprocessed_dataset.csv` — OUTPUT PHASE 6 (48.496 baris, 18 kolom dengan text_clean/text_normalized/text_stemmed)
+- `weak_labeled_dataset.csv` — OUTPUT PHASE 7 (48.496 baris, weak labels + metadata)
+- `slang_dictionary.csv` — slang→baku mapping (88 entri, dipakai Phase 6)
+- `video_candidates.csv` — TEMPLATE untuk user fill (Phase 3 input, baru)
+- `query_spec.json` — query specification per vektor (Phase 4 input, auto-generated, baru)
+- Folder `raw/` (59 file CSV) — raw data awal (simpan untuk reproducibility)
+- Folder `raw_additional_youtube/` — OUTPUT PHASE 3 (baru, belum ada)
+- Folder `raw_additional_tweets/` — OUTPUT PHASE 4 (baru, belum ada)
 
 ### Referensi (folder `references/`)
 - `State_of_the_Art.docx` — 12 jurnal SOTA
