@@ -1,0 +1,25 @@
+{
+  "executed_at": "2026-06-21T00:23:31.744479",
+  "tool": "npx tweet-harvest@latest (Node/Chromium)",
+  "spec_file": "data\\query_spec_v2.json",
+  "vektor_filter": "peretasan_pencurian_identitas",
+  "query_filter": null,
+  "total_vectors": 1,
+  "total_queries": 7,
+  "total_tweets": 1344,
+  "failed_queries": [],
+  "empty_queries": [
+    [
+      "peretasan_pencurian_identitas",
+      3
+    ],
+    [
+      "peretasan_pencurian_identitas",
+      4
+    ],
+    [
+      "peretasan_pencurian_identitas",
+      5
+    ]
+  ]
+}

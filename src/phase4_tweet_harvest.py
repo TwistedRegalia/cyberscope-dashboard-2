@@ -42,6 +42,7 @@ Output:
 
 import os
 import sys
+import csv
 import json
 import shutil
 import argparse
@@ -106,10 +107,10 @@ def run_tweet_harvest(query, vektor, query_idx, dest_csv, token,
     if produced.exists():
         dest_csv.parent.mkdir(parents=True, exist_ok=True)
         shutil.move(str(produced), str(dest_csv))
-        # hitung baris data (kurangi header)
+        # hitung RECORD CSV (bukan baris fisik) — full_text bisa punya newline ter-embed
         count = 0
-        with open(dest_csv, "r", encoding="utf-8") as f:
-            count = max(0, sum(1 for _ in f) - 1)
+        with open(dest_csv, "r", encoding="utf-8", newline="") as f:
+            count = max(0, sum(1 for _ in csv.reader(f)) - 1)
         print(f"  ✓ {count} tweets → {dest_csv}", file=sys.stderr)
         return (True, count, None)
 
@@ -138,13 +139,15 @@ def parse_args():
                     help="Override tab pencarian (default: dari spec / LATEST).")
     ap.add_argument("--list", action="store_true",
                     help="Tampilkan daftar vektor + jumlah query, lalu keluar (tak butuh token).")
+    ap.add_argument("--spec", default="data/query_spec.json",
+                    help="Path query spec JSON (default: data/query_spec.json).")
     return ap.parse_args()
 
 
 def main():
     args = parse_args()
 
-    spec_path = Path("data/query_spec.json")
+    spec_path = Path(args.spec)
     if not spec_path.exists():
         print(f"ERROR: {spec_path} not found", file=sys.stderr)
         sys.exit(1)
@@ -211,11 +214,14 @@ def main():
               file=sys.stderr)
         stats["total_vectors"] += 1
 
+        # Suffix tab agar run TOP tidak menimpa hasil LATEST (merge tetap baca *.csv)
+        tab_suffix = "" if tab == "LATEST" else f"_{tab.lower()}"
+
         for query_idx, query in enumerate(queries, 1):
             if args.query is not None and query_idx != args.query:
                 continue
 
-            csv_output = vektor_dir / f"q{query_idx}.csv"
+            csv_output = vektor_dir / f"q{query_idx}{tab_suffix}.csv"
 
             success, count, error = run_tweet_harvest(
                 query, vektor, query_idx, csv_output, token, limit, tab, delay
@@ -246,8 +252,11 @@ def main():
         for vektor, idx, err in stats["failed_queries"]:
             print(f"  - {vektor}:q{idx}: {str(err)[:100]}", file=sys.stderr)
 
-    # Summary per-vektor agar run terpisah tidak saling menimpa
-    suffix = f"_{args.vektor}" if args.vektor else ""
+    # Summary per-vektor (+ tab non-LATEST) agar run terpisah tidak saling menimpa
+    parts = [p for p in (args.vektor,
+                         (args.tab.lower() if args.tab and args.tab != "LATEST" else None))
+             if p]
+    suffix = ("_" + "_".join(parts)) if parts else ""
     summary_file = output_dir / f"_summary{suffix}.json"
     with open(summary_file, "w", encoding="utf-8") as f:
         json.dump({

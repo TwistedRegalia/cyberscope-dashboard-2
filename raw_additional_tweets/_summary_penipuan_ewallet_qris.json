@@ -1,0 +1,29 @@
+{
+  "executed_at": "2026-06-20T19:59:03.685942",
+  "tool": "npx tweet-harvest@latest (Node/Chromium)",
+  "spec_file": "data\\query_spec.json",
+  "vektor_filter": "penipuan_ewallet_qris",
+  "query_filter": null,
+  "total_vectors": 1,
+  "total_queries": 6,
+  "total_tweets": 531,
+  "failed_queries": [],
+  "empty_queries": [
+    [
+      "penipuan_ewallet_qris",
+      2
+    ],
+    [
+      "penipuan_ewallet_qris",
+      3
+    ],
+    [
+      "penipuan_ewallet_qris",
+      4
+    ],
+    [
+      "penipuan_ewallet_qris",
+      5
+    ]
+  ]
+}

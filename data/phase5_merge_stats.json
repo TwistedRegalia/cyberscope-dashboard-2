@@ -1,0 +1,29 @@
+{
+  "executed_at": "2026-06-21T02:15:15.522538",
+  "existing_rows": 48496,
+  "raw_new_total": 1955,
+  "new_youtube_raw": 0,
+  "new_x_raw": 1955,
+  "after_internal_filter": 1843,
+  "cross_batch_duplicates": 7,
+  "new_rows_added": 1836,
+  "merged_total": 50332,
+  "new_by_vektor": {
+    "peretasan_pencurian_identitas": 1176,
+    "penipuan_ewallet_qris": 525,
+    "malware_apk": 84,
+    "deepfake_penipuan_ai": 51
+  },
+  "filter_breakdown": {
+    "input_total": 1955,
+    "removed_empty": 0,
+    "removed_low_signal": 0,
+    "removed_too_short": 0,
+    "removed_too_long": 0,
+    "removed_reply_lowquality": 56,
+    "reply_input": 494,
+    "reply_passed": 438,
+    "removed_duplicates": 56,
+    "output_total": 1843
+  }
+}

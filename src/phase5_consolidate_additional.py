@@ -177,6 +177,13 @@ def main():
     ap.add_argument("--stats", default="data/phase5_merge_stats.json")
     args = ap.parse_args()
 
+    # Konsol Windows (cp1252) tidak bisa encode karakter seperti '→'; paksa UTF-8.
+    for _stream in (sys.stdout, sys.stderr):
+        try:
+            _stream.reconfigure(encoding="utf-8")
+        except Exception:
+            pass
+
     if not os.path.exists(args.existing):
         print(f"ERROR: existing dataset tidak ditemukan: {args.existing}", file=sys.stderr)
         sys.exit(1)

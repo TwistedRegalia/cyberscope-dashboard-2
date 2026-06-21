@@ -1,0 +1,50 @@
+{
+  "penipuan_ewallet_qris": {
+    "queries": [
+      "\"qris palsu\" OR \"qris tempel\" OR \"qris bodong\" OR \"qris penipuan\" lang:id",
+      "(saldo OR dana OR ovo OR gopay OR shopeepay) (raib OR amblas OR terkuras OR \"tiba tiba hilang\") lang:id",
+      "(qris OR \"scan qr\" OR \"scan barcode\") (penipuan OR palsu OR modus OR refund OR balik) lang:id",
+      "(dana OR ovo OR gopay OR shopeepay OR ewallet OR \"e-wallet\") (penipuan OR tipu OR scam OR modus) lang:id",
+      "(\"admin palsu\" OR \"cs palsu\" OR \"admin gadungan\" OR \"customer service palsu\") (dana OR ovo OR gopay OR ewallet) lang:id",
+      "\"qris kotak amal\" OR \"qris parkiran\" OR \"qris spbu\" OR \"qris masjid\" lang:id",
+      "(\"cashback palsu\" OR \"promo palsu\" OR \"voucher palsu\" OR \"top up palsu\") (dana OR ovo OR gopay OR ewallet) lang:id"
+    ],
+    "limit": 500
+  },
+  "malware_apk": {
+    "queries": [
+      "(\"apk undangan\" OR \"apk nikah\" OR \"apk pernikahan\") (rekening OR saldo OR terkuras OR bobol) lang:id",
+      "\"apk penipuan\" OR \"apk bodong\" OR \"file apk penipuan\" OR \"apk modus\" lang:id",
+      "(apk) (kurir OR paket OR jnt OR tilang OR pajak OR pln OR bpjs OR \"cek resi\") lang:id",
+      "(\"kena apk\" OR \"install apk\" OR \"klik apk\" OR \"download apk\") (saldo OR rekening OR bobol OR terkuras OR raib) lang:id",
+      "(apk OR aplikasi) (sniffing OR sadap OR mbanking OR \"bobol rekening\") lang:id",
+      "(apk OR malware) (bahaya OR waspada OR \"hati-hati\" OR modus OR penipuan) lang:id",
+      "(\"undangan digital\" OR \"undangan online\" OR \"undangan nikah\") (apk OR penipuan OR modus) lang:id"
+    ],
+    "limit": 500
+  },
+  "deepfake_penipuan_ai": {
+    "queries": [
+      "(\"voice cloning\" OR \"suara ai\" OR \"voice ai\" OR \"kloning suara\") (penipuan OR tipu OR transfer OR mirip OR keluarga) lang:id",
+      "deepfake (investasi OR crypto OR giveaway OR penipuan OR scam) lang:id",
+      "deepfake (penipuan OR scam OR tipu OR bodong OR modus OR palsu) lang:id",
+      "(\"video call palsu\" OR \"ai palsu\" OR \"video editan\" OR \"wajah palsu\") (penipuan OR tipu OR sextortion) lang:id",
+      "deepfake (suara OR video OR wajah OR mirip OR palsu) lang:id",
+      "\"deteksi deepfake\" OR \"cek deepfake\" OR \"ciri deepfake\" OR \"cara tahu deepfake\" lang:id",
+      "\"penipuan ai\" OR \"scam ai\" OR \"tipu pakai ai\" OR \"modus ai\" lang:id"
+    ],
+    "limit": 500
+  },
+  "peretasan_pencurian_identitas": {
+    "queries": [
+      "(akun OR email OR instagram OR ig OR facebook OR wa OR whatsapp) (diretas OR dihack OR dibobol) lang:id",
+      "\"kebocoran data\" OR \"data bocor\" OR \"data pribadi bocor\" OR \"kebocoran data pribadi\" lang:id",
+      "\"sim swap\" OR \"sim swapping\" OR \"nomor diambil alih\" OR \"nomor dibajak\" lang:id",
+      "(doxing OR \"data pribadi disebar\" OR \"alamat dibocorkan\" OR \"foto disebar\") lang:id",
+      "(pencurian OR curi OR dicuri OR mencuri) (identitas OR \"data pribadi\" OR ktp OR foto) lang:id",
+      "\"jasa hack\" OR \"jasa bobol\" OR \"hacker online\" OR \"jasa pulihkan akun\" lang:id",
+      "\"akun saya diretas\" OR \"akun dihack\" OR \"ig dibobol\" OR \"wa dibajak\" OR \"akun diambil alih\" lang:id"
+    ],
+    "limit": 500
+  }
+}

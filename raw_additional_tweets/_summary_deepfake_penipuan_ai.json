@@ -1,0 +1,33 @@
+{
+  "executed_at": "2026-06-21T00:03:36.334048",
+  "tool": "npx tweet-harvest@latest (Node/Chromium)",
+  "spec_file": "data\\query_spec_v2.json",
+  "vektor_filter": "deepfake_penipuan_ai",
+  "query_filter": null,
+  "total_vectors": 1,
+  "total_queries": 7,
+  "total_tweets": 549,
+  "failed_queries": [],
+  "empty_queries": [
+    [
+      "deepfake_penipuan_ai",
+      1
+    ],
+    [
+      "deepfake_penipuan_ai",
+      2
+    ],
+    [
+      "deepfake_penipuan_ai",
+      3
+    ],
+    [
+      "deepfake_penipuan_ai",
+      4
+    ],
+    [
+      "deepfake_penipuan_ai",
+      5
+    ]
+  ]
+}

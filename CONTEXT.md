@@ -58,14 +58,14 @@ Metadata tambahan: `speaker_role` (R1-R5) sebagai dimensi terpisah, bukan label 
 | 0 | Audit data | ✅ SELESAI |
 | 1 | Pattern Library | ✅ Terdokumentasi (perlu refinement di Snorkel) |
 | 2 | Scraping Plan tambahan | ✅ SIAP (eksekusi conditional pada hasil Snorkel) |
-| 3 | YouTube Data API v3 | ⏳ Belum (hanya untuk scraping tambahan jika diperlukan) |
-| 4 | Tweet scraping (Jalur C) | ⏳ Belum (hanya untuk scraping tambahan) |
+| 3 | YouTube Data API v3 | 🟡 BERIKUTNYA — deps terpasang, script siap; butuh kurasi `video_candidates.csv` (fokus malware/deepfake) + `YOUTUBE_API_KEY` |
+| 4 | Tweet scraping (Jalur C) | ✅ DIJALANKAN (21 Jun 2026) — X via Tweet Harvest, +1.836 baris unik (lihat Temuan #7) |
 | 5 | Filter & Dedup | ✅ SELESAI — output `unified_dataset.csv` (48.496 baris) |
 | 6 | Preprocessing | ✅ SELESAI — output `preprocessed_dataset.csv` (48.496 baris, 18 kolom) |
 | 7 | Snorkel Labeling Functions | ✅ SELESAI — pipeline penuh terakit, `weak_labeled_dataset.csv` (lihat `docs/phase7_snorkel_report.md`) |
 | 3 (scraping) | YouTube API v3 Scraper | ✅ SIAP — script: `src/phase3_youtube_scrape.py`, input: `data/video_candidates.csv` |
-| 4 (scraping) | Tweet Harvest Query Runner | ✅ SIAP — script: `src/phase4_tweet_harvest.py`, input: `data/query_spec.json` |
-| 7.1 | Scraping 4 vektor lemah (paralel) | ⏳ READY FOR USER EXECUTION — ewallet/malware/deepfake/peretasan < 1.000 → run scripts + merge |
+| 4 (scraping) | Tweet Harvest Query Runner | ✅ SELESAI — `query_spec_v2.json` (broadened), output `raw_additional_tweets/`, merge via `phase5_consolidate_additional.py` → `unified_dataset_v2.csv` |
+| 7.1 | Scraping 4 vektor lemah | 🟡 X SELESAI (ewallet +525, peretasan +1.176 cukup; **malware +84, deepfake +51 SCARCE**) → YouTube Phase 3 untuk malware/deepfake BERIKUTNYA |
 | 8 | Gold Standard Annotation | 🔜 **BERIKUTNYA** — sampling 357 dari weak_labeled_dataset.csv (post-merge) |
 
 ---
@@ -109,6 +109,12 @@ Catat untuk Bab 3 & Bab 4 tesis:
    - **3 bug pola (terlalu ketat):** 2 diperbaiki = deepfake `ai_content_scam` (drop tail "konten/gambar") + `tokoh_publik` (drop prefix "video/klip"), anchor tetap wajib → **deepfake relevan 58 → 62**, dead LF 11 → 9. 1 dilewati = ewallet `saldo_platform` (recovery +3 marginal, ada borderline gagal-topup) → diselesaikan via scraping.
    - **5 scarcity asli (recovery 0):** `ewallet_scan_balik`, `ewallet_qr_lokasi_publik`, `ewallet_promo_palsu`, `malware_bank_drained`, `deepfake_suara_keluarga` → **konfirmasi target scraping terarah** (modus ini memang tidak ada di data 18-video + X snapshot).
    - ⚠️ **Koreksi:** klaim awal "39 ewallet / 62 deepfake intent = bug fixable" adalah **overcount** — itu co-occurrence token, bukan adjacency anchor. Probe yang menjaga anchor menunjukkan recovery sebenarnya kecil (deepfake +4 presisi 4/4). Pengungkit utama kelas lemah = **scraping**, bukan refine LF. Laporan: `docs/phase7_qc_report.md` (script: `src/phase7_qc.py`).
+
+7. **Phase 4 X scraping DIJALANKAN (21 Jun 2026) — `unified_dataset_v2.csv` (50.332 baris, X-only checkpoint).** Tweet Harvest (tool benar = Node CLI `npx tweet-harvest@latest`, auth `auth_token` cookie). Hasil unik per vektor pasca-filter+dedup: **peretasan +1.176, ewallet +525, malware +84, deepfake +51** (7 cross-batch dup saja → data baru memang aditif). Temuan metodologis (untuk Bab 3/4):
+   - **a. Sintaks query menentukan yield.** Query `(a)(b)(c)` triple-conjunction → **0 hasil** di window LATEST; hanya **phrase-OR** dan **≤2-group** yang produktif. Karena itu `query_spec.json` lama (banyak 3-group) direvisi → `data/query_spec_v2.json` (broadened). Diagnostik 2-group `(dana OR ovo) (penipuan OR tipu)` = 69 hasil → grouping VALID, query lama hanya terlalu spesifik.
+   - **b. Filter `lang=='in'` esensial (Decision #2 bekerja keras).** `lang:id` di-query bersifat soft; 1 query deepfake (`"scam ai"/"ai"`) mengembalikan 518 baris tapi **445 di antaranya `en`** (token cognate Inggris). Hanya 28 `in`. Tanpa filter ini dataset akan terkontaminasi multibahasa.
+   - **c. malware + deepfake GENUINELY scarce di X Indonesia.** TOP-tab tidak menambah (TOP malware 49 ⊂ LATEST 95, identik). Mengonfirmasi Temuan #6 scarcity. **YouTube (Phase 3) = pengungkit utama untuk malware/deepfake**; ewallet + peretasan sudah X-covered.
+   - **d. Operasional:** scraping per-vektor satu-per-satu (script `--vektor`/`--query`/`--spec`/`--tab`), 0 rate-limit (429) sepanjang ~4 vektor. Output tab-aware (`qN.csv` LATEST, `qN_top.csv` TOP) agar tidak saling timpa. Re-merge final harus dari `unified_dataset.csv` ASLI (bukan v2) dengan kedua raw dir hadir.
 
 ---
 
