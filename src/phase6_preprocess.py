@@ -218,7 +218,7 @@ def save_slang_dict():
     pd.DataFrame(rows).to_csv(SLANG_CSV, index=False, lineterminator="\n")
 
 
-def run_full(df):
+def run_full(df, out_csv=OUT_CSV, write_slang=True):
     print(f"[full] memproses {len(df):,} baris ...")
     cleans, norms, stems = [], [], []
     for i, raw in enumerate(df["text"].astype(str)):
@@ -233,10 +233,11 @@ def run_full(df):
     df.insert(pos + 1, "text_normalized", norms)
     df.insert(pos + 2, "text_stemmed", stems)
 
-    df.to_csv(OUT_CSV, index=False, lineterminator="\n")
-    save_slang_dict()
-    print(f"\nSelesai. Output: {OUT_CSV} ({len(df):,} baris, {len(df.columns)} kolom)")
-    print(f"Kamus slang: {SLANG_CSV} ({len(SLANG_DICT)} entri)")
+    df.to_csv(out_csv, index=False, lineterminator="\n")
+    if write_slang:
+        save_slang_dict()
+        print(f"Kamus slang: {SLANG_CSV} ({len(SLANG_DICT)} entri)")
+    print(f"\nSelesai. Output: {out_csv} ({len(df):,} baris, {len(df.columns)} kolom)")
     print(f"Kolom: {list(df.columns)}")
 
 
@@ -244,16 +245,19 @@ def main():
     ap = argparse.ArgumentParser(description="Phase 6 Preprocessing")
     ap.add_argument("--preview", type=int, default=0,
                     help="Tampilkan N baris before/after lalu berhenti (tidak menulis)")
+    ap.add_argument("--input", default=IN_CSV, help=f"CSV input (default: {IN_CSV})")
+    ap.add_argument("--output", default=OUT_CSV, help=f"CSV output (default: {OUT_CSV})")
     args = ap.parse_args()
 
     # Baca semua kolom sebagai string -> kolom existing byte-stable di output.
-    df = pd.read_csv(IN_CSV, dtype=str, keep_default_na=False)
+    df = pd.read_csv(args.input, dtype=str, keep_default_na=False)
     assert "text" in df.columns
 
     if args.preview > 0:
         run_preview(df, args.preview)
     else:
-        run_full(df)
+        # Slang dict hanya ditulis pada run default (jangan sentuh artefak v1 saat v2).
+        run_full(df, out_csv=args.output, write_slang=(args.output == OUT_CSV))
 
 
 if __name__ == "__main__":

@@ -18,7 +18,7 @@ Keputusan tertanam:
   - Layer 1 relevansi digerakkan anchor presisi (bukan discovery), sesuai keputusan Ray.
   - Hierarki: malware > deepfake > ewallet > phishing > peretasan > judi (CONTEXT §8).
 """
-import sys, re
+import sys, re, argparse
 import numpy as np
 import pandas as pd
 from snorkel.labeling import PandasLFApplier
@@ -65,8 +65,15 @@ def _role(t):
 
 
 def main():
-    print("Loading preprocessed_dataset.csv ...")
-    df = pd.read_csv("data/preprocessed_dataset.csv")
+    ap = argparse.ArgumentParser(description="Phase 7 Snorkel aggregation")
+    ap.add_argument("--input", default="data/preprocessed_dataset.csv",
+                    help="CSV input (default: data/preprocessed_dataset.csv)")
+    ap.add_argument("--output", default="data/weak_labeled_dataset.csv",
+                    help="CSV output (default: data/weak_labeled_dataset.csv)")
+    args = ap.parse_args()
+
+    print(f"Loading {args.input} ...")
+    df = pd.read_csv(args.input)
     df["text_clean"] = df["text_clean"].fillna("")
     n = len(df)
     print(f"  rows: {n}")
@@ -173,8 +180,8 @@ def main():
                 "vector_hint", "layer1_label", "layer2_label", "speaker_role",
                 "lm_confidence", "manual_confidence", "text", "text_clean", "text_normalized"]
     out = df[out_cols]
-    out.to_csv("data/weak_labeled_dataset.csv", index=False)
-    print(f"\n[saved] data/weak_labeled_dataset.csv  ({len(out)} baris, {len(out_cols)} kolom)")
+    out.to_csv(args.output, index=False)
+    print(f"\n[saved] {args.output}  ({len(out)} baris, {len(out_cols)} kolom)")
     return df
 
 
