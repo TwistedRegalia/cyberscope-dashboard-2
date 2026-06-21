@@ -1,29 +1,29 @@
 {
-  "executed_at": "2026-06-21T02:15:15.522538",
+  "executed_at": "2026-06-21T09:53:28.389393",
   "existing_rows": 48496,
-  "raw_new_total": 1955,
-  "new_youtube_raw": 0,
+  "raw_new_total": 8618,
+  "new_youtube_raw": 6663,
   "new_x_raw": 1955,
-  "after_internal_filter": 1843,
-  "cross_batch_duplicates": 7,
-  "new_rows_added": 1836,
-  "merged_total": 50332,
+  "after_internal_filter": 6830,
+  "cross_batch_duplicates": 26,
+  "new_rows_added": 6804,
+  "merged_total": 55300,
   "new_by_vektor": {
+    "malware_apk": 4060,
     "peretasan_pencurian_identitas": 1176,
-    "penipuan_ewallet_qris": 525,
-    "malware_apk": 84,
-    "deepfake_penipuan_ai": 51
+    "deepfake_penipuan_ai": 1043,
+    "penipuan_ewallet_qris": 525
   },
   "filter_breakdown": {
-    "input_total": 1955,
+    "input_total": 8618,
     "removed_empty": 0,
-    "removed_low_signal": 0,
-    "removed_too_short": 0,
-    "removed_too_long": 0,
-    "removed_reply_lowquality": 56,
-    "reply_input": 494,
-    "reply_passed": 438,
-    "removed_duplicates": 56,
-    "output_total": 1843
+    "removed_low_signal": 49,
+    "removed_too_short": 156,
+    "removed_too_long": 1,
+    "removed_reply_lowquality": 1496,
+    "reply_input": 2206,
+    "reply_passed": 710,
+    "removed_duplicates": 86,
+    "output_total": 6830
   }
 }
