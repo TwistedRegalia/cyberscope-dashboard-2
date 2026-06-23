@@ -2,26 +2,22 @@
 """
 phase8_kappa_analysis.py — IAA + validasi weak label (DIPAKAI SETELAH anotasi).
 
-Jalankan setelah annotator A & B mengisi gold_annotation_sheet_A/B.csv (kolom
-annotator_layer1 / annotator_layer2 / annotator_speaker_role).
-
-Input (data/):
-  - gold_annotation_sheet_A.csv  (terisi annotator A)
-  - gold_annotation_sheet_B.csv  (terisi annotator B)
-  - gold_key_HIDDEN.csv
+Jalankan setelah annotator A & B mengisi gold_annotation_sheet_A/B(_filled).csv
+(kolom annotator_layer1 / annotator_layer2 / annotator_speaker_role).
 
 Menghitung:
-  (a) Inter-annotator Cohen's Kappa: Layer 1, Layer 2 (vektor), + per-label one-vs-rest.
-  (b) Akurasi weak label (Snorkel) vs gold proxy (subset SEPAKAT A==B).
-  (c) Per-class precision weak label.
+  (a) Inter-annotator Cohen's Kappa: Layer 1, Layer 2 (vektor), speaker_role,
+      + per-label one-vs-rest.
+  (b) [hanya tanpa --iaa-only] Akurasi weak label vs gold proxy (subset SEPAKAT A==B).
+  (c) [hanya tanpa --iaa-only] Per-class precision weak label.
 
 Output:
   - Console: metrik di atas.
-  - data/gold_disagreements.csv : baris A != B (Layer 1 atau Layer 2 vektor) untuk
-    rekonsiliasi reviewer ketiga (gold final yang ketat butuh langkah ini).
+  - data/gold_disagreements.csv : baris A != B (Layer 1 / Layer 2 / speaker_role),
+    dengan kolom rekonsiliasi (final_*) KOSONG untuk reviewer ketiga / dosen.
 
-Catatan: 'gold final' yang ketat = hasil rekonsiliasi reviewer ketiga atas disagreement.
-Sebelum itu, metrik weak-label dihitung pada subset SEPAKAT sebagai proxy.
+--iaa-only : hanya IAA + disagreements; SKIP validasi weak label. Dipakai sebelum
+gold standard final (menunggu rekonsiliasi reviewer ketiga).
 """
 import argparse
 import sys
@@ -38,15 +34,28 @@ def _norm(s):
 
 def _interpret(k):
     if k >= 0.80:
-        return "(Excellent — siap gold standard)"
+        return "(Excellent)"
     if k >= 0.60:
-        return "(Substantial — refinement guidelines)"
-    return "(Insufficient — revisi guidelines major)"
+        return "(Substantial)"
+    return "(Insufficient -> revisi guidelines)"
 
 
 def _kappa(a, b):
     from sklearn.metrics import cohen_kappa_score
     return cohen_kappa_score(list(a), list(b))
+
+
+def _dims(r):
+    """Dimensi disagreement untuk satu baris (L1 / L2 / role)."""
+    if r.a_l1 != r.b_l1:
+        return ["L1"]                       # L1 beda -> tidak cascade ke L2/role
+    out = []
+    if r.a_l1 == "relevan":                 # keduanya relevan (karena sama)
+        if r.a_l2 != r.b_l2:
+            out.append("L2")
+        if r.a_role != r.b_role:
+            out.append("role")
+    return out
 
 
 def main():
@@ -55,98 +64,95 @@ def main():
     ap.add_argument("--sheet-b", default="data/gold_annotation_sheet_B.csv")
     ap.add_argument("--key", default="data/gold_key_HIDDEN.csv")
     ap.add_argument("--out-disagree", default="data/gold_disagreements.csv")
+    ap.add_argument("--iaa-only", action="store_true",
+                    help="Hanya IAA + disagreements; SKIP validasi weak label "
+                         "(tunggu gold final pasca rekonsiliasi reviewer ketiga).")
     args = ap.parse_args()
 
     A = pd.read_csv(args.sheet_a, dtype=str, keep_default_na=False)
     B = pd.read_csv(args.sheet_b, dtype=str, keep_default_na=False)
-    key = pd.read_csv(args.key, dtype=str, keep_default_na=False)
 
     a_filled = (A["annotator_layer1"].str.strip() != "").sum()
     b_filled = (B["annotator_layer1"].str.strip() != "").sum()
     if a_filled == 0 or b_filled == 0:
-        print(f"[!] Sheet belum dianotasi (A terisi={a_filled}/{len(A)}, "
-              f"B terisi={b_filled}/{len(B)}).")
-        print("    Isi kolom annotator_layer1/annotator_layer2 di KEDUA sheet dulu, "
-              "lalu jalankan ulang.")
+        print(f"[!] Sheet belum dianotasi (A={a_filled}/{len(A)}, B={b_filled}/{len(B)}).")
         sys.exit(0)
-    if a_filled < len(A) or b_filled < len(B):
-        print(f"[warn] Anotasi belum lengkap (A {a_filled}/{len(A)}, B {b_filled}/{len(B)}). "
-              "Metrik dihitung pada baris yang terisi di KEDUANYA.\n")
 
-    # rename kolom annotator -> _A / _B, lalu merge by sample_id
-    Aa = A.rename(columns={c: c + "_A" for c in A.columns if c.startswith("annotator")})
-    Bb = B.rename(columns={c: c + "_B" for c in B.columns if c.startswith("annotator")})
-    m = (Aa.merge(Bb[["sample_id"] + [c for c in Bb.columns if c.endswith("_B")]],
-                  on="sample_id")
-          .merge(key, on="sample_id"))
-
-    for col in ["annotator_layer1_A", "annotator_layer1_B",
-                "annotator_layer2_A", "annotator_layer2_B"]:
-        m[col] = m[col].map(_norm)
-    m["weak_layer1"] = m["weak_layer1"].map(_norm)
-    m["weak_layer2"] = m["weak_layer2"].map(_norm)
-
-    both = m[(m.annotator_layer1_A != "") & (m.annotator_layer1_B != "")].copy()
+    m = A[["sample_id", "text"]].copy()
+    m["a_l1"] = A["annotator_layer1"].map(_norm)
+    m["a_l2"] = A["annotator_layer2"].map(_norm)
+    m["a_role"] = A["annotator_speaker_role"].map(_norm).str.upper()
+    b = B.set_index("sample_id")
+    m["b_l1"] = m["sample_id"].map(b["annotator_layer1"]).map(_norm)
+    m["b_l2"] = m["sample_id"].map(b["annotator_layer2"]).map(_norm)
+    m["b_role"] = m["sample_id"].map(b["annotator_speaker_role"]).map(_norm).str.upper()
+    m = m.sort_values("sample_id").reset_index(drop=True)
 
     # ---------- (a) IAA ----------
-    print(f"== (a) Inter-Annotator Agreement (n={len(both)}) ==")
-    k1 = _kappa(both.annotator_layer1_A, both.annotator_layer1_B)
+    print(f"== (a) Inter-Annotator Agreement (n={len(m)}) ==")
+    k1 = _kappa(m.a_l1, m.b_l1)
     print(f"  Kappa Layer 1 (relevan/tidak_relevan): {k1:.3f}  {_interpret(k1)}")
 
-    rel_both = both[(both.annotator_layer1_A == "relevan") &
-                    (both.annotator_layer1_B == "relevan")]
-    if len(rel_both) >= 2 and (rel_both.annotator_layer2_A.nunique() > 1
-                               or rel_both.annotator_layer2_B.nunique() > 1):
-        k2 = _kappa(rel_both.annotator_layer2_A, rel_both.annotator_layer2_B)
-        print(f"  Kappa Layer 2 (vektor, both-relevan n={len(rel_both)}): "
-              f"{k2:.3f}  {_interpret(k2)}")
-    else:
-        print(f"  Kappa Layer 2: subset both-relevan terlalu kecil ({len(rel_both)})")
+    rel_both = m[(m.a_l1 == "relevan") & (m.b_l1 == "relevan")]
+    k2 = _kappa(rel_both.a_l2, rel_both.b_l2)
+    print(f"  Kappa Layer 2 (vektor, both-relevan n={len(rel_both)}): "
+          f"{k2:.3f}  {_interpret(k2)}")
+    kr = _kappa(rel_both.a_role, rel_both.b_role)
+    print(f"  Kappa speaker_role (both-relevan n={len(rel_both)}): "
+          f"{kr:.3f}  {_interpret(kr)}")
 
     print("  Per-label Kappa (one-vs-rest):")
-    for v in ["relevan"] + VEKTOR:
-        if v == "relevan":
-            a = (both.annotator_layer1_A == "relevan").astype(int)
-            b = (both.annotator_layer1_B == "relevan").astype(int)
-        else:
-            a = (both.annotator_layer2_A == v).astype(int)
-            b = (both.annotator_layer2_B == v).astype(int)
-        if a.nunique() > 1 or b.nunique() > 1:
-            print(f"    {v:32} kappa={_kappa(a, b):.3f}")
+    for v in VEKTOR:
+        a = (rel_both.a_l2 == v).astype(int)
+        bb = (rel_both.b_l2 == v).astype(int)
+        if a.nunique() > 1 or bb.nunique() > 1:
+            print(f"    {v:32} kappa={_kappa(a, bb):.3f}")
         else:
             print(f"    {v:32} (tak ada kasus positif)")
 
-    # ---------- (b)+(c) weak label vs gold proxy (sepakat A==B) ----------
-    agree1 = both[both.annotator_layer1_A == both.annotator_layer1_B].copy()
-    print(f"\n== (b) Validasi weak label — gold proxy = SEPAKAT A==B (n={len(agree1)}) ==")
-    if len(agree1):
-        acc1 = (agree1.weak_layer1 == agree1.annotator_layer1_A).mean()
-        print(f"  Akurasi weak Layer 1: {acc1:.3f}")
-
-    gold_rel = agree1[(agree1.annotator_layer1_A == "relevan") &
-                      (agree1.annotator_layer2_A == agree1.annotator_layer2_B)]
-    if len(gold_rel):
-        acc2 = (gold_rel.weak_layer2 == gold_rel.annotator_layer2_A).mean()
-        print(f"  Akurasi weak Layer 2 (sepakat-relevan n={len(gold_rel)}): {acc2:.3f}")
-        print("\n== (c) Per-class precision weak label (gold = annotator sepakat) ==")
-        for v in VEKTOR:
-            pred = gold_rel[gold_rel.weak_layer2 == v]
-            if len(pred):
-                prec = (pred.annotator_layer2_A == v).mean()
-                print(f"  {v:32} precision={prec:.3f}  (n_pred={len(pred)})")
-            else:
-                print(f"  {v:32} (weak tak memprediksi di subset gold)")
-
     # ---------- disagreements -> file (reviewer ketiga) ----------
-    dis = m[(m.annotator_layer1_A != m.annotator_layer1_B) |
-            ((m.annotator_layer1_A == "relevan") & (m.annotator_layer1_B == "relevan") &
-             (m.annotator_layer2_A != m.annotator_layer2_B))].copy()
-    cols = ["sample_id", "text",
-            "annotator_layer1_A", "annotator_layer2_A",
-            "annotator_layer1_B", "annotator_layer2_B",
-            "weak_layer1", "weak_layer2", "vector_hint", "source_category"]
-    dis[[c for c in cols if c in dis.columns]].to_csv(args.out_disagree, index=False)
-    print(f"\n[saved] {args.out_disagree}  ({len(dis)} disagreement untuk reviewer ketiga)")
+    dim_list = m.apply(_dims, axis=1)
+    dis = m[dim_list.map(len) > 0].copy()
+    dis["dim_beda"] = dim_list[dim_list.map(len) > 0].map(lambda d: " ".join(d))
+    out = pd.DataFrame({
+        "sample_id": dis.sample_id,
+        "text": dis.text,
+        "dim_beda": dis.dim_beda,
+        "A_layer1": dis.a_l1, "B_layer1": dis.b_l1,
+        "A_layer2": dis.a_l2, "B_layer2": dis.b_l2,
+        "A_role": dis.a_role, "B_role": dis.b_role,
+        "final_layer1": "", "final_layer2": "", "final_role": "",
+        "catatan_reviewer": "",
+    })
+    out.to_csv(args.out_disagree, index=False)
+    n_l1 = (dis.dim_beda.str.contains("L1")).sum()
+    n_l2 = (dis.dim_beda.str.contains("L2")).sum()
+    n_role = (dis.dim_beda.str.contains("role")).sum()
+    print(f"\n[saved] {args.out_disagree}  ({len(out)} baris disagreement: "
+          f"{n_l1} L1, {n_l2} L2, {n_role} role) — kolom final_* KOSONG (BELUM "
+          f"direkonsiliasi, untuk reviewer ketiga)")
+
+    # ---------- (b)+(c) weak label (di-skip saat --iaa-only) ----------
+    if args.iaa_only:
+        print("\n[--iaa-only] Validasi weak label DI-SKIP "
+              "(menunggu gold standard final pasca rekonsiliasi).")
+        return
+
+    key = pd.read_csv(args.key, dtype=str, keep_default_na=False).set_index("sample_id")
+    m["weak_l1"] = m.sample_id.map(key["weak_layer1"]).map(_norm)
+    m["weak_l2"] = m.sample_id.map(key["weak_layer2"]).map(_norm)
+    agree = m[(m.a_l1 == m.b_l1)].copy()
+    print(f"\n== (b) Validasi weak label — gold proxy SEPAKAT A==B (n={len(agree)}) ==")
+    print(f"  Akurasi weak Layer 1: {(agree.weak_l1 == agree.a_l1).mean():.3f}")
+    gold_rel = agree[(agree.a_l1 == "relevan") & (agree.a_l2 == agree.b_l2)]
+    if len(gold_rel):
+        print(f"  Akurasi weak Layer 2 (sepakat-relevan n={len(gold_rel)}): "
+              f"{(gold_rel.weak_l2 == gold_rel.a_l2).mean():.3f}")
+        print("\n== (c) Per-class precision weak label ==")
+        for v in VEKTOR:
+            pred = gold_rel[gold_rel.weak_l2 == v]
+            if len(pred):
+                print(f"  {v:32} precision={(pred.a_l2 == v).mean():.3f} (n={len(pred)})")
 
 
 if __name__ == "__main__":

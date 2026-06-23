@@ -1,0 +1,58 @@
+sample_id,text,dim_beda,A_layer1,B_layer1,A_layer2,B_layer2,A_role,B_role,final_layer1,final_layer2,final_role,catatan_reviewer
+G001,Pada 2012 enam juta password akun profesional Linkedln serta 58 ribu lebih akun Twitter dibobol oleh hacker via http://t.co/9H1AGBRSSj,role,relevan,relevan,peretasan_pencurian_identitas,peretasan_pencurian_identitas,R5,R2,,,,
+G006,Selalu waspada dan semoga kita terhindar dari segala bentuk modus penipuan,L1,relevan,tidak_relevan,phishing_rekayasa_sosial,,R3,,,,,
+G007,"Mas mau reques, tolong d bongkar untuk judi bolanya",L1,relevan,tidak_relevan,judi_online_pinjol,,R3,,,,,
+G008,kalau togel online gmna mas marcel masih settingan?,L1,relevan,tidak_relevan,judi_online_pinjol,,R2,,,,,
+G009,Ini apk penipuan kah??? https://t.co/9JiQI7aky7,role,relevan,relevan,malware_apk,malware_apk,R2,R5,,,,
+G010,"Viral Pria Tempel Stiker QRIS Palsu di Masjid, Polisi Selidiki dan Buru Pelaku https://t.co/WVI8hWAWfl",role,relevan,relevan,penipuan_ewallet_qris,penipuan_ewallet_qris,R5,R2,,,,
+G017,Video nadia omara itu asli bukan deepfake,L1,tidak_relevan,relevan,,deepfake_penipuan_ai,,R2,,,,
+G020,"Kalau didengar dari suara, nada bicara, dan gaya percakapannya, bisa ketauan kalau itu AI. Cuma seperti apa yang kak Nessie bilang, gak semua orang itu tau dan peka akan masalah ini. Jadi bisa aja ditipu. Mana AI makin lama makin canggih lagi. Hadeuh, zemoga kita semua dijauhkan dan dilindungi dari orang² yang berniat jahat. Aamiin...",role,relevan,relevan,deepfake_penipuan_ai,deepfake_penipuan_ai,R3,R2,,,,
+G023,"Terima kasih bos informasinya,, yang bos utarakan diatas benar skali. saya udah terima aplikasi apk mengaku dr kurir JnT, awalnya mreka menelpon saya mgatakan bhwa paket saya alamatnya tdk valid, rayuan mreka sayang krn paket udah dibayar sm ongkirnya, saat itu juga saya terima pesan BRO OTP utk mengganti pasword, trs saya pancing tlng dong kirimin fhoto paketnya, tapi yg dikirim aplikasi APK paket JNT, dan dia bilang buka aja kak aplikasinya dan lengkapi datanya, saya langsng ingat pesan kk utk tdk di klik, diahir pembicaraan sya bilang carilah rezeki yg halal aplg utk diberikan ke anak istri. Terima kasih bos atas informasinya telah menyelamatkan orang orang dr kejahatan onlen. 👍💪🙏",role,relevan,relevan,malware_apk,malware_apk,R1,R2,,,,
+G024,"Saya pengen balik sini lagi,biar saya ingat terus bahwa slot itu settingan",role,relevan,relevan,judi_online_pinjol,judi_online_pinjol,R1,R5,,,,
+G026,Ada oknum pengiriman yg jd mata² didalam untuk curi data...dijual dan dijadikan bahan untuk penipuan tuh..,L2,relevan,relevan,peretasan_pencurian_identitas,phishing_rekayasa_sosial,R2,R2,,,,
+G031,"Sebelumnya saya sudah upload versi tidak tertutupnya, tapi dalam jangka waktu 1 hari tayang, youtube langsunv mentake down videonya, karna dianggap ujaran kebencian (saya dengan sadar memasukkan wajah pelaku ke video, karna wajahnya sebenernya deepfake/palsu)",role,relevan,relevan,deepfake_penipuan_ai,deepfake_penipuan_ai,R2,R1,,,,
+G032,"Kalo penipuan, report dong itu video judi indo yg di youtube.",role,relevan,relevan,judi_online_pinjol,judi_online_pinjol,R5,R2,,,,
+G035,Hal ini dilakukan setelah pihaknya mendapat informasi bahwa Masjid Istiqlal juga menjadi sasaran penempelan QRIS palsu.#focus #qris #news #text https://t.co/6B1Rd2e4QV,role,relevan,relevan,penipuan_ewallet_qris,penipuan_ewallet_qris,R2,R5,,,,
+G036,"Tolong bang marsel kalau bisa di liput di tv nasional biara seluruh rakyat Indonesian tahu bahwa judol itu real penipuan, ""semoga menjadi amal ibadah buat bang marsel""",L2 role,relevan,relevan,judi_online_pinjol,penipuan_ewallet_qris,R3,R2,,,,
+G044,"Dari total masjid yang dipasang QRIS palsu tersebut sebagian ialah masjid besar
+
+https://t.co/7twhQLlLqv",role,relevan,relevan,penipuan_ewallet_qris,penipuan_ewallet_qris,R5,R2,,,,
+G052,"Kalau udah terlanjur klik gambar download apk tp belum selesai download, saya cancel gimana koh?? Apakah masih berbahaya...",role,relevan,relevan,malware_apk,malware_apk,R1,R2,,,,
+G054,"Mengandung banyak makna arti pesan moral nih animasi, semoga judi online diblokir pemerintah 😔",role,relevan,relevan,judi_online_pinjol,judi_online_pinjol,R3,R2,,,,
+G058,Wapres Imbau Pihak Otoritas Punya Sistem Pengamanan QRIS Kotak Amal Masjid https://t.co/dvfwyH1Hje,role,relevan,relevan,penipuan_ewallet_qris,penipuan_ewallet_qris,R5,R3,,,,
+G059,"Alhamdulillah ga pernah di kasih suka judi online , udh dosa uang abis rugi browwww mending uang nya di tabung beli kebutuhan dan keperluan hidup jauhi judi perkaya diri #2025ANTIJUDOL",role,relevan,relevan,judi_online_pinjol,judi_online_pinjol,R5,R3,,,,
+G060,Bang kalau cuma sebatas download file apk nya dan ga di install aman ga?,role,relevan,relevan,malware_apk,malware_apk,R1,R5,,,,
+G061,Komentar Judi tolong dihapus Bang Rizky ganggu kali,L1,relevan,tidak_relevan,judi_online_pinjol,,R5,,,,,
+G062,Bang marsel tolong jelaskan kalau judi parlay bagaimana ?,L1,relevan,tidak_relevan,judi_online_pinjol,,R5,,,,,
+G063,ada yg bisa jasa hack ig gasih? ini temen gue di terror sampe begini dilingkungan sekolah. please anyone #zonauang,L2 role,relevan,relevan,peretasan_pencurian_identitas,judi_online_pinjol,R5,R2,,,,
+G064,"Harusnya diangkat di semua tv, tayangkan secara live serentak, kalo pemerintah, serius.. Brantas judol, mas ini harus dapat perlindungan dan apresiasi dari negara",role,relevan,relevan,judi_online_pinjol,judi_online_pinjol,R2,R5,,,,
+G066,"dri kecil gw diajarin untuk tidak mencoba judi,karna judi bisa membuat gila,dri dlu ampe skrng Alhamdulillah blm prnh ngerasain main judi",role,relevan,relevan,judi_online_pinjol,judi_online_pinjol,R3,R5,,,,
+G069,Untuk apk undangan gue pernah membongkar isi dalam apknya.. di bagian classes dex gue menemukan Api Bot Telegram dan No. HP sipembuat Virus... Yg biasanya ini digunakan untuk memforward isi chat kita atau Kode autentikasi SMS ke nom HP pelaku baik langsung sms atau Telegram,role,relevan,relevan,malware_apk,malware_apk,R3,R2,,,,
+G070,"Padahal judi kan permainan orang kaya buat buang duit, _- Bkn buat nyari duit.",role,relevan,relevan,judi_online_pinjol,judi_online_pinjol,R3,R5,,,,
+G071,"kalo pada sering main facebook, banyak banget deepfake dari public figure, untuk promosi judol, dan yap, pelakunya ditangkap kah ?, i dont think so",role,relevan,relevan,deepfake_penipuan_ai,deepfake_penipuan_ai,R2,R5,,,,
+G072,"Yang dijual bukan hardware nya
+Yang dijual adalah “compliance”
+
+Banyak perusahaan sebenarnya pengen pakai AI
+
+Tapi data mereka gak boleh keluar ke cloud karena regulasi, NDA, atau risiko kebocoran data
+
+Dan di situlah peluang besar muncul
+
+Seorang lawyer cuma gabungin Raspberry",role,relevan,relevan,peretasan_pencurian_identitas,peretasan_pencurian_identitas,R5,R3,,,,
+G079,Judi fisik aja masih bisa dimanipulasi apalagi judi yang dipegang ama anonimus yang kita sendiri gak kenal😂,role,relevan,relevan,judi_online_pinjol,judi_online_pinjol,R3,R5,,,,
+G081,"@danawallet jangan smpe zonk gara2 qris palsu, good job dana👍",role,relevan,relevan,penipuan_ewallet_qris,penipuan_ewallet_qris,R3,R5,,,,
+G082,Bang kalau pinjaman online bisa tidak,L1,relevan,tidak_relevan,judi_online_pinjol,,R1,,,,,
+G087,ada gak jasa hack wa #zonauanh #zonaba,role,relevan,relevan,peretasan_pencurian_identitas,peretasan_pencurian_identitas,R4,R5,,,,
+G088,"2/3 tahun lalu, aku sempet kena love scam yang menjanjikan aku dapet uang 3.400.000,00 usd dari orang Korea yang ngaku kerja di luar korea, aku lupa dimananya karena itu udah 2/3 tahun lalu Akhirnya aku yang bodoh ini main chat aja ke e-mail yang di share oleh si penipu dengan alasan akan berbicara dengan pihak bea cukai, dari pihak tersebut meminta uang tebusan 15 juta, lalu aku bilang ke dia kok ada pembayaran segala? Katanya alasan uangnya itu ditahan Bodohnya aku lagi aku tuh udah tau gak punya duit, malah ajuin pinjaman online waktu itu adakami😭, 4,2 juta aku tf ke dia, dan besoknya aku baru cari tau karena dia bener” maksa harus tf sesuai 15,2 juta… hampir aku mau minjem di bank😭 lalu iseng” nyari modus penipuan bea cukai, dan sumpah ini jangan kalian ladenin ya, untung aku gak sampe kasih ktp maupun no rek, alhamdulillaah udah terbayar pinjol ku di tahun berikutnya Terserah kalian mau katain aku bodoh, tapi kalo kalian ada di posisiku yang gak tau teknologi yang kaya gini Tolong hati” ya guys😢",L2 role,relevan,relevan,judi_online_pinjol,phishing_rekayasa_sosial,R1,R3,,,,
+G089,"Pasang Stiker QRIS Palsu di Kotak Amal Masjid Nurul Iman, Ini Inisial Pelaku Bertubuh Tambun https://t.co/kb0tFeoagO",role,relevan,relevan,penipuan_ewallet_qris,penipuan_ewallet_qris,R2,R5,,,,
+G090,kak kemarin saya nemu deep fake lu kak dari oknum yang ga bertanggung jawab sedang mempromosiin buku gw lupa judulnya,role,relevan,relevan,deepfake_penipuan_ai,deepfake_penipuan_ai,R3,R2,,,,
+G093,Apakah kalo di ipone apk kiriman nya tdk bisa kedownlod?,L1,relevan,tidak_relevan,malware_apk,,R2,,,,,
+G098,Polisi Tangkap Penukar Barcode QRIS Kotak Amal Masjid Istiqlal https://t.co/L8Ys0iwfMN,role,relevan,relevan,penipuan_ewallet_qris,penipuan_ewallet_qris,R5,R2,,,,
+G099,Tpi knpa KLO akun demo gacor terus,L1,relevan,tidak_relevan,judi_online_pinjol,,R4,,,,,
+G100,JUDI = KE'TOLOL'AN YANG HAQIQI,L1,relevan,tidak_relevan,judi_online_pinjol,,R5,,,,,
+G105,"BRI terbaik, kreatif, senantiasa mengedukasi nasabah tanpa henti, waspada penipuan soceng mengintai kita setiap hari.",role,relevan,relevan,phishing_rekayasa_sosial,phishing_rekayasa_sosial,R2,R3,,,,
+G108,@convomf Ada jasa hack akun gak?,role,relevan,relevan,peretasan_pencurian_identitas,peretasan_pencurian_identitas,R4,R5,,,,
+G109,"Bang , gw baru saja kena tipu .. Dengan modus pinjam online via kirim pake qris .. Ini gimana bang",L2,relevan,relevan,phishing_rekayasa_sosial,penipuan_ewallet_qris,R1,R1,,,,
+G111,"Bener arahnya ke social engineering, maenin psikologis kita",role,relevan,relevan,phishing_rekayasa_sosial,phishing_rekayasa_sosial,R3,R5,,,,
+G113,Saya pecandu judol. Lebih buruk dari hancur. Hanya mereka yang hancur yang bisa merasakan apa yang saya rasakan. Konten ini bagaikan segalon es teh di Gurun Sahara. Lebih indah dari WD dengan modal kecil. Master Piece. Pesulap Merah dan Team.,role,relevan,relevan,judi_online_pinjol,judi_online_pinjol,R1,R4,,,,
