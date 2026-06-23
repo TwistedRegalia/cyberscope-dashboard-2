@@ -141,18 +141,23 @@ def main():
     key = pd.read_csv(args.key, dtype=str, keep_default_na=False).set_index("sample_id")
     m["weak_l1"] = m.sample_id.map(key["weak_layer1"]).map(_norm)
     m["weak_l2"] = m.sample_id.map(key["weak_layer2"]).map(_norm)
-    agree = m[(m.a_l1 == m.b_l1)].copy()
-    print(f"\n== (b) Validasi weak label — gold proxy SEPAKAT A==B (n={len(agree)}) ==")
-    print(f"  Akurasi weak Layer 1: {(agree.weak_l1 == agree.a_l1).mean():.3f}")
-    gold_rel = agree[(agree.a_l1 == "relevan") & (agree.a_l2 == agree.b_l2)]
+    # Gold proxy = baris SEPAKAT PENUH A==B (L1+L2+role); 46 disagreement dikecualikan.
+    agree = m[(m.a_l1 == m.b_l1) & (m.a_l2 == m.b_l2) & (m.a_role == m.b_role)].copy()
+    n_excl = len(m) - len(agree)
+    print(f"\n== (b) Validasi weak label — gold proxy SEPAKAT PENUH A==B "
+          f"(n={len(agree)}; {n_excl} disagreement dikecualikan) ==")
+    print(f"  Akurasi weak Layer 1: {(agree.weak_l1 == agree.a_l1).mean():.3f}  (n={len(agree)})")
+    gold_rel = agree[agree.a_l1 == "relevan"]
     if len(gold_rel):
         print(f"  Akurasi weak Layer 2 (sepakat-relevan n={len(gold_rel)}): "
               f"{(gold_rel.weak_l2 == gold_rel.a_l2).mean():.3f}")
-        print("\n== (c) Per-class precision weak label ==")
+        print("\n== (c) Per-class precision weak label (gold = anotator sepakat) ==")
         for v in VEKTOR:
             pred = gold_rel[gold_rel.weak_l2 == v]
             if len(pred):
-                print(f"  {v:32} precision={(pred.a_l2 == v).mean():.3f} (n={len(pred)})")
+                print(f"  {v:32} precision={(pred.a_l2 == v).mean():.3f} (n_pred={len(pred)})")
+            else:
+                print(f"  {v:32} (weak tak memprediksi di subset gold)")
 
 
 if __name__ == "__main__":
