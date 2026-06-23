@@ -92,7 +92,7 @@ modus penipuan deepfake Indonesia
 
 ---
 
-### 4. `peretasan_pencurien_identitas` — Target 5-6 video
+### 4. `peretasan_pencurian_identitas` — Target 5-6 video
 
 **Modus yang dijaga:**
 - SIM swap / pencurian nomor (hack nomor induk)
