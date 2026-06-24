@@ -1,6 +1,6 @@
 # CONTEXT.md — Handoff untuk Claude Code
 
-> **Cara pakai dokumen ini:** Letakkan file ini di root project Anda. Saat membuka Claude Code, mulai dengan: *"Baca CONTEXT.md untuk memahami project ini, lalu bantu saya lanjut ke Phase 6."* Claude Code akan punya konteks penuh tanpa Anda perlu menjelaskan ulang.
+> **Cara pakai dokumen ini:** Letakkan file ini di root project Anda. Saat membuka Claude Code, mulai dengan: *"Baca CONTEXT.md untuk memahami project ini."* Claude Code akan punya konteks penuh tanpa Anda perlu menjelaskan ulang.
 
 ---
 
@@ -66,7 +66,8 @@ Metadata tambahan: `speaker_role` (R1-R5) sebagai dimensi terpisah, bukan label 
 | 3 (scraping) | YouTube API v3 Scraper | ✅ SELESAI — 8 video (7 malware + 1 deepfake), 6.663 komentar → `raw_additional_youtube/` |
 | 4 (scraping) | Tweet Harvest Query Runner | ✅ SELESAI — `query_spec_v2.json` (broadened), output `raw_additional_tweets/`, merge → `unified_dataset_v2.csv` |
 | 7.1 | Scraping 4 vektor lemah | ✅ SELESAI (X+YT). Relevan v1→v2: ewallet 23→548, peretasan 46→365, malware 36→214, deepfake 62→107 (tetap floor) |
-| 8 | Gold Standard Annotation | 🟢 SELESAI (23 Jun 2026) — A=Ray, B=Nabilla Putri. IAA EXCELLENT (κ L1 0,925/L2 0,976/role 0,825). Weak-label tervalidasi pada subset sepakat n=311: **akurasi L1 90,0% / L2 96,9%, precision 0,91–1,00** (Temuan #8). Gold = VALIDASI saja → **Phase 9 training BERIKUTNYA** |
+| 8 | Gold Standard Annotation | 🟢 SELESAI (23 Jun 2026) — A=Ray, B=Nabilla Putri. IAA EXCELLENT (κ L1 0,925/L2 0,976/role 0,825). Weak-label tervalidasi pada subset sepakat n=311: **akurasi L1 90,0% / L2 96,9%, precision 0,91–1,00** (Temuan #8). Gold = VALIDASI saja |
+| 9 | Training Triple-Hybrid | 🟢 **Model A SELESAI** (24 Jun 2026) — branch `feat/phase9-training`. Layer 1 test: **accuracy 0,9819, macro-F1 0,9680, recall relevan 0,9674** (CM: TN=4539/FP=70/FN=30/TP=891). Model B menyusul. Lihat Temuan #9 |
 
 ---
 
@@ -122,6 +123,16 @@ Catat untuk Bab 3 & Bab 4 tesis:
    - ⚠️ **Limitasi terdokumentasi: fraksi sampling deepfake 34% (36/107).** Karena deepfake = kelas terkecil (Temuan #7f), gold deepfake mencakup **34% populasi relevannya** — jauh di atas kelas besar (judi 1,4%, ewallet 7,3%, malware 17,3%). Implikasi: metrik gold deepfake **kurang independen** + interval kepercayaan lebih lebar; **jangan over-generalisasi** angka presisi/recall deepfake ke populasi. Konsekuensi langsung dari scarcity (Temuan #7c) — bukan kelemahan sampling design.
    - ✅ **Anotasi SELESAI (23 Jun 2026): A=Ray, B=Nabilla Putri, independen blind.** IAA **EXCELLENT semua dimensi** (target guidelines §7.2 ≥0,80): **Cohen's κ Layer 1 = 0,925**, **Layer 2 (vektor, n=264 both-relevan) = 0,976**, **speaker_role = 0,825**. Per-vektor κ (one-vs-rest): malware 1,00 · deepfake 1,00 · judi 0,974 · ewallet 0,971 · peretasan 0,966 · phishing 0,947 (semua ≥0,95). **46 disagreement** (10 Layer 1, 5 Layer 2, 34 speaker_role) → `data/gold_disagreements.csv` (kolom `final_*` **KOSONG**, menunggu rekonsiliasi reviewer ketiga/dosen). File: `gold_annotation_sheet_A_filled.csv`, `gold_annotation_sheet_B_filled.csv`.
    - ✅ **Akurasi weak-label SUDAH dihitung (23 Jun 2026). Keputusan metodologis FINAL: gold standard = VALIDASI saja** — test set Phase 9 diambil dari split `weak_labeled_dataset_v2.csv` (BUKAN dari gold), maka **rekonsiliasi 46 disagreement TIDAK diperlukan**. Gold proxy = **subset SEPAKAT PENUH A==B (n=311**; 46 disagreement dikecualikan; κ excellent = bukti subset ini reliable sbg gold). Hasil weak-label (Snorkel) vs gold: **Akurasi Layer 1 = 90,0%** (n=311); **Akurasi Layer 2 = 96,9%** (sepakat-relevan n=228). **Per-class precision:** ewallet 1,00 · malware 1,00 · judi 1,00 · deepfake 1,00 · peretasan 0,964 · **phishing 0,906** (terendah — konsisten "scam umbrella" Temuan #4, tetap sangat baik). Reproduksi: `phase8_kappa_analysis.py` (tanpa `--iaa-only`). `gold_disagreements.csv` tetap diarsipkan (kolom `final_*` kosong) untuk audit, bukan blocker.
+
+9. **Phase 9 Training DIMULAI (24 Jun 2026) — branch `feat/phase9-training`. ARSITEKTUR FINAL: 2 model TERPISAH (pipeline 2-lapis), training di Kaggle T4.**
+   - **Model A (Layer 1 relevance) — skeleton SIAP:** `IndoBERT-base-p1` (fine-tune **PENUH**) → **BiGRU**(768→256 bidir) → **BiLSTM**(512→128 bidir) **serial** → masked-mean pool → dropout → classifier biner. Imbalance relevan:tidak_relevan ≈ **1:5** → **class weights** (balanced inverse-freq). **LR 2e-5**, AdamW, **early stopping** monitor val macro-F1, simpan best checkpoint. Metrik: accuracy, macro-F1, **recall kelas relevan** (diperhatikan khusus), confusion matrix. Skrip: `src/phase9_model_a_layer1.py` (device CUDA auto; lazy-import torch). **Late fusion 0,75 neural : 0,25 rule-based (anchor) = TODO TERPISAH** (`rule_score_layer1`/`fuse_predictions` stub) — jalur neural jalan & dievaluasi dulu.
+   - **Model B (Layer 2 vektor) — BELUM di-scaffold** (sengaja: tunggu Model A tervalidasi di Kaggle dulu).
+   - **Data split — `src/phase9_data_split.py` (seed 42, 80/10/10 stratified, fitur `text_clean`):** Layer 1 = SEMUA 55.300 (relevan proporsional **16,7%** tiap split); Layer 2 = 9.212 relevan, 6 vektor (**deepfake di ketiga split: 86/11/10**). Output `data/splits/{layer1,layer2}_{train,val,test}.csv` + `_split_manifest.json`. ⚠️ **deepfake test = 10** (CI lebar, jangan over-generalisasi).
+   - **Token length `text_clean` (tokenizer IndoBERT, incl [CLS]/[SEP]):** median 16, p90 49, p95 65, **p99 122**, max 549. **>128 token hanya 0,90%** keseluruhan (relevan-only 2,34%). → **`max_len=128` CUKUP** (cover p99); tidak perlu dinaikkan, truncation minimal (anchor umumnya di awal teks).
+   - **Dependency Kaggle:** `torch`, `transformers` (≥4.30; terpasang lokal v5.x utk tokenizer), `scikit-learn`, `pandas`, `numpy`. Training **GPU-bound** → jalankan di Kaggle T4, BUKAN lokal.
+   - ✅ **Model A TERVALIDASI (24 Jun 2026) — Layer 1 test set (weak-label):** Accuracy **0,9819** · Macro-F1 **0,9680** · Recall relevan **0,9674**. Confusion matrix: TN=4539 · FP=70 · FN=30 · TP=891. Training: early stopping epoch 3 (best checkpoint epoch 1), ~20 menit/epoch di T4, class weights [0,6; 3,0], LR 2e-5, batch 16, max_len 128.
+   - ⚠️ **Interpretasi KRITIS (Bab 4):** Metrik Model A mengukur **seberapa baik model meniru weak label Snorkel** (~96,8% majority = tidak_relevan), **BUKAN akurasi vs gold manusia**. Validasi vs manusia ada di Phase 8: weak-label accuracy Layer 1 = 90,0% (n=311). Kedua angka menjawab pertanyaan berbeda — jaga perbedaan ini jelas di Bab 4 agar tidak misleading.
+   - **Lesson learned Kaggle (berlaku untuk Model B):** Jalankan training via **inline cells**, bukan `subprocess.run()`. `subprocess` menyembunyikan semua `print()` lewat buffering — output training tidak terlihat di cell. Gunakan inline cells dengan `flush=True` dan step-200 prints selama training.
 
 ---
 
