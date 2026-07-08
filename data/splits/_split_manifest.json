@@ -1,0 +1,73 @@
+{
+  "input": "data/weak_labeled_dataset_v2.csv",
+  "seed": 42,
+  "ratio": "80/10/10",
+  "feature_col": "text_clean",
+  "text_clean_empty": 0,
+  "layer1": {
+    "total": 55300,
+    "target": "layer1_label",
+    "splits": {
+      "train": {
+        "n": 44240,
+        "dist": {
+          "relevan": 7370,
+          "tidak_relevan": 36870
+        }
+      },
+      "val": {
+        "n": 5530,
+        "dist": {
+          "relevan": 921,
+          "tidak_relevan": 4609
+        }
+      },
+      "test": {
+        "n": 5530,
+        "dist": {
+          "relevan": 921,
+          "tidak_relevan": 4609
+        }
+      }
+    }
+  },
+  "layer2": {
+    "total": 9212,
+    "target": "layer2_label",
+    "splits": {
+      "train": {
+        "n": 7369,
+        "dist": {
+          "deepfake_penipuan_ai": 86,
+          "judi_online_pinjol": 5988,
+          "malware_apk": 171,
+          "penipuan_ewallet_qris": 438,
+          "peretasan_pencurian_identitas": 292,
+          "phishing_rekayasa_sosial": 394
+        }
+      },
+      "val": {
+        "n": 921,
+        "dist": {
+          "deepfake_penipuan_ai": 11,
+          "judi_online_pinjol": 749,
+          "malware_apk": 21,
+          "penipuan_ewallet_qris": 55,
+          "peretasan_pencurian_identitas": 36,
+          "phishing_rekayasa_sosial": 49
+        }
+      },
+      "test": {
+        "n": 922,
+        "dist": {
+          "deepfake_penipuan_ai": 10,
+          "judi_online_pinjol": 749,
+          "malware_apk": 22,
+          "penipuan_ewallet_qris": 55,
+          "peretasan_pencurian_identitas": 37,
+          "phishing_rekayasa_sosial": 49
+        }
+      }
+    }
+  }
+}
