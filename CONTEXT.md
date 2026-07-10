@@ -71,6 +71,59 @@ Metadata tambahan: `speaker_role` (R1-R5) sebagai dimensi terpisah, bukan label 
 
 ---
 
+## 4a. Kerangka Metodologi (Dua Metode — Gambar 3.1 tesis)
+
+**PENTING (perubahan kerangka, Jul 2026):** Metodologi tesis memakai **DUA metode paralel**, BUKAN CRISP-DM. Referensi CRISP-DM lama pada draf apa pun **diganti** kerangka ini.
+
+**Metode 1 — Prototyping (dashboard):**
+`Analisis Kebutuhan → Perancangan → Pengembangan Prototype → Evaluasi Prototype`
+
+**Metode 2 — Pengembangan Model:**
+`Pengumpulan Data → Persiapan Dataset → Pemisahan Dataset → Hyperparameter Tuning → Modelling (IndoBERT→BiGRU→BiLSTM + Rule-based Regex) → Pengujian Data → Evaluation → Deployment`
+
+**Alur antar-metode:** tahap **Perancangan** (Metode 1) memicu jalur **Pengembangan Model** (Metode 2); **Deployment** (Metode 2) kembali ke **Pengembangan Prototype** (Metode 1). Model = mesin di balik dashboard.
+
+**Pemetaan pekerjaan AKTUAL (Phase lama) → kerangka baru:**
+
+| Tahap kerangka | Pekerjaan aktual |
+|---|---|
+| Pengumpulan Data | Scraping OSINT X + YouTube (Phase 3/4), 70.241 raw |
+| Persiapan Dataset | Preprocessing (Phase 6) · **Snorkel weak supervision (46 LF vektor + 10 LF Layer-1 = 56 total)** (Phase 7) · **Gold Standard (357 sampel, κ 0,925/0,976/0,825)** (Phase 8) · validasi weak-label |
+| Pemisahan Dataset | Split 80/10/10 stratified, seed 42 (Phase 9) |
+| Hyperparameter Tuning | max_len 128, LR 2e-5, batch 16, class weights (Phase 9) |
+| Modelling | Model A + Model B (Triple-Hybrid) + **mekanisme late fusion 0,75:0,25** |
+| Pengujian Data | Inference test set |
+| Evaluation | Metrik Model A/B · **ablation late fusion** · **XAI LIME** · perbandingan SOTA |
+| Deployment | **BELUM** (checkpoint tersimpan; belum ada layanan inferensi) |
+| **Jalur Prototyping (dashboard)** | **BELUM dikerjakan — status: PERENCANAAN** (lihat `docs/HANDOFF_DASHBOARD.md`) |
+
+Catatan pemetaan: late fusion = **mekanisme** di Modelling, **hasil/ablation** di Evaluation. XAI LIME = sub-bagian Evaluation.
+
+---
+
+## 4b. Struktur Penulisan Tesis (4 Bab) + Cetak Biru BAB 3
+
+**4 Bab:** BAB 1 Pendahuluan · BAB 2 Tinjauan Pustaka · BAB 3 Pembahasan · BAB 4 Penutup. **Semua hasil masuk BAB 3.**
+
+**Cetak biru BAB 3:**
+- **3.1** Gambaran Umum
+- **3.2** Analisis Kebutuhan
+- **3.3** Perancangan — 3.3.1 model, 3.3.2 dashboard
+- **3.4** Pengumpulan Data
+- **3.5** Persiapan Dataset — 3.5.1 Preprocessing, 3.5.2 Snorkel, 3.5.3 Gold Standard, 3.5.4 Validasi Weak Label
+- **3.6** Pemisahan Dataset
+- **3.7** Hyperparameter Tuning
+- **3.8** Modelling — 3.8.1 arsitektur dasar, 3.8.2 Model A, 3.8.3 Model B, 3.8.4 Late Fusion
+- **3.9** Pengujian Data
+- **3.10** Evaluasi — 3.10.1 Model A, 3.10.2 Model B, 3.10.3 Ablation Fusion, 3.10.4 XAI LIME, 3.10.5 Perbandingan SOTA
+- **3.11** Deployment
+- **3.12** Pengembangan Prototype
+- **3.13** Evaluasi Prototype (Blackbox, SUS, uji data)
+
+**Catatan:** draf BAB 3 lama berbasis CRISP-DM = **bank materi**, perlu **restrukturisasi** ke kerangka dua-metode ini. Handoff penulisan: `docs/HANDOFF_WRITING.md`.
+
+---
+
 ## 5. KEPUTUSAN METODOLOGIS YANG SUDAH FINAL
 
 Jangan ubah keputusan ini tanpa alasan kuat — semuanya hasil diskusi panjang:
