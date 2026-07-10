@@ -97,7 +97,7 @@ Metadata tambahan: `speaker_role` (R1-R5) sebagai dimensi terpisah, bukan label 
 | Deployment | **BELUM** (checkpoint tersimpan; belum ada layanan inferensi) |
 | **Jalur Prototyping (dashboard)** | **BELUM dikerjakan — status: PERENCANAAN** (lihat `docs/HANDOFF_DASHBOARD.md`) |
 
-Catatan pemetaan: late fusion = **mekanisme** di Modelling, **hasil/ablation** di Evaluation. XAI LIME = sub-bagian Evaluation.
+Catatan pemetaan: late fusion = **mekanisme** di Modelling (**3.8.4**), **hasil/ablation** di Evaluation (**3.10.3**). XAI LIME = sub-bagian Evaluation (**3.10.4**). Snorkel + Gold Standard = sub-tahap Persiapan Dataset (**3.5.2–3.5.4**).
 
 ---
 
@@ -121,6 +121,17 @@ Catatan pemetaan: late fusion = **mekanisme** di Modelling, **hasil/ablation** d
 - **3.13** Evaluasi Prototype (Blackbox, SUS, uji data)
 
 **Catatan:** draf BAB 3 lama berbasis CRISP-DM = **bank materi**, perlu **restrukturisasi** ke kerangka dua-metode ini. Handoff penulisan: `docs/HANDOFF_WRITING.md`.
+
+---
+
+## 4c. Keputusan Dashboard (Prototyping — BARU, Jul 2026)
+
+Status jalur Prototyping = **PERENCANAAN** (belum dikerjakan). Keputusan lingkup yang sudah difinalkan (isi awal 3.2 Analisis Kebutuhan). Handoff: `docs/HANDOFF_DASHBOARD.md`.
+
+- **Lokasi:** `PI2/dashboard/` (**subdirektori**, BUKAN repo terpisah) → impor langsung dari `src/`, checkpoint satu tempat, tak perlu sinkronisasi snapshot antar-repo.
+- **Lingkup: Tipe 1 + batch manual.** (1) Klasifikasi **on-demand** — pengguna menempel teks → pipeline penuh (Model A → Model B → fusion) → hasil + confidence; (2) **visualisasi dataset**; (3) **tombol ambil data manual** (trigger scraping). **TANPA penjadwal otomatis.**
+- **Alasan tanpa otomasi (jujur, untuk 3.2):** scraping X butuh `auth_token` (cookie sesi — kedaluwarsa, tak dapat diperbarui otomatis, risiko suspend akun); YouTube Data API punya kuota harian. Manual-triggered lebih **andal & jujur** daripada scheduler yang rapuh.
+- **Kendala XAI (non-fungsional):** LIME butuh ratusan forward pass → di **CPU 2–5 menit** dengan `num_samples=500`. Mitigasi: turunkan ke **100–150**, jadikan **tombol opsional terpisah** dengan indikator progres (jangan blok UI utama).
 
 ---
 
