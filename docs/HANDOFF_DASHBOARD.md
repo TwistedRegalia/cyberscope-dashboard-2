@@ -24,18 +24,62 @@ Klasifikasi otomatis **diskursus publik tentang vektor ancaman siber** di media 
 
 ---
 
-## 2. Lingkup yang SUDAH diputuskan (isi 3.2 Analisis Kebutuhan)
+## 2. Lingkup FINAL (isi 3.2 Analisis Kebutuhan)
 
-**Tipe 1 + batch manual — TANPA penjadwal otomatis:**
-1. **Klasifikasi on-demand** — pengguna menempel teks → pipeline penuh → label + confidence.
-2. **Visualisasi dataset** — distribusi, metrik, confusion matrix, XAI.
-3. **Tombol ambil data manual** — trigger scraping (bukan scheduler).
+**Tipe 1 — klasifikasi on-demand + monitoring. Hanya dua kemampuan:**
+1. **Monitoring** — visualisasi distribusi 6 vektor dari **prediksi model** atas dataset (detail §3.1).
+2. **Klasifikasi on-demand** — contoh siap-klik / tempel teks → pipeline penuh → vektor + confidence, XAI opsional (detail §3.2).
 
-**Alasan tanpa otomasi (jujur, masuk 3.2):** scraping X butuh `auth_token` (cookie sesi — kedaluwarsa, tak bisa diperbarui otomatis, risiko suspend); YouTube API punya kuota harian. Manual-triggered lebih andal & jujur daripada scheduler rapuh.
+**DIKELUARKAN dari lingkup (keputusan final, jujur untuk 3.2):**
+- **TANPA scraping-triggered / tombol ambil data.** Menyulitkan pengguna + **rapuh di HF Spaces** (scraping X butuh `auth_token` cookie yang kedaluwarsa & berisiko suspend; YouTube API berkuota — lihat §9). Data monitoring = hasil batch inference statis, bukan pengambilan live.
+- **TANPA upload CSV.** Kurang sejalan dengan klaim "klasifikasi otomatis" dan menambah hambatan bagi pengguna non-harian.
 
 ---
 
-## 3. Arsitektur inference (pipeline 2-lapis)
+## 3. Desain & Alur Pengguna
+
+Dua halaman. Prinsip utama: **nilai terlihat saat dibuka** (monitoring langsung terisi tanpa input), umpan balik cepat, hasil dapat dipahami responden **semi-teknis** (mahasiswa informatika, dosen).
+
+### 3.1 Halaman utama — Monitoring (default saat buka)
+
+Menampilkan gambaran dataset dari **PREDIKSI MODEL** (Model A+B), **bukan label Snorkel** — koheren dengan klaim "klasifikasi otomatis".
+
+- **Distribusi 6 vektor** dari hasil prediksi (bar/donut), + **proporsi platform** (YouTube/X), + **tren waktu** bila kolom tanggal tersedia.
+- **Drill-down sederhana:** klik satu vektor → **panel expand** berisi contoh komentar terklasifikasi ke vektor itu (bukan halaman baru yang kompleks).
+
+**Prasyarat (langkah persiapan, BUKAN runtime):** jalankan **batch inference Model A+B SEKALI** atas dataset (9.212 relevan dari 55.300) → simpan **prediksi + confidence** ke file (mis. `data/dashboard_predictions.parquet`/`.csv`) → dashboard **membaca file** itu. Monitoring tak menjalankan model saat halaman dibuka; hanya panel klasifikasi (§3.2) yang memanggil model live.
+
+### 3.2 Panel Klasifikasi (on-demand)
+
+- **Input fleksibel — hilangkan hambatan:** pengguna memilih **contoh teks siap-klik** ATAU **menempel teks sendiri**.
+- Klik → pipeline penuh (§4) → **hasil model**: vektor + **confidence**, label dapat dibaca (bukan indeks kelas).
+- **Tombol XAI opsional:** LIME `num_samples=100–150`, **indikator loading**, ~30–60 dtk. Jangan blok UI; jangan jalankan otomatis (default mati, klik saat perlu).
+
+### 3.3 Speaker Role R1–R5 — DITUNDA (bukan di v1)
+
+⚠️ **Model A+B TIDAK memprediksi speaker role** — hanya relevansi (L1) + 6 vektor (L2). Menampilkan R1–R5 butuh salah satu:
+- (a) **melatih model baru** khusus speaker role, atau
+- (b) menampilkan dari **data terlabel** dengan **catatan eksplisit** bahwa sumbernya berbeda (bukan prediksi model dashboard).
+
+Keputusan **ditunda**. **Dashboard v1 = 6 vektor saja.** Speaker role = kemungkinan ekstensi, bukan kebutuhan v1.
+
+### 3.4 Kebutuhan untuk 3.2/3.3 tesis
+
+**Fungsional:**
+1. Visualisasi **distribusi prediksi model** per vektor (+ proporsi platform, tren waktu bila ada).
+2. **Drill-down** vektor → contoh komentar terklasifikasi.
+3. **Klasifikasi on-demand** (contoh siap-klik / tempel teks) → vektor + confidence.
+4. **XAI opsional** (LIME) per klasifikasi.
+5. **Contoh siap-pakai** untuk menghilangkan hambatan input.
+
+**Non-fungsional (diarahkan ke SUS tinggi, responden semi-teknis):**
+- **Nilai tanpa input awal** — monitoring terisi begitu halaman dibuka.
+- **Respons cepat** — klasifikasi <3 dtk (XAI dikecualikan; opsional & ditandai lama).
+- **Antarmuka jelas** untuk pengguna non-harian — navigasi eksplisit, label & hasil mudah dipahami.
+
+---
+
+## 4. Arsitektur inference (pipeline 2-lapis)
 
 ```
 teks mentah
@@ -52,7 +96,7 @@ teks mentah
 
 ---
 
-## 4. Kelas model + cara memuat checkpoint
+## 5. Kelas model + cara memuat checkpoint
 
 - `TripleHybridLayer1` — `src/phase9_model_a_layer1.py` (`make_model_class()`), classifier 2 kelas.
 - `TripleHybridLayer2` — `src/phase9_model_b_layer2.py` (`make_model_class()`), classifier 6 kelas.
@@ -76,7 +120,7 @@ model.eval()
 
 ---
 
-## 5. Preprocessing yang WAJIB direplikasi
+## 6. Preprocessing yang WAJIB direplikasi
 
 Input model = kolom **`text_clean`** dari `src/phase6_preprocess.py`:
 - lowercase · URL → `[URL]` · `@user` → `[USER]` · hashtag → teks (# dilepas) · emoji emosi → `[EMOSI_SEDIH/MARAH/UANG/TAKUT/WASPADA]`, emoji dekoratif dibuang.
@@ -87,7 +131,7 @@ Input model = kolom **`text_clean`** dari `src/phase6_preprocess.py`:
 
 ---
 
-## 6. Rule-based (untuk fusion)
+## 7. Rule-based (untuk fusion)
 
 `src/anchor_patterns.py` (v1.1) — `detect_vector_hints(text)` → `{vektor: jumlah_match}`.
 - anchor_score L2 = share bukti `count(v)/Σcount` (0 semua → defer neural).
@@ -96,36 +140,37 @@ Input model = kolom **`text_clean`** dari `src/phase6_preprocess.py`:
 
 ---
 
-## 7. Data + bahan visualisasi
+## 8. Data + bahan visualisasi
 
 - `data/weak_labeled_dataset_v2.csv` — 55.300 baris, **9.212 relevan**.
 - `data/splits/` — split 80/10/10. Gold standard 357 (`data/gold_*.csv`; JANGAN sebar key).
-- **Distribusi 6 vektor (relevan):** judi 7.486 · ewallet 548 · phishing 492 · peretasan 365 · malware 214 · deepfake 107. Platform: YouTube 51.739 / X 3.561.
+- **Distribusi 6 vektor (relevan, LABEL LEMAH Snorkel):** judi 7.486 · ewallet 548 · phishing 492 · peretasan 365 · malware 214 · deepfake 107. Platform: YouTube 51.739 / X 3.561.
+- **File prediksi dashboard (dibuat SEKALI, §3.1):** batch inference Model A+B atas 9.212 relevan → simpan vektor + confidence → **sumber data monitoring**. Bedakan dari angka distribusi di atas: monitoring menampilkan **prediksi model**, bukan label lemah Snorkel.
 - Metrik model, confusion matrix Model B 6×6, kurva ablation fusion → `docs/phase9_fusion_ablation.md`.
 - Temuan XAI (token per vektor, dua-pola phishing-judi) → `docs/phase9_xai_lime.md`.
 
 ---
 
-## 8. Kendala non-fungsional (input untuk 3.2)
+## 9. Kendala non-fungsional (input untuk 3.2)
 
 | Kendala | Nilai / mitigasi |
 |---|---|
 | Inference CPU | ~1–3 dtk per teks (Model A + B) |
 | Memori | ~3 GB saat kedua model dimuat bersamaan |
 | **LIME lambat di CPU** | 2–5 menit @ `num_samples=500` → **turunkan ke 100–150**, jadikan **tombol opsional terpisah** dengan **indikator progres** (jangan blok UI) |
-| Scraping X | butuh `auth_token` manual (cookie kedaluwarsa; risiko suspend) |
-| YouTube API | kuota harian |
+| Scraping X | butuh `auth_token` manual (cookie kedaluwarsa; risiko suspend) → alasan **TANPA scraping-triggered** (§2) |
+| YouTube API | kuota harian → memperkuat keputusan data monitoring = batch statis |
 
 ---
 
-## 9. Untuk 3.13 Evaluasi Prototype
+## 10. Untuk 3.13 Evaluasi Prototype
 
 - **Blackbox testing** + **uji data** (klasifikasi teks contoh per vektor).
-- **SUS (System Usability Scale)** butuh **responden manusia**: **min 5, ideal 12–20**. → **Ray perlu mengamankan responden sejak awal** (rekrut + jadwal), karena ini bottleneck non-teknis yang tak bisa dikejar di akhir.
+- **SUS (System Usability Scale)** butuh **responden manusia**: **min 5, ideal 12–20**. **Profil responden = semi-teknis** (mahasiswa informatika, dosen) — bukan awam total, bukan pakar; prinsip desain §3 (nilai langsung terlihat, contoh siap-pakai, hasil dapat dipahami, <3 dtk) menyasar profil ini. → **Ray perlu mengamankan responden sejak awal** (rekrut + jadwal), karena ini bottleneck non-teknis yang tak bisa dikejar di akhir.
 
 ---
 
-## 10. Catatan integritas
+## 11. Catatan integritas
 
 - Karena dashboard di **subdirektori** `PI2/dashboard/`: impor langsung `from src...`, tak perlu snapshot commit-hash antar-repo. Checkpoint tetap di luar Git (dokumentasikan sumbernya di `dashboard/README`).
 - Bagian tesis **3.11 Deployment, 3.12 Pengembangan Prototype, 3.13 Evaluasi Prototype** ditulis **SETELAH** dashboard selesai — jangan tulis seolah sudah dikerjakan.
