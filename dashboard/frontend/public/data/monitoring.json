@@ -1,0 +1,75 @@
+{
+  "is_sample": true,
+  "generated_at": "2026-07-14T00:00:00Z",
+  "total_rows": 55300,
+  "relevant_rows": 9212,
+  "date_range": { "start": "2022-01", "end": "2026-06" },
+  "vector_distribution": [
+    { "label": "judi_online_pinjol", "label_display": "Judi Online & Pinjol", "count": 6800, "pct": 0.7382 },
+    { "label": "penipuan_ewallet_qris", "label_display": "Penipuan E-Wallet/QRIS", "count": 620, "pct": 0.0673 },
+    { "label": "malware_apk", "label_display": "Malware APK", "count": 520, "pct": 0.0564 },
+    { "label": "phishing_rekayasa_sosial", "label_display": "Phishing & Rekayasa Sosial", "count": 540, "pct": 0.0586 },
+    { "label": "peretasan_pencurian_identitas", "label_display": "Peretasan & Pencurian Identitas", "count": 410, "pct": 0.0445 },
+    { "label": "deepfake_penipuan_ai", "label_display": "Deepfake & Penipuan AI", "count": 322, "pct": 0.0350 }
+  ],
+  "platform_by_vector": [
+    { "label": "judi_online_pinjol", "youtube_pct": 0.9706, "x_pct": 0.0294, "youtube_count": 6600, "x_count": 200 },
+    { "label": "penipuan_ewallet_qris", "youtube_pct": 0.6129, "x_pct": 0.3871, "youtube_count": 380, "x_count": 240 },
+    { "label": "malware_apk", "youtube_pct": 0.9615, "x_pct": 0.0385, "youtube_count": 500, "x_count": 20 },
+    { "label": "phishing_rekayasa_sosial", "youtube_pct": 0.8704, "x_pct": 0.1296, "youtube_count": 470, "x_count": 70 },
+    { "label": "peretasan_pencurian_identitas", "youtube_pct": 0.5122, "x_pct": 0.4878, "youtube_count": 210, "x_count": 200 },
+    { "label": "deepfake_penipuan_ai", "youtube_pct": 0.9317, "x_pct": 0.0683, "youtube_count": 300, "x_count": 22 }
+  ],
+  "temporal": [
+    { "period": "2024-08", "label": "judi_online_pinjol", "count": 980 },
+    { "period": "2024-10", "label": "judi_online_pinjol", "count": 1120 },
+    { "period": "2024-12", "label": "judi_online_pinjol", "count": 1050 },
+    { "period": "2025-02", "label": "judi_online_pinjol", "count": 1210 },
+    { "period": "2025-04", "label": "judi_online_pinjol", "count": 1180 },
+    { "period": "2025-06", "label": "judi_online_pinjol", "count": 1260 },
+    { "period": "2024-08", "label": "malware_apk", "count": 60 },
+    { "period": "2024-10", "label": "malware_apk", "count": 85 },
+    { "period": "2024-12", "label": "malware_apk", "count": 95 },
+    { "period": "2025-02", "label": "malware_apk", "count": 110 },
+    { "period": "2025-04", "label": "malware_apk", "count": 120 },
+    { "period": "2025-06", "label": "malware_apk", "count": 130 },
+    { "period": "2024-08", "label": "penipuan_ewallet_qris", "count": 70 },
+    { "period": "2024-10", "label": "penipuan_ewallet_qris", "count": 80 },
+    { "period": "2024-12", "label": "penipuan_ewallet_qris", "count": 95 },
+    { "period": "2025-02", "label": "penipuan_ewallet_qris", "count": 90 },
+    { "period": "2025-04", "label": "penipuan_ewallet_qris", "count": 110 },
+    { "period": "2025-06", "label": "penipuan_ewallet_qris", "count": 105 }
+  ],
+  "samples_by_vector": {
+    "judi_online_pinjol": [
+      { "text": "hati-hati bang sekarang banyak iklan slot gacor maxwin di kolom komentar, jangan diklik", "confidence": 0.97, "platform": "youtube", "date": "2025-05" },
+      { "text": "gara-gara pinjol ilegal saya diteror debt collector tiap hari, kapok banget", "confidence": 0.95, "platform": "x", "date": "2025-04" },
+      { "text": "situs judol makin marak, adik saya sampai kena tipu deposit terus-terusan", "confidence": 0.93, "platform": "youtube", "date": "2025-06" }
+    ],
+    "penipuan_ewallet_qris": [
+      { "text": "waspada QRIS palsu ditempel di atas QR asli merchant, saldo bisa nyasar ke pelaku", "confidence": 0.94, "platform": "x", "date": "2025-03" },
+      { "text": "saldo DANA saya raib setelah klik link cashback palsu yang dikirim lewat WA", "confidence": 0.92, "platform": "x", "date": "2025-05" },
+      { "text": "modus scan QR balik buat 'refund' itu penipuan, jangan mau diarahkan", "confidence": 0.9, "platform": "youtube", "date": "2025-02" }
+    ],
+    "malware_apk": [
+      { "text": "jangan install apk undangan nikah dari WA, itu malware yang nyuri akses m-banking", "confidence": 0.98, "platform": "youtube", "date": "2025-06" },
+      { "text": "file apk 'resi paket' bikin hp lemot dan saldo terkuras, hati-hati semua", "confidence": 0.96, "platform": "youtube", "date": "2025-04" },
+      { "text": "apk tilang elektronik palsu beredar lagi, banyak yang awam jadi korban", "confidence": 0.95, "platform": "youtube", "date": "2025-05" }
+    ],
+    "phishing_rekayasa_sosial": [
+      { "text": "ada telepon ngaku dari bank minta kode OTP, jangan pernah kasih ke siapa pun", "confidence": 0.95, "platform": "x", "date": "2025-03" },
+      { "text": "link verifikasi m-banking palsu dikirim lewat SMS, saya hampir saja kena", "confidence": 0.93, "platform": "youtube", "date": "2025-05" },
+      { "text": "modus admin gadungan minta kode OTP demi 'keamanan akun', itu tipuan", "confidence": 0.91, "platform": "x", "date": "2025-04" }
+    ],
+    "peretasan_pencurian_identitas": [
+      { "text": "akun Instagram saya dibajak lalu dipakai nipu teman-teman minta pulsa", "confidence": 0.94, "platform": "x", "date": "2025-04" },
+      { "text": "data KTP bocor dan dijual di grup telegram, ngeri banget datanya lengkap", "confidence": 0.92, "platform": "x", "date": "2025-05" },
+      { "text": "kena SIM swap, nomor diambil alih dan rekening ikut kebobol", "confidence": 0.9, "platform": "youtube", "date": "2025-03" }
+    ],
+    "deepfake_penipuan_ai": [
+      { "text": "hati-hati video deepfake tokoh publik yang promosi investasi bodong", "confidence": 0.93, "platform": "youtube", "date": "2025-06" },
+      { "text": "ada voice cloning suara anak minta transfer darurat, banyak ortu yang kena", "confidence": 0.91, "platform": "youtube", "date": "2025-05" },
+      { "text": "iklan AI mencatut wajah artis buat endorse judi, makin canggih penipuannya", "confidence": 0.89, "platform": "x", "date": "2025-04" }
+    ]
+  }
+}
