@@ -11,6 +11,7 @@ import type { MonitoringData } from "@/lib/types";
 import type { VectorLabel } from "@/lib/vectors";
 import { SampleBanner } from "@/components/monitoring/SampleBanner";
 import { SummaryCards } from "@/components/monitoring/SummaryCards";
+import { VectorTable } from "@/components/monitoring/VectorTable";
 import { VectorDrilldown } from "@/components/monitoring/VectorDrilldown";
 import { hasTemporal } from "@/lib/temporal";
 
@@ -110,6 +111,12 @@ export default function MonitoringPage() {
           {hasTemporal(state.data.temporal) && (
             <TemporalLine temporal={state.data.temporal ?? []} />
           )}
+          <VectorTable
+            distribution={state.data.vector_distribution}
+            platform={state.data.platform_by_vector}
+            selected={selected}
+            onSelect={setSelected}
+          />
           <VectorDrilldown
             selected={selected}
             samples={selected ? state.data.samples_by_vector[selected] : undefined}
