@@ -75,12 +75,12 @@ async function fetchJson<T>(
     if (name === "AbortError") {
       throw new ApiError(
         "timeout",
-        "Permintaan melebihi batas waktu — backend mungkin sedang bangun (cold start). Coba lagi sebentar.",
+        "Permintaan melebihi batas waktu, backend mungkin sedang bangun (cold start)",
       );
     }
     throw new ApiError(
       "network",
-      "Tidak dapat terhubung ke backend (offline atau CORS). Periksa NEXT_PUBLIC_API_BASE_URL.",
+      "Tidak dapat terhubung ke backend (offline atau CORS); periksa NEXT_PUBLIC_API_BASE_URL",
     );
   } finally {
     clearTimeout(timer);
@@ -88,7 +88,7 @@ async function fetchJson<T>(
   if (!res.ok) {
     throw new ApiError(
       "http",
-      `Backend menolak permintaan (HTTP ${res.status}).`,
+      `Backend menolak permintaan (HTTP ${res.status})`,
       res.status,
     );
   }
