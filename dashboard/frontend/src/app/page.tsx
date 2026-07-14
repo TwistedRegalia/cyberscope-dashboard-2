@@ -11,6 +11,7 @@ import type { MonitoringData } from "@/lib/types";
 import type { VectorLabel } from "@/lib/vectors";
 import { SampleBanner } from "@/components/monitoring/SampleBanner";
 import { SummaryCards } from "@/components/monitoring/SummaryCards";
+import { RelevanceFunnel } from "@/components/monitoring/RelevanceFunnel";
 import { VectorTable } from "@/components/monitoring/VectorTable";
 import { VectorDrilldown } from "@/components/monitoring/VectorDrilldown";
 import { hasTemporal } from "@/lib/temporal";
@@ -100,6 +101,7 @@ export default function MonitoringPage() {
         <div className="space-y-6">
           {state.data.is_sample && <SampleBanner />}
           <SummaryCards data={state.data} />
+          <RelevanceFunnel data={state.data} />
           <div className="grid gap-6 lg:grid-cols-2">
             <VectorDistribution
               data={state.data.vector_distribution}
