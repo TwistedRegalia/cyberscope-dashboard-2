@@ -40,7 +40,7 @@ export const RelevanceFunnel = memo(function RelevanceFunnel({
           value={formatNumber(total_rows)}
           caption="100%"
           pct={1}
-          tone="var(--color-smoke)"
+          tone="var(--funnel-total)"
         />
         <FunnelStage
           label="Relevan · Model A"

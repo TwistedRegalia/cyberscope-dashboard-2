@@ -42,7 +42,7 @@ export const SummaryCards = memo(function SummaryCards({
     ? data.relevant_rows / data.total_rows
     : 0;
   const range = data.date_range
-    ? `${data.date_range.start} – ${data.date_range.end}`
+    ? `${data.date_range.start} s/d ${data.date_range.end}`
     : "—";
 
   return (

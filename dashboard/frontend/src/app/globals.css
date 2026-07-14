@@ -55,6 +55,9 @@
   --platform-youtube: #262626;
   --platform-x: #a3a3a3;
 
+  /* funnel: bar "Total" (superset) — slate-blue, kontras di track terang & gelap */
+  --funnel-total: #64748b;
+
   /* banner peringatan (SampleBanner) */
   --warn-bg: #fffbeb;
   --warn-border: #fcd34d;
@@ -96,6 +99,7 @@
   --chart-grid: #232427;
   --platform-youtube: #d4d4d4;
   --platform-x: #5c5c5c;
+  --funnel-total: #8b98ac; /* sedikit lebih terang agar tegas di track gelap */
 
   --warn-bg: #2a2413;
   --warn-border: #4d3f18;

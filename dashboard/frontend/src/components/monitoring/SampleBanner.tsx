@@ -26,7 +26,7 @@ export function SampleBanner() {
           className="font-semibold"
           style={{ color: "var(--warn-strong)" }}
         >
-          DATA CONTOH — bukan hasil model.
+          DATA CONTOH, bukan hasil model.
         </span>{" "}
         Angka di halaman ini adalah fixture pengembangan. Ganti{" "}
         <code
