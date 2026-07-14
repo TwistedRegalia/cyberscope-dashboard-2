@@ -49,15 +49,15 @@ export function TemporalLine({ temporal }: { temporal: TemporalItem[] }) {
       <div className="h-[300px] w-full">
         <ResponsiveContainer width="100%" height="100%">
           <LineChart data={rows} margin={{ top: 4, right: 16, bottom: 4, left: 0 }}>
-            <CartesianGrid vertical={false} stroke="#f5f5f5" />
+            <CartesianGrid vertical={false} stroke="var(--chart-grid)" />
             <XAxis
               dataKey="period"
-              tick={{ fontSize: 11, fill: "#737373" }}
-              axisLine={{ stroke: "#e5e5e5" }}
+              tick={{ fontSize: 11, fill: "var(--color-fog)" }}
+              axisLine={{ stroke: "var(--color-ash)" }}
               tickLine={false}
             />
             <YAxis
-              tick={{ fontSize: 11, fill: "#737373" }}
+              tick={{ fontSize: 11, fill: "var(--color-fog)" }}
               tickFormatter={(v) => formatNumber(Number(v))}
               axisLine={false}
               tickLine={false}

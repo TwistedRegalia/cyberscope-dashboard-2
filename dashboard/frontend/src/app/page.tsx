@@ -24,6 +24,7 @@ export default function MonitoringPage() {
   const [state, setState] = useState<State>({ status: "loading" });
   const [selected, setSelected] = useState<VectorLabel | null>(null);
 
+  // Retry (dipanggil dari tombol/event handler → setState sinkron aman di sini).
   const load = useCallback(() => {
     setState({ status: "loading" });
     getMonitoring().then((data) => {
@@ -31,9 +32,17 @@ export default function MonitoringPage() {
     });
   }, []);
 
+  // Mount: state awal sudah "loading" → cukup fetch (setState hanya di callback async).
   useEffect(() => {
-    load();
-  }, [load]);
+    let active = true;
+    getMonitoring().then((data) => {
+      if (!active) return;
+      setState(data ? { status: "ready", data } : { status: "empty" });
+    });
+    return () => {
+      active = false;
+    };
+  }, []);
 
   return (
     <div>

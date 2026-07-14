@@ -23,13 +23,23 @@ export const metadata: Metadata = {
     "CyberScope — dashboard monitoring & klasifikasi otomatis diskursus vektor ancaman siber di media sosial Indonesia.",
 };
 
+// Set tema sebelum paint (anti-FOUC): localStorage → sistem → light.
+const THEME_INIT = `(function(){try{var t=localStorage.getItem('theme');if(t!=='light'&&t!=='dark'){t=window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}})();`;
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="id" className={`${inter.variable} ${geistMono.variable}`}>
+    <html
+      lang="id"
+      suppressHydrationWarning
+      className={`${inter.variable} ${geistMono.variable}`}
+    >
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: THEME_INIT }} />
+      </head>
       <body className="flex min-h-full flex-col">
         <AppShell>{children}</AppShell>
       </body>

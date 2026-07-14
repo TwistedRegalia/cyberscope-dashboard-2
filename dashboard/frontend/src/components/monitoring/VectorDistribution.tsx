@@ -65,23 +65,26 @@ export function VectorDistribution({ data, selected, onSelect }: Props) {
             margin={{ top: 4, right: 52, bottom: 4, left: 8 }}
             barCategoryGap={10}
           >
-            <CartesianGrid horizontal={false} stroke="#f5f5f5" />
+            <CartesianGrid horizontal={false} stroke="var(--chart-grid)" />
             <XAxis
               type="number"
-              tick={{ fontSize: 11, fill: "#737373" }}
+              tick={{ fontSize: 11, fill: "var(--color-fog)" }}
               tickFormatter={(v) => formatNumber(Number(v))}
-              axisLine={{ stroke: "#e5e5e5" }}
+              axisLine={{ stroke: "var(--color-ash)" }}
               tickLine={false}
             />
             <YAxis
               type="category"
               dataKey="short"
               width={112}
-              tick={{ fontSize: 12, fill: "#171717" }}
+              tick={{ fontSize: 12, fill: "var(--color-charcoal)" }}
               axisLine={false}
               tickLine={false}
             />
-            <Tooltip cursor={{ fill: "#f5f5f5" }} content={<DistTooltip />} />
+            <Tooltip
+              cursor={{ fill: "var(--color-paper-mist)" }}
+              content={<DistTooltip />}
+            />
             <Bar
               dataKey="count"
               radius={[0, 4, 4, 0]}
@@ -100,7 +103,7 @@ export function VectorDistribution({ data, selected, onSelect }: Props) {
                 dataKey="count"
                 position="right"
                 formatter={(v) => formatNumber(Number(v))}
-                style={{ fontSize: 11, fill: "#525252" }}
+                style={{ fontSize: 11, fill: "var(--color-steel)" }}
               />
             </Bar>
           </BarChart>

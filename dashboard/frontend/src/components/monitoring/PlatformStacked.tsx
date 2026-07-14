@@ -16,8 +16,9 @@ import type { PlatformByVectorItem } from "@/lib/types";
 import { ChartCard } from "./ChartCard";
 
 // Platform = dimensi non-vektor → dua tone netral (bukan warna vektor).
-const YT_COLOR = "#262626"; // graphite
-const X_COLOR = "#a3a3a3"; // silver
+// Mengikuti tema: light (gelap/abu di atas putih) ↔ dark (terang/abu redup).
+const YT_COLOR = "var(--platform-youtube)";
+const X_COLOR = "var(--platform-x)";
 
 interface Row {
   label: string;
@@ -57,24 +58,27 @@ export function PlatformStacked({ data }: { data: PlatformByVectorItem[] }) {
             margin={{ top: 4, right: 16, bottom: 4, left: 8 }}
             barCategoryGap={10}
           >
-            <CartesianGrid horizontal={false} stroke="#f5f5f5" />
+            <CartesianGrid horizontal={false} stroke="var(--chart-grid)" />
             <XAxis
               type="number"
               domain={[0, 1]}
-              tick={{ fontSize: 11, fill: "#737373" }}
+              tick={{ fontSize: 11, fill: "var(--color-fog)" }}
               tickFormatter={(v) => formatPct(Number(v), 0)}
-              axisLine={{ stroke: "#e5e5e5" }}
+              axisLine={{ stroke: "var(--color-ash)" }}
               tickLine={false}
             />
             <YAxis
               type="category"
               dataKey="short"
               width={112}
-              tick={{ fontSize: 12, fill: "#171717" }}
+              tick={{ fontSize: 12, fill: "var(--color-charcoal)" }}
               axisLine={false}
               tickLine={false}
             />
-            <Tooltip cursor={{ fill: "#f5f5f5" }} content={<PlatformTooltip />} />
+            <Tooltip
+              cursor={{ fill: "var(--color-paper-mist)" }}
+              content={<PlatformTooltip />}
+            />
             <Legend iconType="circle" wrapperStyle={{ fontSize: 12 }} />
             <Bar
               dataKey="youtube_count"

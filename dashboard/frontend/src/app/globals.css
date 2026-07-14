@@ -2,9 +2,8 @@
 
 /*
   Sistem desain "Dub" — token dari docs/DESIGN.md.
-  Estetika: near-white canvas, hairline border 1px #e5e5e5 (BUKAN shadow),
-  monokrom padat, satu aksen electric-blue #2563eb.
-  Light-only (no dark mode — keputusan lingkup v1).
+  Light default + tema gelap via override NILAI token (nama utilitas tetap),
+  sehingga komponen tak perlu diubah. Tema di-set lewat [data-theme] pada <html>.
 */
 @theme {
   /* --- Warna netral (struktur) --- */
@@ -47,8 +46,63 @@
   --radius-full: 9999px; /* tag/badge/pill */
 }
 
+/* Var internal (bukan utilitas Tailwind) — dipakai via var() di chart & banner. */
 :root {
   color-scheme: light;
+
+  /* chart struktural */
+  --chart-grid: #f0f0f0;
+  --platform-youtube: #262626;
+  --platform-x: #a3a3a3;
+
+  /* banner peringatan (SampleBanner) */
+  --warn-bg: #fffbeb;
+  --warn-border: #fcd34d;
+  --warn-dot: #d97706;
+  --warn-strong: #92400e;
+  --warn-text: #b45309;
+  --warn-code-bg: #fef3c7;
+}
+
+/* ===== TEMA GELAP — override nilai token (peran semantik dipertahankan) ===== */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+
+  /* netral: bg jadi gelap, border tetap terlihat */
+  --color-canvas-white: #0b0b0c;
+  --color-paper-mist: #17181b;
+  --color-ash: #2a2b2e;
+  --color-smoke: #3a3b3e;
+  --color-pebble: #46474a;
+
+  /* teks: dibalik jadi terang */
+  --color-midnight-ink: #f5f5f5;
+  --color-charcoal: #ededed;
+  --color-graphite: #d4d4d4;
+  --color-slate: #b8b8b8;
+  --color-steel: #a1a1a1;
+  --color-fog: #8b8b8b;
+  --color-silver: #6b6b6b;
+
+  /* aksen: dicerahkan agar kontras di gelap */
+  --color-electric-blue: #3b82f6;
+  --color-deep-sapphire: #93c5fd;    /* teks badge biru */
+  --color-primary-action-fill: #f5f5f5; /* tombol primary terang + teks gelap */
+  --color-soft-mint: #14351f;
+  --color-vivid-green: #4ade80;
+  --color-tint-blue: #14243f;
+
+  /* internal */
+  --chart-grid: #232427;
+  --platform-youtube: #d4d4d4;
+  --platform-x: #5c5c5c;
+
+  --warn-bg: #2a2413;
+  --warn-border: #4d3f18;
+  --warn-dot: #f59e0b;
+  --warn-strong: #fde68a;
+  --warn-text: #fcd34d;
+  --warn-code-bg: #3a3016;
 }
 
 html {
@@ -60,7 +114,7 @@ body {
   background: var(--color-canvas-white);
   color: var(--color-charcoal);
   font-family: var(--font-sans);
-  font-size: 16px;   /* body kanonik Dub */
+  font-size: 16px; /* body kanonik Dub */
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/cn";
 import { BrandMark } from "./BrandMark";
+import { ThemeToggle } from "./ThemeToggle";
 
 const NAV = [
   { href: "/", label: "Monitoring" },
@@ -33,7 +34,8 @@ export function NavBar() {
           </span>
         </Link>
 
-        <nav className="flex items-center gap-1" aria-label="Navigasi utama">
+        <div className="flex items-center gap-2">
+          <nav className="flex items-center gap-1" aria-label="Navigasi utama">
           {NAV.map((item) => {
             const active = isActive(pathname, item.href);
             return (
@@ -52,7 +54,9 @@ export function NavBar() {
               </Link>
             );
           })}
-        </nav>
+          </nav>
+          <ThemeToggle />
+        </div>
       </div>
     </header>
   );
