@@ -23,8 +23,76 @@ export const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL ?? "";
 export const USE_MOCK =
   process.env.NEXT_PUBLIC_USE_MOCK === "true" || API_BASE === "";
 
+/**
+ * Batas waktu tiap panggilan API (ms). HF Spaces free tier tidur saat idle →
+ * panggilan pertama = cold start (~30–60 dtk). Timeout mencegah spinner
+ * menggantung tanpa batas; nilainya toleran terhadap cold-wake.
+ */
+const TIMEOUT = {
+  classify: 30_000,
+  explain: 120_000, // LIME lambat by design (CPU ~30–60 dtk)
+  health: 70_000, // /health boleh memicu wake → beri ruang cold start
+} as const;
+
 function delay(ms: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+export type ApiErrorKind = "timeout" | "network" | "http";
+
+/**
+ * Error berlabel supaya UI bisa memberi pesan ramah (cold-start vs offline vs
+ * HTTP). `message` sudah dalam Bahasa Indonesia siap-tampil.
+ */
+export class ApiError extends Error {
+  readonly kind: ApiErrorKind;
+  readonly status?: number;
+  constructor(kind: ApiErrorKind, message: string, status?: number) {
+    super(message);
+    this.name = "ApiError";
+    this.kind = kind;
+    this.status = status;
+  }
+}
+
+/**
+ * fetch + timeout via AbortController → JSON ter-parse sebagai T.
+ * Melempar ApiError: `timeout` (lewat batas waktu / cold start), `network`
+ * (gagal terhubung — offline/CORS/DNS), atau `http` (respons non-2xx).
+ */
+async function fetchJson<T>(
+  url: string,
+  init: RequestInit,
+  timeoutMs: number,
+): Promise<T> {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), timeoutMs);
+  let res: Response;
+  try {
+    res = await fetch(url, { ...init, signal: controller.signal });
+  } catch (e) {
+    const name = (e as { name?: string } | null)?.name;
+    if (name === "AbortError") {
+      throw new ApiError(
+        "timeout",
+        "Permintaan melebihi batas waktu — backend mungkin sedang bangun (cold start). Coba lagi sebentar.",
+      );
+    }
+    throw new ApiError(
+      "network",
+      "Tidak dapat terhubung ke backend (offline atau CORS). Periksa NEXT_PUBLIC_API_BASE_URL.",
+    );
+  } finally {
+    clearTimeout(timer);
+  }
+  if (!res.ok) {
+    throw new ApiError(
+      "http",
+      `Backend menolak permintaan (HTTP ${res.status}).`,
+      res.status,
+    );
+  }
+  return (await res.json()) as T;
 }
 
 /**
@@ -44,7 +112,7 @@ export async function getMonitoring(): Promise<MonitoringData | null> {
 /**
  * Klasifikasi on-demand (pipeline Model A → Model B → fusion).
  * Mock: heuristik kata kunci. Nyata: POST {API_BASE}/classify.
- * Throw bila backend gagal → UI tampilkan error state.
+ * Melempar ApiError bila backend gagal/lambat → UI tampilkan pesan ramah.
  */
 export async function classify(text: string): Promise<ClassifyResponse> {
   if (USE_MOCK) {
@@ -52,13 +120,15 @@ export async function classify(text: string): Promise<ClassifyResponse> {
     await delay(450); // simulasi latensi supaya loading state terlihat
     return mockClassify(text);
   }
-  const res = await fetch(`${API_BASE}/classify`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ text }),
-  });
-  if (!res.ok) throw new Error(`Gagal klasifikasi (HTTP ${res.status})`);
-  return (await res.json()) as ClassifyResponse;
+  return fetchJson<ClassifyResponse>(
+    `${API_BASE}/classify`,
+    {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ text }),
+    },
+    TIMEOUT.classify,
+  );
 }
 
 /**
@@ -77,25 +147,29 @@ export async function explain(
     await delay(1500);
     return mockExplain(text, label, clamped);
   }
-  const res = await fetch(`${API_BASE}/explain`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ text, num_samples: clamped }),
-  });
-  if (!res.ok) throw new Error(`Gagal LIME (HTTP ${res.status})`);
-  return (await res.json()) as ExplainResponse;
+  return fetchJson<ExplainResponse>(
+    `${API_BASE}/explain`,
+    {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ text, num_samples: clamped }),
+    },
+    TIMEOUT.explain,
+  );
 }
 
 /**
  * Status backend (untuk badge / peringatan cold-start). Return null dalam mode
- * mock atau bila gagal dihubungi.
+ * mock atau bila gagal dihubungi (badge memperlakukan null = offline).
  */
 export async function health(): Promise<HealthResponse | null> {
   if (USE_MOCK || API_BASE === "") return null;
   try {
-    const res = await fetch(`${API_BASE}/health`, { cache: "no-store" });
-    if (!res.ok) return null;
-    return (await res.json()) as HealthResponse;
+    return await fetchJson<HealthResponse>(
+      `${API_BASE}/health`,
+      { method: "GET", cache: "no-store" },
+      TIMEOUT.health,
+    );
   } catch {
     return null;
   }
