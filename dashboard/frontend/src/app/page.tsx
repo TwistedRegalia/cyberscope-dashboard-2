@@ -69,7 +69,7 @@ export default function MonitoringPage() {
     <div>
       <PageHeader
         title="Monitoring"
-        subtitle="Distribusi 6 vektor ancaman siber dari prediksi model (Model A+B) atas dataset — bukan label lemah Snorkel."
+        subtitle="Distribusi 6 vektor ancaman siber dari prediksi model (Model A+B) atas dataset"
       />
 
       {state.status === "loading" && <LoadingSkeleton />}

@@ -18,9 +18,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "CyberScope — Monitoring Vektor Siber",
+  title: "CyberScope",
   description:
-    "CyberScope — dashboard monitoring & klasifikasi otomatis diskursus vektor ancaman siber di media sosial Indonesia.",
+    "CyberScope - dashboard monitoring & klasifikasi otomatis diskursus vektor ancaman siber di media sosial Indonesia.",
 };
 
 // Set tema sebelum paint (anti-FOUC): localStorage → sistem → light.
