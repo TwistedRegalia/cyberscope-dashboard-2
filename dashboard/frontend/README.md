@@ -1,36 +1,54 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Frontend — Dashboard Monitoring Ancaman Siber
 
-## Getting Started
+Frontend web dashboard untuk skripsi: **monitoring** distribusi 6 vektor ancaman siber (prediksi
+model atas dataset) + **klasifikasi on-demand** (teks → vektor + confidence, XAI LIME opsional).
 
-First, run the development server:
+Panduan lengkap: `CLAUDE.md` (repo ini) · sistem visual: `../../docs/DESIGN.md` (Dub) · lingkup &
+riset: `../../docs/HANDOFF_DASHBOARD.md`, `../../CONTEXT.md`.
+
+## Stack
+
+Next.js 16 (App Router) · TypeScript · Tailwind v4 (token Dub) · Recharts · deploy Vercel.
+
+## Menjalankan
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+cp .env.local.example .env.local   # sesuaikan bila backend sudah ada
+npm run dev                         # http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- `npm run build` — build produksi · `npm run start` — serve hasil build · `npm run lint` — ESLint.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Mode data (mock ↔ nyata)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Semua akses data lewat satu lapisan `src/lib/api.ts`.
 
-## Learn More
+- **Monitoring** membaca file statis `public/data/monitoring.json`. File saat ini adalah **fixture
+  dev** ber-flag `is_sample` (muncul banner "DATA CONTOH"). Ganti dengan output **batch inference
+  Model A+B** untuk data nyata (hapus `is_sample`). Bila file hilang → empty state, bukan angka karangan.
+- **Klasifikasi & LIME** memakai **mock heuristik** selama `NEXT_PUBLIC_API_BASE_URL` kosong (banner
+  "Mode demo"). Untuk model nyata: set `NEXT_PUBLIC_API_BASE_URL` ke backend FastAPI dan
+  `NEXT_PUBLIC_USE_MOCK=false`. Kontrak API di `CLAUDE.md` §6 (`/classify`, `/explain`, `/health`).
 
-To learn more about Next.js, take a look at the following resources:
+> Integritas: angka monitoring = prediksi model (bukan label lemah Snorkel); hasil klasifikasi mock
+> BUKAN model nyata. Kedua hal ditandai eksplisit di UI.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Struktur
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```
+src/
+├── app/                  # / (Monitoring) · /klasifikasi · layout + globals (token Dub)
+├── components/
+│   ├── layout/           # AppShell, NavBar, PageHeader
+│   ├── ui/               # primitif Dub (Card, Button, Pill, Badge, EmptyState, Spinner, Skeleton)
+│   ├── monitoring/       # SummaryCards, VectorDistribution, PlatformStacked, TemporalLine, Drilldown
+│   └── klasifikasi/      # ClassifyInput, ExampleChips, ProbabilityBars, ResultPanel, LimePanel
+└── lib/                  # api (satu lapisan), types (kontrak), vectors (VECTOR_META), format, mock/
+public/data/monitoring.json   # fixture dev (ganti dg output batch inference)
+```
 
-## Deploy on Vercel
+## Deploy (Vercel)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Import repo → root project `dashboard/frontend` → set env `NEXT_PUBLIC_API_BASE_URL` (+ `NEXT_PUBLIC_USE_MOCK=false`)
+bila backend siap. Tanpa env, dashboard berjalan dalam mode mock + fixture.

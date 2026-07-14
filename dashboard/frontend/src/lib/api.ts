@@ -10,6 +10,7 @@
 import type {
   ClassifyResponse,
   ExplainResponse,
+  HealthResponse,
   MonitoringData,
 } from "./types";
 import type { VectorLabel } from "./vectors";
@@ -81,4 +82,19 @@ export async function explain(
   });
   if (!res.ok) throw new Error(`Gagal LIME (HTTP ${res.status})`);
   return (await res.json()) as ExplainResponse;
+}
+
+/**
+ * Status backend (untuk badge / peringatan cold-start). Return null dalam mode
+ * mock atau bila gagal dihubungi.
+ */
+export async function health(): Promise<HealthResponse | null> {
+  if (USE_MOCK || API_BASE === "") return null;
+  try {
+    const res = await fetch(`${API_BASE}/health`, { cache: "no-store" });
+    if (!res.ok) return null;
+    return (await res.json()) as HealthResponse;
+  } catch {
+    return null;
+  }
 }

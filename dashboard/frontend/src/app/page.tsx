@@ -1,9 +1,10 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { Skeleton } from "@/components/ui/Skeleton";
+import { Button } from "@/components/ui/Button";
 import { getMonitoring } from "@/lib/api";
 import type { MonitoringData } from "@/lib/types";
 import type { VectorLabel } from "@/lib/vectors";
@@ -23,16 +24,16 @@ export default function MonitoringPage() {
   const [state, setState] = useState<State>({ status: "loading" });
   const [selected, setSelected] = useState<VectorLabel | null>(null);
 
-  useEffect(() => {
-    let active = true;
+  const load = useCallback(() => {
+    setState({ status: "loading" });
     getMonitoring().then((data) => {
-      if (!active) return;
       setState(data ? { status: "ready", data } : { status: "empty" });
     });
-    return () => {
-      active = false;
-    };
   }, []);
+
+  useEffect(() => {
+    load();
+  }, [load]);
 
   return (
     <div>
@@ -53,8 +54,13 @@ export default function MonitoringPage() {
                 public/data/monitoring.json
               </code>{" "}
               tidak ditemukan. Jalankan batch inference Model A+B untuk
-              menghasilkannya, lalu muat ulang halaman.
+              menghasilkannya, lalu muat ulang.
             </>
+          }
+          action={
+            <Button variant="outline" onClick={load}>
+              Muat ulang
+            </Button>
           }
         />
       )}
