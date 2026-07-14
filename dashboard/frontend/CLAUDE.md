@@ -26,7 +26,9 @@ Target pengguna: analis lembaga (BSSN/Bareskrim/OJK) + responden evaluasi semi-t
 - ❌ Upload CSV
 - ❌ Penjadwal otomatis / batch periodik
 - ❌ Visualisasi Speaker Role R1–R5 → **DITUNDA, bukan v1** (model tidak memprediksi role)
-- ❌ Auth / akun pengguna, multi-tenant, i18n, dark mode — over-engineering, tak dibutuhkan v1
+- ❌ Auth / akun pengguna, multi-tenant, i18n — over-engineering, tak dibutuhkan v1
+
+> **Amandemen scope (14 Jul 2026): dark mode kini BAGIAN scope** (ditambahkan atas permintaan Ray — sebelumnya dikecualikan). Toggle di navbar (persist `localStorage` + skrip anti-FOUC), diimplementasikan via **override nilai token** pada `:root[data-theme="dark"]` di `globals.css` — nama utilitas tetap, komponen tak ditulis ulang; warna chart hardcoded diganti `var(--token)`. Penyimpangan sadar dari DESIGN.md (light-only); jiwa Dub (border-first, satu aksen) dipertahankan. Komponen: `components/layout/ThemeToggle.tsx`. **JANGAN dihapus.**
 
 > Prinsip Ray: **no over-engineering.** Bangun dua halaman itu, tidak lebih. Kalau ragu apakah suatu fitur masuk lingkup, tanya dulu — jangan berasumsi menambah.
 
