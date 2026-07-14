@@ -52,7 +52,7 @@ export const PlatformStacked = memo(function PlatformStacked({
   return (
     <ChartCard
       title="Proporsi platform per vektor"
-      subtitle="YouTube vs X — proporsi per vektor (100%)"
+      subtitle="YouTube vs X, proporsi per vektor (100%)"
     >
       <div className="h-[300px] w-full">
         <ResponsiveContainer width="100%" height="100%">

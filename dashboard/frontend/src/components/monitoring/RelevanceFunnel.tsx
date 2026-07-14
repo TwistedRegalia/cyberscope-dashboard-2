@@ -32,7 +32,7 @@ export const RelevanceFunnel = memo(function RelevanceFunnel({
   return (
     <ChartCard
       title="Alur klasifikasi"
-      subtitle="Dari total data ke 6 vektor (Model A → Model B)"
+      subtitle="Dari total data ke 6 vektor (Model A -> Model B)"
     >
       <div className="space-y-4">
         <FunnelStage
@@ -43,7 +43,7 @@ export const RelevanceFunnel = memo(function RelevanceFunnel({
           tone="var(--funnel-total)"
         />
         <FunnelStage
-          label="Relevan · Model A"
+          label="Relevan - Model A"
           value={formatNumber(relevant_rows)}
           caption={formatPct(relevantPct)}
           pct={relevantPct}
@@ -82,7 +82,7 @@ export const RelevanceFunnel = memo(function RelevanceFunnel({
             })}
           </div>
           <p className="mt-2 text-[13px] text-fog">
-            Proporsi 6 vektor atas {formatNumber(relevant_rows)} data relevan —
+            Proporsi 6 vektor atas {formatNumber(relevant_rows)} data relevan,
             rincian angka di tabel bawah.
           </p>
         </div>
