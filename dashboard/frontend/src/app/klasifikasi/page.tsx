@@ -8,6 +8,7 @@ import { ClassifyInput } from "@/components/klasifikasi/ClassifyInput";
 import { ExampleChips } from "@/components/klasifikasi/ExampleChips";
 import { ResultPanel } from "@/components/klasifikasi/ResultPanel";
 import { MockModeNotice } from "@/components/klasifikasi/MockModeNotice";
+import { BackendStatus } from "@/components/klasifikasi/BackendStatus";
 import { classify } from "@/lib/api";
 import type { ClassifyResponse } from "@/lib/types";
 
@@ -47,6 +48,7 @@ export default function KlasifikasiPage() {
       <PageHeader
         title="Klasifikasi on-demand"
         subtitle="Tempel teks atau pilih contoh siap-klik untuk mendapatkan vektor + tingkat keyakinan."
+        actions={<BackendStatus />}
       />
 
       <MockModeNotice />
