@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
+import dynamic from "next/dynamic";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { Skeleton } from "@/components/ui/Skeleton";
@@ -10,10 +11,30 @@ import type { MonitoringData } from "@/lib/types";
 import type { VectorLabel } from "@/lib/vectors";
 import { SampleBanner } from "@/components/monitoring/SampleBanner";
 import { SummaryCards } from "@/components/monitoring/SummaryCards";
-import { VectorDistribution } from "@/components/monitoring/VectorDistribution";
-import { PlatformStacked } from "@/components/monitoring/PlatformStacked";
-import { TemporalLine, hasTemporal } from "@/components/monitoring/TemporalLine";
 import { VectorDrilldown } from "@/components/monitoring/VectorDrilldown";
+import { hasTemporal } from "@/lib/temporal";
+
+// Chart (recharts) di-load via next/dynamic → keluar dari bundle awal route.
+const chartFallback = () => <Skeleton className="h-[360px]" />;
+const VectorDistribution = dynamic(
+  () =>
+    import("@/components/monitoring/VectorDistribution").then(
+      (m) => m.VectorDistribution,
+    ),
+  { ssr: false, loading: chartFallback },
+);
+const PlatformStacked = dynamic(
+  () =>
+    import("@/components/monitoring/PlatformStacked").then(
+      (m) => m.PlatformStacked,
+    ),
+  { ssr: false, loading: chartFallback },
+);
+const TemporalLine = dynamic(
+  () =>
+    import("@/components/monitoring/TemporalLine").then((m) => m.TemporalLine),
+  { ssr: false, loading: chartFallback },
+);
 
 type State =
   | { status: "loading" }

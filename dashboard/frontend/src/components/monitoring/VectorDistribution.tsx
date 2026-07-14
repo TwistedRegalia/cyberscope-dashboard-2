@@ -11,6 +11,7 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
+import { memo } from "react";
 import { VECTOR_META, isVectorLabel, type VectorLabel } from "@/lib/vectors";
 import { formatNumber, formatPct } from "@/lib/format";
 import type { VectorDistributionItem } from "@/lib/types";
@@ -33,9 +34,13 @@ interface Props {
  * pilih vektor untuk drill-down. Warna bukan satu-satunya pembawa makna:
  * label kategori + nilai selalu tampak.
  */
-export function VectorDistribution({ data, selected, onSelect }: Props) {
-  const rows: Row[] = [...data]
-    .sort((a, b) => b.count - a.count)
+export const VectorDistribution = memo(function VectorDistribution({
+  data,
+  selected,
+  onSelect,
+}: Props) {
+  const rows: Row[] = data
+    .toSorted((a, b) => b.count - a.count)
     .map((d) => {
       const meta = VECTOR_META[d.label];
       return {
@@ -111,7 +116,7 @@ export function VectorDistribution({ data, selected, onSelect }: Props) {
       </div>
     </ChartCard>
   );
-}
+});
 
 function DistTooltip({
   active,

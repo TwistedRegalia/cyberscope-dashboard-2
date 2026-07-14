@@ -10,6 +10,7 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
+import { memo } from "react";
 import { getVectorMeta } from "@/lib/vectors";
 import { formatNumber, formatPct } from "@/lib/format";
 import type { PlatformByVectorItem } from "@/lib/types";
@@ -29,8 +30,12 @@ interface Row {
   total: number;
 }
 
-export function PlatformStacked({ data }: { data: PlatformByVectorItem[] }) {
-  const rows: Row[] = [...data]
+export const PlatformStacked = memo(function PlatformStacked({
+  data,
+}: {
+  data: PlatformByVectorItem[];
+}) {
+  const rows: Row[] = data
     .map((d) => {
       const m = getVectorMeta(d.label);
       return {
@@ -100,7 +105,7 @@ export function PlatformStacked({ data }: { data: PlatformByVectorItem[] }) {
       </div>
     </ChartCard>
   );
-}
+});
 
 function PlatformTooltip({
   active,

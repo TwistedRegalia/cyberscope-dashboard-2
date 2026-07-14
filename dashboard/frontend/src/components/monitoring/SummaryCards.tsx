@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { Card } from "@/components/ui/Card";
 import { formatNumber, formatPct } from "@/lib/format";
 import { cn } from "@/lib/cn";
@@ -32,7 +33,11 @@ function Stat({
   );
 }
 
-export function SummaryCards({ data }: { data: MonitoringData }) {
+export const SummaryCards = memo(function SummaryCards({
+  data,
+}: {
+  data: MonitoringData;
+}) {
   const relevantPct = data.total_rows
     ? data.relevant_rows / data.total_rows
     : 0;
@@ -60,4 +65,4 @@ export function SummaryCards({ data }: { data: MonitoringData }) {
       />
     </div>
   );
-}
+});

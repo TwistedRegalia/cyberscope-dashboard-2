@@ -10,22 +10,19 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
+import { memo } from "react";
 import { VECTOR_META, isVectorLabel, type VectorLabel } from "@/lib/vectors";
 import { formatNumber } from "@/lib/format";
 import type { TemporalItem } from "@/lib/types";
 import { ChartCard } from "./ChartCard";
 
-/** Tren layak tampil hanya bila tanggal cukup tersebar (≥3 periode berbeda). */
-export function hasTemporal(
-  temporal: TemporalItem[] | null | undefined,
-): boolean {
-  if (!temporal || temporal.length === 0) return false;
-  return new Set(temporal.map((t) => t.period)).size >= 3;
-}
-
 type WideRow = { period: string } & Partial<Record<VectorLabel, number>>;
 
-export function TemporalLine({ temporal }: { temporal: TemporalItem[] }) {
+export const TemporalLine = memo(function TemporalLine({
+  temporal,
+}: {
+  temporal: TemporalItem[];
+}) {
   const periods = Array.from(new Set(temporal.map((t) => t.period))).sort();
   const labels = Array.from(new Set(temporal.map((t) => t.label))).filter(
     isVectorLabel,
@@ -82,7 +79,7 @@ export function TemporalLine({ temporal }: { temporal: TemporalItem[] }) {
       </div>
     </ChartCard>
   );
-}
+});
 
 function TemporalTooltip({
   active,

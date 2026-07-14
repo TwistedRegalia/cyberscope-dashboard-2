@@ -14,8 +14,8 @@ import type {
   MonitoringData,
 } from "./types";
 import type { VectorLabel } from "./vectors";
-import { mockClassify } from "./mock/classify";
-import { mockExplain } from "./mock/explain";
+// Mock di-impor DINAMIS di dalam cabang USE_MOCK (lihat classify/explain) supaya
+// kode heuristik TIDAK ikut ter-bundle saat produksi memakai backend nyata.
 
 export const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL ?? "";
 
@@ -33,7 +33,7 @@ function delay(ms: number): Promise<void> {
  */
 export async function getMonitoring(): Promise<MonitoringData | null> {
   try {
-    const res = await fetch("/data/monitoring.json", { cache: "no-store" });
+    const res = await fetch("/data/monitoring.json");
     if (!res.ok) return null;
     return (await res.json()) as MonitoringData;
   } catch {
@@ -48,6 +48,7 @@ export async function getMonitoring(): Promise<MonitoringData | null> {
  */
 export async function classify(text: string): Promise<ClassifyResponse> {
   if (USE_MOCK) {
+    const { mockClassify } = await import("./mock/classify");
     await delay(450); // simulasi latensi supaya loading state terlihat
     return mockClassify(text);
   }
@@ -72,6 +73,7 @@ export async function explain(
 ): Promise<ExplainResponse> {
   const clamped = Math.min(150, Math.max(100, numSamples));
   if (USE_MOCK) {
+    const { mockExplain } = await import("./mock/explain");
     await delay(1500);
     return mockExplain(text, label, clamped);
   }
