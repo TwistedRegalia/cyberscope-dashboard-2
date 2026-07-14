@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/cn";
+import { BrandMark } from "./BrandMark";
 
 const NAV = [
   { href: "/", label: "Monitoring" },
@@ -26,14 +27,9 @@ export function NavBar() {
     <header className="sticky top-0 z-40 border-b border-ash bg-canvas-white">
       <div className="mx-auto flex h-14 w-full max-w-[1200px] items-center justify-between px-6">
         <Link href="/" className="flex items-center gap-2" aria-label="Beranda monitoring">
-          <span
-            aria-hidden
-            className="grid size-6 place-items-center rounded-md bg-electric-blue text-[11px] font-semibold text-canvas-white"
-          >
-            AS
-          </span>
+          <BrandMark className="size-6 text-electric-blue" />
           <span className="font-display text-[15px] text-charcoal">
-            Ancaman Siber
+            CyberScope
           </span>
         </Link>
 

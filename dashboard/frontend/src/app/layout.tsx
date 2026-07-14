@@ -18,9 +18,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Monitoring Ancaman Siber",
+  title: "CyberScope — Monitoring Vektor Siber",
   description:
-    "Dashboard monitoring & klasifikasi otomatis diskursus vektor ancaman siber pada media sosial Indonesia.",
+    "CyberScope — dashboard monitoring & klasifikasi otomatis diskursus vektor ancaman siber di media sosial Indonesia.",
 };
 
 export default function RootLayout({

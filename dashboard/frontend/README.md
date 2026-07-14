@@ -1,4 +1,4 @@
-# Frontend — Dashboard Monitoring Ancaman Siber
+# CyberScope — Frontend Dashboard Monitoring
 
 Frontend web dashboard untuk skripsi: **monitoring** distribusi 6 vektor ancaman siber (prediksi
 model atas dataset) + **klasifikasi on-demand** (teks → vektor + confidence, XAI LIME opsional).
