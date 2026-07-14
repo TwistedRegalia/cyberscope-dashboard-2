@@ -2,15 +2,18 @@ import { Card } from "@/components/ui/Card";
 import { Badge } from "@/components/ui/Badge";
 import { ProbabilityBars } from "./ProbabilityBars";
 import { RelevanceNotice } from "./RelevanceNotice";
+import { LimePanel } from "./LimePanel";
 import { getVectorMeta } from "@/lib/vectors";
 import { formatPct } from "@/lib/format";
 import type { ClassifyResponse } from "@/lib/types";
 
 interface Props {
   result: ClassifyResponse;
+  /** Teks yang diklasifikasi — diperlukan untuk LIME. */
+  inputText: string;
 }
 
-export function ResultPanel({ result }: Props) {
+export function ResultPanel({ result, inputText }: Props) {
   // Model A gate: tidak relevan → berhenti, jangan tampilkan vektor.
   if (!result.relevant || !result.label) {
     return <RelevanceNotice />;
@@ -43,6 +46,12 @@ export function ResultPanel({ result }: Props) {
         </p>
         <ProbabilityBars probabilities={result.probabilities} top={result.label} />
       </div>
+
+      <LimePanel
+        key={`${result.label}-${inputText}`}
+        text={inputText}
+        label={result.label}
+      />
     </Card>
   );
 }

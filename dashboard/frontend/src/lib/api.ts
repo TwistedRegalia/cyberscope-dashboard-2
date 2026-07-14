@@ -7,8 +7,14 @@
  *   belum ada. Menukar ke nyata = set NEXT_PUBLIC_API_BASE_URL (+ USE_MOCK=false),
  *   TANPA ubah komponen.
  */
-import type { ClassifyResponse, MonitoringData } from "./types";
+import type {
+  ClassifyResponse,
+  ExplainResponse,
+  MonitoringData,
+} from "./types";
+import type { VectorLabel } from "./vectors";
 import { mockClassify } from "./mock/classify";
+import { mockExplain } from "./mock/explain";
 
 export const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL ?? "";
 
@@ -51,4 +57,28 @@ export async function classify(text: string): Promise<ClassifyResponse> {
   });
   if (!res.ok) throw new Error(`Gagal klasifikasi (HTTP ${res.status})`);
   return (await res.json()) as ClassifyResponse;
+}
+
+/**
+ * Penjelasan XAI (LIME) — LAMBAT (backend nyata ±30–60 dtk). num_samples clamp
+ * 100..150. Mock cepat (~1,5 dtk) supaya demo bisa dipakai, tapi UI tetap
+ * menandai proses lambat. Async & non-blocking (dipanggil dari LimePanel).
+ */
+export async function explain(
+  text: string,
+  label: VectorLabel,
+  numSamples = 120,
+): Promise<ExplainResponse> {
+  const clamped = Math.min(150, Math.max(100, numSamples));
+  if (USE_MOCK) {
+    await delay(1500);
+    return mockExplain(text, label, clamped);
+  }
+  const res = await fetch(`${API_BASE}/explain`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ text, num_samples: clamped }),
+  });
+  if (!res.ok) throw new Error(`Gagal LIME (HTTP ${res.status})`);
+  return (await res.json()) as ExplainResponse;
 }

@@ -16,6 +16,7 @@ export default function KlasifikasiPage() {
   const [text, setText] = useState("");
   const [status, setStatus] = useState<Status>("idle");
   const [result, setResult] = useState<ClassifyResponse | null>(null);
+  const [resultText, setResultText] = useState("");
   const [error, setError] = useState("");
 
   async function run(input?: string) {
@@ -27,6 +28,7 @@ export default function KlasifikasiPage() {
     try {
       const r = await classify(t);
       setResult(r);
+      setResultText(t);
       setStatus("done");
     } catch (e) {
       setError(e instanceof Error ? e.message : "Terjadi kesalahan tak terduga");
@@ -71,7 +73,9 @@ export default function KlasifikasiPage() {
         </Card>
       )}
 
-      {status === "done" && result && <ResultPanel result={result} />}
+      {status === "done" && result && (
+        <ResultPanel result={result} inputText={resultText} />
+      )}
     </div>
   );
 }

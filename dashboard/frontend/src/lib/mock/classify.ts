@@ -7,7 +7,7 @@
 import { VECTOR_LABELS, VECTOR_META, type VectorLabel } from "@/lib/vectors";
 import type { ClassifyResponse } from "@/lib/types";
 
-const KEYWORDS: Record<VectorLabel, string[]> = {
+export const KEYWORDS: Record<VectorLabel, string[]> = {
   judi_online_pinjol: [
     "slot", "gacor", "maxwin", "judol", "judi", "pinjol", "togel",
     "deposit", "rungkad", "debt collector", "dc ",
