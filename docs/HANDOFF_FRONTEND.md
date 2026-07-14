@@ -167,6 +167,25 @@ di-consume frontend:
 > Snorkel. Angka Snorkel (judi 7.486 · ewallet 548 · phishing 492 · peretasan 365 · malware 214 ·
 > deepfake 107) **tidak boleh** dipakai sebagai isi monitoring. `pct` = `count / relevant_rows`.
 
+### 5.1 Automasi drop-in (tak ada salin manual)
+
+Backend & frontend berada di **satu workspace** (`PI2/`), jadi langkah akhir script batch inference
+cukup **menulis file langsung** ke path frontend — pengunjung tak pernah menyalin apa pun, dan langkah
+developer menyatu ke dalam script:
+
+```python
+# baris terakhir script batch inference (sesi backend):
+import json
+out = "dashboard/frontend/public/data/monitoring.json"   # relatif dari root PI2/
+json.dump(aggregate, open(out, "w", encoding="utf-8"), ensure_ascii=False, indent=2)
+# aggregate TANPA is_sample (atau is_sample=false) → banner "DATA CONTOH" otomatis hilang
+```
+
+Lalu `git add dashboard/frontend/public/data/monitoring.json && git commit && git push` → **Vercel
+auto-deploy** → semua pengunjung dapat data baru dari CDN otomatis. Halaman `/` tetap **file statis**
+(instan, tanpa cold-start) — **bukan** endpoint. (Keputusan sadar: data memang statis, scraping live
+di luar lingkup.)
+
 ---
 
 ## 6. Integrasi frontend ↔ backend
