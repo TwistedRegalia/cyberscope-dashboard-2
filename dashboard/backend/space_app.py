@@ -40,6 +40,20 @@ via a first attempt that got 404 on /health):
    (CustomCORSMiddleware) with strict_cors=True by default, which can
    override/conflict with our own CORSMiddleware added below - passing
    strict_cors=False to .launch() avoids that.
+
+Even after both fixes above, the real deployed Space still 404'd on
+/health/​/classify (served the Gradio SPA shell instead) - the actual
+container log showed why: "Running on local URL: http://0.0.0.0:7860, with
+SSR (Node proxy -> Python :7861)". Gradio 6.x's SSR mode puts a Node.js
+front-end proxy in front of the Python backend; that proxy only forwards
+paths it knows about (Gradio's own /gradio_api/* + static assets) and falls
+back to serving the SPA shell for anything else, including our custom
+top-level routes. `ssr_mode` defaults to None -> falls back to the
+GRADIO_SSR_MODE env var (gradio/blocks.py) which HF's Gradio SDK base image
+sets to enable SSR by default (it preinstalls Node 20+ for exactly this).
+Passing ssr_mode=False overrides that and removes the Node proxy entirely -
+Python's server becomes the only thing handling requests, at whatever port
+we actually asked for.
 """
 import sys
 from pathlib import Path
@@ -75,5 +89,6 @@ if __name__ == "__main__":
         server_name="0.0.0.0",
         server_port=7860,
         strict_cors=False,
+        ssr_mode=False,
         _app=demo.app,
     )
