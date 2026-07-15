@@ -75,10 +75,8 @@ with gr.Blocks() as demo:
 demo.app.include_router(fastapi_app.router)
 demo.app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "http://localhost:3000",
-        "https://TODO-ganti-domain-vercel.vercel.app",  # TODO (M5): ganti dengan domain Vercel asli
-    ],
+    allow_origins=["http://localhost:3000"],
+    allow_origin_regex=r"https://.*\.vercel\.app$",  # domain produksi + preview Vercel
     allow_methods=["*"],
     allow_headers=["*"],
 )
