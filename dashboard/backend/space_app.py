@@ -12,10 +12,15 @@ runs this script and expects something bound to port 7860 when it's done
 starting up; the Gradio mount is a safety net for whatever SDK-specific
 checks Spaces may run, not strictly required for the API routes themselves.
 """
+import sys
+from pathlib import Path
+
 import gradio as gr
 import uvicorn
 
-from app.main import app as fastapi_app
+sys.path.insert(0, str(Path(__file__).resolve().parent / "dashboard" / "backend"))
+
+from app.main import app as fastapi_app  # noqa: E402
 
 with gr.Blocks() as _demo:
     gr.Markdown(
