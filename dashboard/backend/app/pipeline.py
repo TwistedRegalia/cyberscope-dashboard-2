@@ -81,11 +81,11 @@ def load_models() -> None:
     )
 
 
-def _softmax(model, tokenizer, device, text_clean: str):
+def _softmax_batch(model, tokenizer, device, texts_clean: list[str]):
     import torch
 
     enc = tokenizer(
-        text_clean,
+        texts_clean,
         truncation=True,
         padding="max_length",
         max_length=MAX_LEN,
@@ -93,7 +93,11 @@ def _softmax(model, tokenizer, device, text_clean: str):
     )
     with torch.no_grad():
         logits = model(enc["input_ids"].to(device), enc["attention_mask"].to(device))
-    return torch.softmax(logits, dim=1)[0].tolist()
+    return torch.softmax(logits, dim=1).tolist()
+
+
+def _softmax(model, tokenizer, device, text_clean: str):
+    return _softmax_batch(model, tokenizer, device, [text_clean])[0]
 
 
 def classify(text: str) -> dict:
@@ -142,4 +146,45 @@ def classify(text: str) -> dict:
         "confidence": confidence,
         "probabilities": probabilities,
         "latency_ms": int((time.time() - t0) * 1000),
+    }
+
+
+def explain(text: str, num_samples: int = 120) -> dict:
+    """LIME on Model B's pure neural component (CLAUDE.md Sec 7) - no anchor/fusion here."""
+    import numpy as np
+    from lime.lime_text import LimeTextExplainer
+
+    if not _state["loaded"]:
+        load_models()
+
+    device = _state["device"]
+    tokenizer = _state["tokenizer"]
+    model_b = _state["model_b"]
+    num_samples = max(100, min(150, num_samples))
+
+    class_names = sorted(B_LABEL2ID, key=B_LABEL2ID.get)
+    text_clean = clean_text(text)
+
+    p_b = _softmax(model_b, tokenizer, device, text_clean)
+    pred_id = max(range(len(p_b)), key=lambda i: p_b[i])
+    label = class_names[pred_id]
+
+    def predict_proba(texts: list[str]):
+        cleaned = [clean_text(t) for t in texts]
+        return np.array(_softmax_batch(model_b, tokenizer, device, cleaned))
+
+    explainer = LimeTextExplainer(class_names=class_names)
+    t0 = time.time()
+    exp = explainer.explain_instance(
+        text_clean, predict_proba, labels=(pred_id,), num_samples=num_samples
+    )
+    elapsed_ms = int((time.time() - t0) * 1000)
+
+    tokens = [{"token": w, "weight": round(wt, 3)} for w, wt in exp.as_list(label=pred_id)]
+
+    return {
+        "label": label,
+        "tokens": tokens,
+        "num_samples": num_samples,
+        "elapsed_ms": elapsed_ms,
     }

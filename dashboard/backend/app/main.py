@@ -6,7 +6,7 @@ from __future__ import annotations
 
 from contextlib import asynccontextmanager
 
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from app import pipeline
@@ -49,8 +49,7 @@ def classify_endpoint(req: ClassifyRequest) -> dict:
 
 @app.post("/explain", response_model=ExplainResponse)
 def explain_endpoint(req: ExplainRequest) -> dict:
-    # LIME belum diimplementasikan - lihat M3 (pipeline.explain()).
-    raise HTTPException(status_code=501, detail="LIME belum diimplementasikan (M3)")
+    return pipeline.explain(req.text, req.num_samples)
 
 
 @app.get("/health", response_model=HealthResponse)

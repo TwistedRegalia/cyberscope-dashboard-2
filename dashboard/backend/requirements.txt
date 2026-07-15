@@ -8,3 +8,4 @@ Sastrawi
 fastapi
 uvicorn[standard]
 pydantic
+lime
