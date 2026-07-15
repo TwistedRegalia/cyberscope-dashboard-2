@@ -3,8 +3,9 @@ title: CyberScope Backend
 emoji: 🛡️
 colorFrom: blue
 colorTo: purple
-sdk: docker
-app_port: 7860
+sdk: gradio
+sdk_version: 6.20.0
+app_file: space_app.py
 ---
 
 # CyberScope Backend
@@ -39,6 +40,12 @@ uvicorn app.main:app --host 0.0.0.0 --port 8000   # dari direktori dashboard/bac
 
 ## Deploy ke HF Spaces (checklist lengkap)
 
+SDK **Gradio** (gratis) dipakai, bukan Docker - Docker SDK kini butuh HF Spaces Pro ($9/bulan) dan
+tak bisa dipakai gratis lagi (berubah awal Juli 2026). `space_app.py` menjalankan FastAPI asli
+(`app/main.py`, tak diubah - endpoint/CORS/lifespan identik dev lokal) langsung lewat `uvicorn` di
+port 7860, dengan UI Gradio minimal ter-mount di `/ui` (cuma jaring pengaman kompatibilitas SDK, bukan
+antarmuka fungsional - rute API asli tetap di path aslinya).
+
 Repo Space **terpisah** dari monorepo `PI2/` - hanya berisi subset file yang benar-benar dipakai saat
 runtime (bukan seluruh `src/`, bukan `data/`, bukan `models/`).
 
@@ -50,13 +57,13 @@ runtime (bukan seluruh `src/`, bukan `data/`, bukan `models/`).
    hf upload <nama-model-repo> models/model_a_layer1_best.pt model_a_layer1_best.pt
    hf upload <nama-model-repo> models/model_b_layer2_best.pt model_b_layer2_best.pt
    ```
-4. **Buat Space** (SDK Docker): via web `huggingface.co/new-space`, atau
-   `hf repo create <nama-space> --type space --space_sdk docker`.
+4. **Buat Space** (SDK Gradio): via web `huggingface.co/new-space`, atau
+   `hf repo create <nama-space> --type space --space_sdk gradio`.
 5. **Susun folder terpisah** untuk push ke Space (struktur relatif HARUS persis ini, supaya
    `Path(__file__).resolve().parents[3]` di `pipeline.py` tetap menunjuk ke root yang benar):
    ```
    <folder-space>/
-     Dockerfile                          <- salin dari dashboard/backend/Dockerfile
+     space_app.py                        <- salin dari dashboard/backend/space_app.py
      README.md                           <- salin file ini (sudah ada YAML frontmatter)
      src/
        phase9_model_a_layer1.py          <- salin dari PI2/src/
