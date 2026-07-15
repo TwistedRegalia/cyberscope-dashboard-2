@@ -24,7 +24,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent / "dashboard" / "backend"
 from app.main import app as fastapi_app  # noqa: E402
 
 
-@spaces.GPU
+@spaces.GPU()
 def _zerogpu_probe():
     """Marker only - the ZeroGPU hardware tier requires >=1 @spaces.GPU
     function to exist or the Space fails startup validation. This backend
