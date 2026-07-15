@@ -30,7 +30,7 @@
 - 3.9 Pengujian Data · 3.10 Evaluasi (3.10.1 Model A, 3.10.2 Model B, 3.10.3 Ablation Fusion, 3.10.4 XAI LIME, 3.10.5 Perbandingan SOTA)
 - 3.11 Deployment · 3.12 Pengembangan Prototype · 3.13 Evaluasi Prototype (Blackbox, SUS, uji data)
 
-> **⚠️ 3.11–3.13 ditulis SETELAH dashboard selesai** — jalur Prototyping masih PERENCANAAN (`CONTEXT.md` §4c). Jangan tulis seolah sudah dikerjakan.
+> **✅ Dashboard SELESAI & LIVE** (frontend `https://cyberscope-webapp.vercel.app`, backend `https://twistedregalia-cyberscope-backend.hf.space`). Jalur Prototyping **bukan lagi** perencanaan — **3.11 Deployment / 3.12 Pengembangan Prototype / 3.13 Evaluasi Prototype kini ditulis dari fakta nyata di §9**. (SUS tetap **pending** — butuh responden.)
 > Draf BAB 3 lama berbasis CRISP-DM = **bank materi**, perlu restrukturisasi ke kerangka ini.
 > Lampiran data siap kutip: `docs/phase9_fusion_ablation.md`, `docs/phase9_xai_lime.md`, `docs/phase6_preprocessing_examples.md`.
 
@@ -118,6 +118,10 @@ accuracy **0,9819** · macro-F1 **0,9680** · recall relevan **0,9674** · CM `[
 4. **46 disagreement gold tidak direkonsiliasi** — gold = validasi via subset sepakat (n=311), **bukan test set**. Sah, tapi catat eksplisit.
 5. **LIME = aproksimasi lokal linear** — token tak-intuitif (kata sambung `dan`/`gua`) wajar muncul.
 6. **X = snapshot 7 hari**; **deepfake 107 = ceiling** dari sumber tersedia (scarcity nyata).
+7. **Cold start HF Spaces free tier ~25–60 dtk** (unduh checkpoint + IndoBERT) — dimitigasi badge status + timeout frontend, tapi tetap keterbatasan deployment gratis; laporkan apa adanya di 3.11.
+8. **LIME lambat** (opsional, non-blocking; frontend menandai "±30–60 detik") — bukan fitur real-time.
+9. **SUS belum dijalankan** — butuh responden manusia (semi-teknis). Jangan tulis skor SUS sebelum ada; 3.13 bagian SUS = rencana/pending.
+10. **Temporal monitoring 2013–2026** berasal dari `published_at` mentah → caveat Temuan #1 (X = snapshot 7 hari) & #2 (dua platform beda) TETAP berlaku; jangan klaim tren temporal X dari dashboard.
 
 ---
 
@@ -143,5 +147,84 @@ Kontribusi = **rekayasa masalah + data + taksonomi + interpretabilitas**, bukan 
 - Bahasa Indonesia akademik; sitasi **APA**.
 - **Jangan over-claim.** Laporkan keterbatasan apa adanya (bagian 6). Bila hasil ambigu (Temuan #4 dua-pola), tulis "terkonfirmasi sebagian" — jangan paksa narasi tunggal.
 - Bedakan tegas metrik weak-label vs validasi manusia.
-- **3.11–3.13 ditulis setelah dashboard** — jangan tulis seolah sudah dikerjakan.
+- **3.11–3.13 KINI boleh ditulis** (dashboard live, fakta §9) — tulis apa adanya; **SUS tetap dilaporkan sebagai pending/rencana**, bukan hasil.
 - Angka dari file ini / `CONTEXT.md`; bila ragu, verifikasi ke sumber (`data/`, `docs/`, `src/`), jangan mengarang.
+
+---
+
+## 9. Prototype & Deployment — fakta untuk 3.11–3.13 (dashboard SELESAI + live)
+
+> Semua fakta di sini **terverifikasi langsung** (dari `monitoring.json`, backend `README.md`/`requirements.txt`, dan URL live: `curl /health` 200 + uji klasifikasi di browser) saat sesi pembangunan/deploy. Bab 3.11–3.13 ditulis dari sini. **SUS tetap pending.**
+
+### 9.1 Ikhtisar & URL live
+- **Nama produk:** CyberScope. **Tipe:** dashboard klasifikasi on-demand + monitoring (Tipe 1, dua halaman).
+- **Frontend (Vercel):** `https://cyberscope-webapp.vercel.app`
+- **Backend (HF Spaces):** `https://twistedregalia-cyberscope-backend.hf.space`
+- **Dua-jalur data (penting):** Monitoring (`/`) membaca **file statis** pra-agregat dari CDN Vercel — tak memanggil model saat load (nilai langsung terlihat, tanpa cold-start, tetap hidup walau Space tidur). Klasifikasi (`/klasifikasi`) memanggil **API live** backend.
+
+### 9.2 Arsitektur & stack (untuk 3.12)
+**Frontend:** Next.js 16.2.10 (App Router) · TypeScript · Tailwind CSS v4 · Recharts 3.9. Sistem desain **"Dub"** (light editorial, hairline border 1px `#e5e5e5`, satu aksen electric-blue `#2563eb`, radius terkunci). **Dark mode** via override nilai token pada `:root[data-theme="dark"]` (komponen tak ditulis ulang). Font Inter + Geist Mono (`next/font`).
+
+**Backend:** FastAPI (3 endpoint) dijalankan lewat `space_app.py` (HF Spaces **SDK Gradio**, gratis; Docker SDK kini Pro-only). Pipeline inferensi 2-lapis: `text → clean_text → Model A (relevansi) → [tidak relevan → STOP] → Model B (6 vektor) + anchor → late fusion 0,75 neural : 0,25 rule-based → label + confidence`. **LIME menjelaskan komponen neural murni Model B.** Deps inti: torch, transformers≥4.30, lime, emoji, Sastrawi, fastapi, uvicorn, gradio, `spaces`.
+
+**Struktur repo:** `dashboard/frontend/` (Next.js) + `dashboard/backend/` (`app/main.py`, `app/pipeline.py`, `app/schemas.py`, `scripts/build_monitoring.py`, `scripts/sanity_check.py`, `space_app.py`). Kelas model + preprocessing + anchor **di-reuse dari `src/`** (bukan latih ulang).
+
+### 9.3 Dua halaman + fitur (untuk 3.12)
+**`/` Monitoring** (dari PREDIKSI model, file statis):
+- Kartu ringkas: total baris · relevan · rentang tanggal.
+- **Funnel relevansi** (total → relevan Model A → komposisi 6 vektor Model B) — menceritakan pipeline 2-lapis.
+- **Distribusi 6 vektor** (bar horizontal, klik → drill-down).
+- **Proporsi platform** YouTube vs X per vektor (100%-stacked).
+- **Tren waktu** (line, kondisional bila ≥3 periode berbeda).
+- **Tabel detail 6 vektor** (jumlah · % · YouTube% · X%; aksesibel, drill-down).
+- **Drill-down:** klik vektor → contoh komentar terklasifikasi ke vektor itu.
+
+**`/klasifikasi` Klasifikasi on-demand** (API live):
+- Input: **contoh siap-klik** (7 contoh, termasuk 1 off-topic) ATAU **tempel teks**.
+- Hasil: label vektor (dapat dibaca, bukan indeks) + **confidence** + **bar probabilitas 6 kelas**.
+- **Gate Model A:** bila tidak relevan → berhenti, tampil "tidak relevan", tak menampilkan vektor.
+- **LIME opsional** (default mati, tombol terpisah): highlight token berbobot (+ mendukung / − menentang), non-blocking, ditandai lambat.
+- **Badge status backend:** ping `/health` saat halaman dibuka (memeriksa → online/offline, sekaligus membangunkan Space); UX cold-start; pesan error ramah (timeout/jaringan/HTTP).
+
+**Prinsip integritas UI:** tak fabrikasi angka — data hilang → **empty state**; fixture dev → banner **"DATA CONTOH"** (kini nonaktif karena data nyata sudah dipasang).
+
+### 9.4 Deployment (untuk 3.11)
+- **Frontend → Vercel:** build statis (5 route prerender) + CDN global. Env **build-time** `NEXT_PUBLIC_API_BASE_URL=<url-space>` + `NEXT_PUBLIC_USE_MOCK=false` (persisten di project). Domain produksi publik `cyberscope-webapp.vercel.app`.
+- **Backend → HF Spaces (SDK Gradio, free tier):** checkpoint (~484 MB ×2) di **HF model repo privat**, diunduh saat startup via `hf_hub_download` (di luar Git Space); IndoBERT base terunduh saat instansiasi; model dimuat **sekali** saat startup.
+- **`GET /health`** (dari sanity nyata `scripts/sanity_check.py`): `models_loaded=true`, `model_a_f1=0,9686`, `model_b_f1=0,9747`.
+- **Cold start ~25–60 dtk** (unduh checkpoint + IndoBERT) → dimitigasi badge health frontend + timeout (classify 30 dtk, explain 120 dtk).
+- **Latensi classify teramati ~239 ms (warm)** — jauh di bawah estimasi CPU 1–3 dtk pada dokumen desain → **indikasi inferensi GPU-backed (ZeroGPU** via paket `spaces`). *(Konfirmasi tier hardware Space bila butuh angka pasti di tulisan.)*
+- **CORS:** backend izinkan `http://localhost:3000` + regex `https://.*\.vercel\.app$` (Gradio `strict_cors=False` juga permisif).
+- **Integrasi terverifikasi end-to-end** di URL live (lihat 9.6).
+
+### 9.5 Output monitoring NYATA — prediksi model (INTEGRITAS, untuk 3.12/3.13)
+Batch inference Model A+B atas seluruh **55.300** baris → **9.748 diprediksi relevan** (Model A), lalu Model B + fusion. **Ini prediksi model, BUKAN weak label Snorkel.**
+
+| Vektor | Monitoring (prediksi model) | (band.) Snorkel §4.2 |
+|---|---:|---:|
+| judi_online_pinjol | **7.645** (78,4%) | 7.486 |
+| phishing_rekayasa_sosial | **704** (7,2%) | 492 |
+| penipuan_ewallet_qris | **549** (5,6%) | 548 |
+| peretasan_pencurian_identitas | **425** (4,4%) | 365 |
+| malware_apk | **316** (3,2%) | 214 |
+| deepfake_penipuan_ai | **109** (1,1%) | 107 |
+| **Total relevan** | **9.748** | 9.212 |
+
+- **Proporsi platform (prediksi):** ewallet ~99% X · judi ~96% YouTube · peretasan ~85% X · malware ~86% YouTube · phishing ~78% YouTube · deepfake ~56% YouTube.
+- `date_range` monitoring **2013-05 .. 2026-06** (dari `published_at` mentah; caveat platform §3 Temuan #1/#2 tetap berlaku).
+
+> **WAJIB di tulisan:** jangan tertukar angka monitoring (prediksi) dengan Snorkel (weak label) atau test set — ketiganya menjawab pertanyaan berbeda (lihat 9.7).
+
+### 9.6 Evaluasi Prototype (untuk 3.13)
+- **Blackbox testing (terverifikasi di URL live):** Monitoring memuat data nyata (tanpa banner DATA CONTOH; 11 surface chart render); classify per vektor → label + confidence + 6 bar; gate "tidak relevan" untuk off-topic; LIME → token berbobot; dark mode berfungsi; badge backend **online**; **nol error konsol**.
+- **Uji data (contoh per vektor):** teks contoh → label + confidence, mis. contoh judi → **"Judi Online & Pinjol" 99,1%** (latensi ~239 ms); off-topic → "tidak relevan". Sarankan tabel uji **1 contoh/vektor + kasus negatif** di tulisan.
+- **SUS (System Usability Scale) — PENDING:** butuh **responden manusia**, profil **semi-teknis** (mahasiswa informatika/dosen), **min 5, ideal 12–20**. Bottleneck non-teknis → amankan responden lebih awal. **Jangan tulis skor SUS sebelum dijalankan.**
+
+### 9.7 Integritas dashboard (jangan dilanggar di 3.11–3.13)
+- **Tiga angka "relevan" berbeda peran — jangan tertukar:**
+  - **9.748** = prediksi Model A atas 55.300 → isi **monitoring** dashboard.
+  - **9.212** = weak label Snorkel → label dataset training (§4.2).
+  - **922** = subset test set Layer-2 → metrik model (§4.5).
+- Monitoring = **prediksi model**, bukan Snorkel. Metrik `/health` dari **sanity nyata**, bukan tebakan.
+- **Speaker Role R1–R5 TIDAK ada** di dashboard v1 (model tak memprediksinya; jangan tampilkan seolah ada).
+- Tulis 3.11–3.13 apa adanya; **SUS belum ada → laporkan sebagai rencana/pending**, bukan hasil.
