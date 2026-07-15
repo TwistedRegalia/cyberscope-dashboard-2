@@ -7,10 +7,18 @@ Declared via `app_file: space_app.py` in README.md's YAML frontmatter.
 Mounts the real FastAPI app (app.main:app - unchanged, same routes/CORS/
 lifespan as local dev) under a minimal Gradio Blocks UI at /ui, then serves
 the combined app directly via uvicorn on port 7860 (the port HF Spaces
-expects). The Gradio SDK doesn't require calling demo.launch() - it just
-runs this script and expects something bound to port 7860 when it's done
-starting up; the Gradio mount is a safety net for whatever SDK-specific
-checks Spaces may run, not strictly required for the API routes themselves.
+expects).
+
+The `spaces` package's ZeroGPU startup check ("No @spaces.GPU function
+detected during startup") isn't satisfied just by a decorated function
+existing - it monkey-patches gr.Blocks.launch (spaces/zero/gradio.py:
+one_launch) to fire its startup_report() the first time .launch() runs.
+Since we serve via gr.mount_gradio_app()+uvicorn.run() (the documented
+pattern for mounting Gradio into a custom FastAPI app) and never call
+.launch(), that hook never fired. Fix: launch the placeholder Blocks once
+on a throwaway port (prevent_thread_lock=True) purely to trigger the hook,
+then close it immediately - the real app is still served by uvicorn on
+7860 as before.
 """
 import sys
 from pathlib import Path
@@ -44,4 +52,6 @@ with gr.Blocks() as _demo:
 app = gr.mount_gradio_app(fastapi_app, _demo, path="/ui")
 
 if __name__ == "__main__":
+    _demo.launch(prevent_thread_lock=True, server_name="0.0.0.0", server_port=7861, quiet=True)
+    _demo.close()
     uvicorn.run(app, host="0.0.0.0", port=7860)
