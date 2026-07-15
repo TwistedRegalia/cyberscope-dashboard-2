@@ -12,13 +12,22 @@ expects).
 The `spaces` package's ZeroGPU startup check ("No @spaces.GPU function
 detected during startup") isn't satisfied just by a decorated function
 existing - it monkey-patches gr.Blocks.launch (spaces/zero/gradio.py:
-one_launch) to fire its startup_report() the first time .launch() runs.
-Since we serve via gr.mount_gradio_app()+uvicorn.run() (the documented
-pattern for mounting Gradio into a custom FastAPI app) and never call
-.launch(), that hook never fired. Fix: launch the placeholder Blocks once
-on a throwaway port (prevent_thread_lock=True) purely to trigger the hook,
-then close it immediately - the real app is still served by uvicorn on
-7860 as before.
+one_launch) to fire spaces.zero.startup() (which calls client.
+startup_report()) the first time .launch() runs. gr.mount_gradio_app()+
+uvicorn.run() (the documented pattern for mounting Gradio into a custom
+FastAPI app - needed so main.py's real routes stay reachable at their own
+top-level paths, not nested under Gradio's UI) never calls .launch(), so
+that hook never fired.
+
+A prior attempt called .launch() on a throwaway port purely to trigger the
+hook, then closed it - but HF Spaces' own proxy for Gradio SDK spaces
+apparently also keys off that first .launch() call to decide which port to
+route external traffic to, so it started routing to the now-closed
+throwaway port instead of the real uvicorn server (/classify returned
+404). Fix: call spaces.zero.startup() directly - the exact function
+one_launch would have triggered - without ever calling .launch() at all,
+so there's only ever one server (uvicorn on 7860) and nothing for the
+platform's proxy to get confused about.
 """
 import sys
 from pathlib import Path
@@ -52,6 +61,11 @@ with gr.Blocks() as _demo:
 app = gr.mount_gradio_app(fastapi_app, _demo, path="/ui")
 
 if __name__ == "__main__":
-    _demo.launch(prevent_thread_lock=True, server_name="0.0.0.0", server_port=7861, quiet=True)
-    _demo.close()
+    from spaces.config import Config
+
+    if Config.zero_gpu:
+        from spaces.zero import startup as _zerogpu_startup
+
+        _zerogpu_startup()
+
     uvicorn.run(app, host="0.0.0.0", port=7860)
