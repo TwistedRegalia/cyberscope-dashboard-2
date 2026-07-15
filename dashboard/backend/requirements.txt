@@ -1,0 +1,13 @@
+torch
+transformers>=4.30
+pandas
+numpy
+scikit-learn
+emoji
+Sastrawi
+fastapi
+uvicorn[standard]
+pydantic
+lime
+gradio
+spaces

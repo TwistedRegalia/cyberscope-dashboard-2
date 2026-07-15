@@ -4,3 +4,11 @@ __pycache__/
 *.bak
 .ipynb_checkpoints/
 *.zip
+
+# Model checkpoints — WAJIB di luar Git (HANDOFF §5, ~470MB x2)
+models/
+*.pt
+
+# Node / Next.js (frontend punya .gitignore sendiri; ini pengaman root)
+node_modules/
+.next/

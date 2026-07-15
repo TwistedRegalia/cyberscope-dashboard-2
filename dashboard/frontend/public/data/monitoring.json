@@ -1,0 +1,2657 @@
+{
+  "generated_at": "2026-07-15T07:38:36Z",
+  "total_rows": 55300,
+  "relevant_rows": 9748,
+  "date_range": {
+    "start": "2013-05",
+    "end": "2026-06"
+  },
+  "vector_distribution": [
+    {
+      "label": "phishing_rekayasa_sosial",
+      "label_display": "Phishing & Rekayasa Sosial",
+      "count": 704,
+      "pct": 0.07221994255231842
+    },
+    {
+      "label": "penipuan_ewallet_qris",
+      "label_display": "Penipuan E-Wallet/QRIS",
+      "count": 549,
+      "pct": 0.05631924497332786
+    },
+    {
+      "label": "malware_apk",
+      "label_display": "Malware APK",
+      "count": 316,
+      "pct": 0.032416906032006566
+    },
+    {
+      "label": "judi_online_pinjol",
+      "label_display": "Judi Online & Pinjol",
+      "count": 7645,
+      "pct": 0.7842634386540829
+    },
+    {
+      "label": "peretasan_pencurian_identitas",
+      "label_display": "Peretasan & Pencurian Identitas",
+      "count": 425,
+      "pct": 0.04359868691013541
+    },
+    {
+      "label": "deepfake_penipuan_ai",
+      "label_display": "Deepfake & Penipuan AI",
+      "count": 109,
+      "pct": 0.011181780878128846
+    }
+  ],
+  "platform_by_vector": [
+    {
+      "label": "phishing_rekayasa_sosial",
+      "youtube_pct": 0.7784090909090909,
+      "x_pct": 0.2215909090909091,
+      "youtube_count": 548,
+      "x_count": 156
+    },
+    {
+      "label": "penipuan_ewallet_qris",
+      "youtube_pct": 0.007285974499089253,
+      "x_pct": 0.9927140255009107,
+      "youtube_count": 4,
+      "x_count": 545
+    },
+    {
+      "label": "malware_apk",
+      "youtube_pct": 0.8607594936708861,
+      "x_pct": 0.13924050632911392,
+      "youtube_count": 272,
+      "x_count": 44
+    },
+    {
+      "label": "judi_online_pinjol",
+      "youtube_pct": 0.9570961412688032,
+      "x_pct": 0.04290385873119686,
+      "youtube_count": 7317,
+      "x_count": 328
+    },
+    {
+      "label": "peretasan_pencurian_identitas",
+      "youtube_pct": 0.15294117647058825,
+      "x_pct": 0.8470588235294118,
+      "youtube_count": 65,
+      "x_count": 360
+    },
+    {
+      "label": "deepfake_penipuan_ai",
+      "youtube_pct": 0.5596330275229358,
+      "x_pct": 0.44036697247706424,
+      "youtube_count": 61,
+      "x_count": 48
+    }
+  ],
+  "temporal": [
+    {
+      "period": "2013-05",
+      "label": "peretasan_pencurian_identitas",
+      "count": 5
+    },
+    {
+      "period": "2013-10",
+      "label": "malware_apk",
+      "count": 1
+    },
+    {
+      "period": "2013-12",
+      "label": "peretasan_pencurian_identitas",
+      "count": 1
+    },
+    {
+      "period": "2014-01",
+      "label": "malware_apk",
+      "count": 1
+    },
+    {
+      "period": "2017-01",
+      "label": "peretasan_pencurian_identitas",
+      "count": 1
+    },
+    {
+      "period": "2017-10",
+      "label": "peretasan_pencurian_identitas",
+      "count": 1
+    },
+    {
+      "period": "2019-04",
+      "label": "peretasan_pencurian_identitas",
+      "count": 1
+    },
+    {
+      "period": "2019-09",
+      "label": "deepfake_penipuan_ai",
+      "count": 1
+    },
+    {
+      "period": "2021-03",
+      "label": "deepfake_penipuan_ai",
+      "count": 1
+    },
+    {
+      "period": "2021-08",
+      "label": "peretasan_pencurian_identitas",
+      "count": 1
+    },
+    {
+      "period": "2022-06",
+      "label": "malware_apk",
+      "count": 1
+    },
+    {
+      "period": "2022-09",
+      "label": "peretasan_pencurian_identitas",
+      "count": 1
+    },
+    {
+      "period": "2022-09",
+      "label": "phishing_rekayasa_sosial",
+      "count": 1
+    },
+    {
+      "period": "2022-11",
+      "label": "deepfake_penipuan_ai",
+      "count": 2
+    },
+    {
+      "period": "2022-11",
+      "label": "judi_online_pinjol",
+      "count": 24
+    },
+    {
+      "period": "2022-11",
+      "label": "malware_apk",
+      "count": 2
+    },
+    {
+      "period": "2022-11",
+      "label": "peretasan_pencurian_identitas",
+      "count": 14
+    },
+    {
+      "period": "2022-11",
+      "label": "phishing_rekayasa_sosial",
+      "count": 64
+    },
+    {
+      "period": "2022-12",
+      "label": "deepfake_penipuan_ai",
+      "count": 1
+    },
+    {
+      "period": "2022-12",
+      "label": "judi_online_pinjol",
+      "count": 15
+    },
+    {
+      "period": "2022-12",
+      "label": "malware_apk",
+      "count": 15
+    },
+    {
+      "period": "2022-12",
+      "label": "penipuan_ewallet_qris",
+      "count": 1
+    },
+    {
+      "period": "2022-12",
+      "label": "peretasan_pencurian_identitas",
+      "count": 6
+    },
+    {
+      "period": "2022-12",
+      "label": "phishing_rekayasa_sosial",
+      "count": 42
+    },
+    {
+      "period": "2023-01",
+      "label": "judi_online_pinjol",
+      "count": 6
+    },
+    {
+      "period": "2023-01",
+      "label": "malware_apk",
+      "count": 14
+    },
+    {
+      "period": "2023-01",
+      "label": "peretasan_pencurian_identitas",
+      "count": 4
+    },
+    {
+      "period": "2023-01",
+      "label": "phishing_rekayasa_sosial",
+      "count": 9
+    },
+    {
+      "period": "2023-02",
+      "label": "judi_online_pinjol",
+      "count": 15
+    },
+    {
+      "period": "2023-02",
+      "label": "malware_apk",
+      "count": 17
+    },
+    {
+      "period": "2023-02",
+      "label": "peretasan_pencurian_identitas",
+      "count": 2
+    },
+    {
+      "period": "2023-02",
+      "label": "phishing_rekayasa_sosial",
+      "count": 13
+    },
+    {
+      "period": "2023-03",
+      "label": "judi_online_pinjol",
+      "count": 11
+    },
+    {
+      "period": "2023-03",
+      "label": "malware_apk",
+      "count": 7
+    },
+    {
+      "period": "2023-03",
+      "label": "peretasan_pencurian_identitas",
+      "count": 1
+    },
+    {
+      "period": "2023-03",
+      "label": "phishing_rekayasa_sosial",
+      "count": 14
+    },
+    {
+      "period": "2023-04",
+      "label": "judi_online_pinjol",
+      "count": 2
+    },
+    {
+      "period": "2023-04",
+      "label": "penipuan_ewallet_qris",
+      "count": 450
+    },
+    {
+      "period": "2023-04",
+      "label": "peretasan_pencurian_identitas",
+      "count": 1
+    },
+    {
+      "period": "2023-04",
+      "label": "phishing_rekayasa_sosial",
+      "count": 7
+    },
+    {
+      "period": "2023-05",
+      "label": "judi_online_pinjol",
+      "count": 4
+    },
+    {
+      "period": "2023-05",
+      "label": "malware_apk",
+      "count": 9
+    },
+    {
+      "period": "2023-05",
+      "label": "penipuan_ewallet_qris",
+      "count": 2
+    },
+    {
+      "period": "2023-05",
+      "label": "peretasan_pencurian_identitas",
+      "count": 4
+    },
+    {
+      "period": "2023-05",
+      "label": "phishing_rekayasa_sosial",
+      "count": 26
+    },
+    {
+      "period": "2023-06",
+      "label": "deepfake_penipuan_ai",
+      "count": 1
+    },
+    {
+      "period": "2023-06",
+      "label": "judi_online_pinjol",
+      "count": 2
+    },
+    {
+      "period": "2023-06",
+      "label": "malware_apk",
+      "count": 5
+    },
+    {
+      "period": "2023-06",
+      "label": "peretasan_pencurian_identitas",
+      "count": 3
+    },
+    {
+      "period": "2023-06",
+      "label": "phishing_rekayasa_sosial",
+      "count": 16
+    },
+    {
+      "period": "2023-07",
+      "label": "deepfake_penipuan_ai",
+      "count": 1
+    },
+    {
+      "period": "2023-07",
+      "label": "judi_online_pinjol",
+      "count": 12
+    },
+    {
+      "period": "2023-07",
+      "label": "malware_apk",
+      "count": 39
+    },
+    {
+      "period": "2023-07",
+      "label": "penipuan_ewallet_qris",
+      "count": 6
+    },
+    {
+      "period": "2023-07",
+      "label": "peretasan_pencurian_identitas",
+      "count": 5
+    },
+    {
+      "period": "2023-07",
+      "label": "phishing_rekayasa_sosial",
+      "count": 65
+    },
+    {
+      "period": "2023-08",
+      "label": "judi_online_pinjol",
+      "count": 2
+    },
+    {
+      "period": "2023-08",
+      "label": "malware_apk",
+      "count": 5
+    },
+    {
+      "period": "2023-08",
+      "label": "phishing_rekayasa_sosial",
+      "count": 10
+    },
+    {
+      "period": "2023-09",
+      "label": "judi_online_pinjol",
+      "count": 4
+    },
+    {
+      "period": "2023-09",
+      "label": "malware_apk",
+      "count": 31
+    },
+    {
+      "period": "2023-09",
+      "label": "penipuan_ewallet_qris",
+      "count": 1
+    },
+    {
+      "period": "2023-09",
+      "label": "peretasan_pencurian_identitas",
+      "count": 3
+    },
+    {
+      "period": "2023-09",
+      "label": "phishing_rekayasa_sosial",
+      "count": 16
+    },
+    {
+      "period": "2023-10",
+      "label": "judi_online_pinjol",
+      "count": 6
+    },
+    {
+      "period": "2023-10",
+      "label": "malware_apk",
+      "count": 16
+    },
+    {
+      "period": "2023-10",
+      "label": "penipuan_ewallet_qris",
+      "count": 5
+    },
+    {
+      "period": "2023-10",
+      "label": "peretasan_pencurian_identitas",
+      "count": 2
+    },
+    {
+      "period": "2023-10",
+      "label": "phishing_rekayasa_sosial",
+      "count": 16
+    },
+    {
+      "period": "2023-11",
+      "label": "judi_online_pinjol",
+      "count": 24
+    },
+    {
+      "period": "2023-11",
+      "label": "malware_apk",
+      "count": 23
+    },
+    {
+      "period": "2023-11",
+      "label": "penipuan_ewallet_qris",
+      "count": 3
+    },
+    {
+      "period": "2023-11",
+      "label": "peretasan_pencurian_identitas",
+      "count": 3
+    },
+    {
+      "period": "2023-11",
+      "label": "phishing_rekayasa_sosial",
+      "count": 51
+    },
+    {
+      "period": "2023-12",
+      "label": "judi_online_pinjol",
+      "count": 2
+    },
+    {
+      "period": "2023-12",
+      "label": "malware_apk",
+      "count": 18
+    },
+    {
+      "period": "2023-12",
+      "label": "peretasan_pencurian_identitas",
+      "count": 1
+    },
+    {
+      "period": "2023-12",
+      "label": "phishing_rekayasa_sosial",
+      "count": 4
+    },
+    {
+      "period": "2024-01",
+      "label": "judi_online_pinjol",
+      "count": 224
+    },
+    {
+      "period": "2024-01",
+      "label": "malware_apk",
+      "count": 13
+    },
+    {
+      "period": "2024-01",
+      "label": "peretasan_pencurian_identitas",
+      "count": 1
+    },
+    {
+      "period": "2024-01",
+      "label": "phishing_rekayasa_sosial",
+      "count": 9
+    },
+    {
+      "period": "2024-02",
+      "label": "judi_online_pinjol",
+      "count": 76
+    },
+    {
+      "period": "2024-02",
+      "label": "malware_apk",
+      "count": 25
+    },
+    {
+      "period": "2024-02",
+      "label": "peretasan_pencurian_identitas",
+      "count": 16
+    },
+    {
+      "period": "2024-02",
+      "label": "phishing_rekayasa_sosial",
+      "count": 12
+    },
+    {
+      "period": "2024-03",
+      "label": "judi_online_pinjol",
+      "count": 41
+    },
+    {
+      "period": "2024-03",
+      "label": "malware_apk",
+      "count": 8
+    },
+    {
+      "period": "2024-03",
+      "label": "peretasan_pencurian_identitas",
+      "count": 45
+    },
+    {
+      "period": "2024-03",
+      "label": "phishing_rekayasa_sosial",
+      "count": 10
+    },
+    {
+      "period": "2024-04",
+      "label": "deepfake_penipuan_ai",
+      "count": 4
+    },
+    {
+      "period": "2024-04",
+      "label": "judi_online_pinjol",
+      "count": 37
+    },
+    {
+      "period": "2024-04",
+      "label": "malware_apk",
+      "count": 6
+    },
+    {
+      "period": "2024-04",
+      "label": "peretasan_pencurian_identitas",
+      "count": 19
+    },
+    {
+      "period": "2024-04",
+      "label": "phishing_rekayasa_sosial",
+      "count": 13
+    },
+    {
+      "period": "2024-05",
+      "label": "deepfake_penipuan_ai",
+      "count": 6
+    },
+    {
+      "period": "2024-05",
+      "label": "judi_online_pinjol",
+      "count": 39
+    },
+    {
+      "period": "2024-05",
+      "label": "malware_apk",
+      "count": 5
+    },
+    {
+      "period": "2024-05",
+      "label": "peretasan_pencurian_identitas",
+      "count": 10
+    },
+    {
+      "period": "2024-05",
+      "label": "phishing_rekayasa_sosial",
+      "count": 8
+    },
+    {
+      "period": "2024-06",
+      "label": "judi_online_pinjol",
+      "count": 28
+    },
+    {
+      "period": "2024-06",
+      "label": "malware_apk",
+      "count": 3
+    },
+    {
+      "period": "2024-06",
+      "label": "peretasan_pencurian_identitas",
+      "count": 15
+    },
+    {
+      "period": "2024-06",
+      "label": "phishing_rekayasa_sosial",
+      "count": 7
+    },
+    {
+      "period": "2024-07",
+      "label": "judi_online_pinjol",
+      "count": 30
+    },
+    {
+      "period": "2024-07",
+      "label": "malware_apk",
+      "count": 2
+    },
+    {
+      "period": "2024-07",
+      "label": "penipuan_ewallet_qris",
+      "count": 3
+    },
+    {
+      "period": "2024-07",
+      "label": "peretasan_pencurian_identitas",
+      "count": 2
+    },
+    {
+      "period": "2024-07",
+      "label": "phishing_rekayasa_sosial",
+      "count": 7
+    },
+    {
+      "period": "2024-08",
+      "label": "judi_online_pinjol",
+      "count": 24
+    },
+    {
+      "period": "2024-08",
+      "label": "malware_apk",
+      "count": 1
+    },
+    {
+      "period": "2024-08",
+      "label": "penipuan_ewallet_qris",
+      "count": 2
+    },
+    {
+      "period": "2024-08",
+      "label": "peretasan_pencurian_identitas",
+      "count": 7
+    },
+    {
+      "period": "2024-08",
+      "label": "phishing_rekayasa_sosial",
+      "count": 8
+    },
+    {
+      "period": "2024-09",
+      "label": "deepfake_penipuan_ai",
+      "count": 1
+    },
+    {
+      "period": "2024-09",
+      "label": "judi_online_pinjol",
+      "count": 22
+    },
+    {
+      "period": "2024-09",
+      "label": "penipuan_ewallet_qris",
+      "count": 1
+    },
+    {
+      "period": "2024-09",
+      "label": "peretasan_pencurian_identitas",
+      "count": 2
+    },
+    {
+      "period": "2024-09",
+      "label": "phishing_rekayasa_sosial",
+      "count": 5
+    },
+    {
+      "period": "2024-10",
+      "label": "judi_online_pinjol",
+      "count": 16
+    },
+    {
+      "period": "2024-10",
+      "label": "malware_apk",
+      "count": 1
+    },
+    {
+      "period": "2024-10",
+      "label": "peretasan_pencurian_identitas",
+      "count": 9
+    },
+    {
+      "period": "2024-10",
+      "label": "phishing_rekayasa_sosial",
+      "count": 4
+    },
+    {
+      "period": "2024-11",
+      "label": "judi_online_pinjol",
+      "count": 26
+    },
+    {
+      "period": "2024-11",
+      "label": "malware_apk",
+      "count": 3
+    },
+    {
+      "period": "2024-11",
+      "label": "peretasan_pencurian_identitas",
+      "count": 11
+    },
+    {
+      "period": "2024-11",
+      "label": "phishing_rekayasa_sosial",
+      "count": 5
+    },
+    {
+      "period": "2024-12",
+      "label": "deepfake_penipuan_ai",
+      "count": 1
+    },
+    {
+      "period": "2024-12",
+      "label": "judi_online_pinjol",
+      "count": 595
+    },
+    {
+      "period": "2024-12",
+      "label": "penipuan_ewallet_qris",
+      "count": 4
+    },
+    {
+      "period": "2024-12",
+      "label": "peretasan_pencurian_identitas",
+      "count": 16
+    },
+    {
+      "period": "2024-12",
+      "label": "phishing_rekayasa_sosial",
+      "count": 6
+    },
+    {
+      "period": "2025-01",
+      "label": "deepfake_penipuan_ai",
+      "count": 2
+    },
+    {
+      "period": "2025-01",
+      "label": "judi_online_pinjol",
+      "count": 3788
+    },
+    {
+      "period": "2025-01",
+      "label": "malware_apk",
+      "count": 2
+    },
+    {
+      "period": "2025-01",
+      "label": "penipuan_ewallet_qris",
+      "count": 2
+    },
+    {
+      "period": "2025-01",
+      "label": "phishing_rekayasa_sosial",
+      "count": 35
+    },
+    {
+      "period": "2025-02",
+      "label": "judi_online_pinjol",
+      "count": 312
+    },
+    {
+      "period": "2025-02",
+      "label": "malware_apk",
+      "count": 1
+    },
+    {
+      "period": "2025-02",
+      "label": "penipuan_ewallet_qris",
+      "count": 2
+    },
+    {
+      "period": "2025-02",
+      "label": "phishing_rekayasa_sosial",
+      "count": 5
+    },
+    {
+      "period": "2025-03",
+      "label": "judi_online_pinjol",
+      "count": 264
+    },
+    {
+      "period": "2025-03",
+      "label": "malware_apk",
+      "count": 4
+    },
+    {
+      "period": "2025-03",
+      "label": "penipuan_ewallet_qris",
+      "count": 2
+    },
+    {
+      "period": "2025-03",
+      "label": "peretasan_pencurian_identitas",
+      "count": 1
+    },
+    {
+      "period": "2025-03",
+      "label": "phishing_rekayasa_sosial",
+      "count": 4
+    },
+    {
+      "period": "2025-04",
+      "label": "deepfake_penipuan_ai",
+      "count": 1
+    },
+    {
+      "period": "2025-04",
+      "label": "judi_online_pinjol",
+      "count": 377
+    },
+    {
+      "period": "2025-04",
+      "label": "malware_apk",
+      "count": 3
+    },
+    {
+      "period": "2025-04",
+      "label": "penipuan_ewallet_qris",
+      "count": 1
+    },
+    {
+      "period": "2025-04",
+      "label": "peretasan_pencurian_identitas",
+      "count": 1
+    },
+    {
+      "period": "2025-04",
+      "label": "phishing_rekayasa_sosial",
+      "count": 6
+    },
+    {
+      "period": "2025-05",
+      "label": "deepfake_penipuan_ai",
+      "count": 1
+    },
+    {
+      "period": "2025-05",
+      "label": "judi_online_pinjol",
+      "count": 164
+    },
+    {
+      "period": "2025-05",
+      "label": "penipuan_ewallet_qris",
+      "count": 1
+    },
+    {
+      "period": "2025-05",
+      "label": "phishing_rekayasa_sosial",
+      "count": 3
+    },
+    {
+      "period": "2025-06",
+      "label": "deepfake_penipuan_ai",
+      "count": 34
+    },
+    {
+      "period": "2025-06",
+      "label": "judi_online_pinjol",
+      "count": 242
+    },
+    {
+      "period": "2025-06",
+      "label": "malware_apk",
+      "count": 2
+    },
+    {
+      "period": "2025-06",
+      "label": "penipuan_ewallet_qris",
+      "count": 6
+    },
+    {
+      "period": "2025-06",
+      "label": "peretasan_pencurian_identitas",
+      "count": 2
+    },
+    {
+      "period": "2025-06",
+      "label": "phishing_rekayasa_sosial",
+      "count": 27
+    },
+    {
+      "period": "2025-07",
+      "label": "deepfake_penipuan_ai",
+      "count": 2
+    },
+    {
+      "period": "2025-07",
+      "label": "judi_online_pinjol",
+      "count": 149
+    },
+    {
+      "period": "2025-07",
+      "label": "malware_apk",
+      "count": 1
+    },
+    {
+      "period": "2025-07",
+      "label": "penipuan_ewallet_qris",
+      "count": 5
+    },
+    {
+      "period": "2025-07",
+      "label": "phishing_rekayasa_sosial",
+      "count": 1
+    },
+    {
+      "period": "2025-08",
+      "label": "deepfake_penipuan_ai",
+      "count": 10
+    },
+    {
+      "period": "2025-08",
+      "label": "judi_online_pinjol",
+      "count": 114
+    },
+    {
+      "period": "2025-08",
+      "label": "malware_apk",
+      "count": 2
+    },
+    {
+      "period": "2025-08",
+      "label": "peretasan_pencurian_identitas",
+      "count": 1
+    },
+    {
+      "period": "2025-08",
+      "label": "phishing_rekayasa_sosial",
+      "count": 3
+    },
+    {
+      "period": "2025-09",
+      "label": "deepfake_penipuan_ai",
+      "count": 2
+    },
+    {
+      "period": "2025-09",
+      "label": "judi_online_pinjol",
+      "count": 65
+    },
+    {
+      "period": "2025-09",
+      "label": "penipuan_ewallet_qris",
+      "count": 3
+    },
+    {
+      "period": "2025-09",
+      "label": "phishing_rekayasa_sosial",
+      "count": 3
+    },
+    {
+      "period": "2025-10",
+      "label": "deepfake_penipuan_ai",
+      "count": 3
+    },
+    {
+      "period": "2025-10",
+      "label": "judi_online_pinjol",
+      "count": 61
+    },
+    {
+      "period": "2025-10",
+      "label": "malware_apk",
+      "count": 1
+    },
+    {
+      "period": "2025-10",
+      "label": "penipuan_ewallet_qris",
+      "count": 9
+    },
+    {
+      "period": "2025-10",
+      "label": "phishing_rekayasa_sosial",
+      "count": 6
+    },
+    {
+      "period": "2025-11",
+      "label": "deepfake_penipuan_ai",
+      "count": 4
+    },
+    {
+      "period": "2025-11",
+      "label": "judi_online_pinjol",
+      "count": 110
+    },
+    {
+      "period": "2025-11",
+      "label": "malware_apk",
+      "count": 2
+    },
+    {
+      "period": "2025-11",
+      "label": "penipuan_ewallet_qris",
+      "count": 4
+    },
+    {
+      "period": "2025-12",
+      "label": "deepfake_penipuan_ai",
+      "count": 2
+    },
+    {
+      "period": "2025-12",
+      "label": "judi_online_pinjol",
+      "count": 68
+    },
+    {
+      "period": "2025-12",
+      "label": "penipuan_ewallet_qris",
+      "count": 2
+    },
+    {
+      "period": "2025-12",
+      "label": "peretasan_pencurian_identitas",
+      "count": 3
+    },
+    {
+      "period": "2025-12",
+      "label": "phishing_rekayasa_sosial",
+      "count": 2
+    },
+    {
+      "period": "2026-01",
+      "label": "deepfake_penipuan_ai",
+      "count": 3
+    },
+    {
+      "period": "2026-01",
+      "label": "judi_online_pinjol",
+      "count": 66
+    },
+    {
+      "period": "2026-01",
+      "label": "phishing_rekayasa_sosial",
+      "count": 1
+    },
+    {
+      "period": "2026-02",
+      "label": "deepfake_penipuan_ai",
+      "count": 1
+    },
+    {
+      "period": "2026-02",
+      "label": "judi_online_pinjol",
+      "count": 52
+    },
+    {
+      "period": "2026-02",
+      "label": "malware_apk",
+      "count": 2
+    },
+    {
+      "period": "2026-02",
+      "label": "penipuan_ewallet_qris",
+      "count": 3
+    },
+    {
+      "period": "2026-02",
+      "label": "peretasan_pencurian_identitas",
+      "count": 2
+    },
+    {
+      "period": "2026-02",
+      "label": "phishing_rekayasa_sosial",
+      "count": 11
+    },
+    {
+      "period": "2026-03",
+      "label": "deepfake_penipuan_ai",
+      "count": 8
+    },
+    {
+      "period": "2026-03",
+      "label": "judi_online_pinjol",
+      "count": 62
+    },
+    {
+      "period": "2026-03",
+      "label": "malware_apk",
+      "count": 1
+    },
+    {
+      "period": "2026-03",
+      "label": "penipuan_ewallet_qris",
+      "count": 1
+    },
+    {
+      "period": "2026-03",
+      "label": "peretasan_pencurian_identitas",
+      "count": 1
+    },
+    {
+      "period": "2026-03",
+      "label": "phishing_rekayasa_sosial",
+      "count": 1
+    },
+    {
+      "period": "2026-04",
+      "label": "deepfake_penipuan_ai",
+      "count": 1
+    },
+    {
+      "period": "2026-04",
+      "label": "judi_online_pinjol",
+      "count": 93
+    },
+    {
+      "period": "2026-04",
+      "label": "malware_apk",
+      "count": 1
+    },
+    {
+      "period": "2026-04",
+      "label": "penipuan_ewallet_qris",
+      "count": 2
+    },
+    {
+      "period": "2026-04",
+      "label": "peretasan_pencurian_identitas",
+      "count": 60
+    },
+    {
+      "period": "2026-04",
+      "label": "phishing_rekayasa_sosial",
+      "count": 3
+    },
+    {
+      "period": "2026-05",
+      "label": "deepfake_penipuan_ai",
+      "count": 15
+    },
+    {
+      "period": "2026-05",
+      "label": "judi_online_pinjol",
+      "count": 368
+    },
+    {
+      "period": "2026-05",
+      "label": "malware_apk",
+      "count": 23
+    },
+    {
+      "period": "2026-05",
+      "label": "penipuan_ewallet_qris",
+      "count": 26
+    },
+    {
+      "period": "2026-05",
+      "label": "peretasan_pencurian_identitas",
+      "count": 80
+    },
+    {
+      "period": "2026-05",
+      "label": "phishing_rekayasa_sosial",
+      "count": 143
+    },
+    {
+      "period": "2026-06",
+      "label": "deepfake_penipuan_ai",
+      "count": 1
+    },
+    {
+      "period": "2026-06",
+      "label": "judi_online_pinjol",
+      "count": 3
+    },
+    {
+      "period": "2026-06",
+      "label": "penipuan_ewallet_qris",
+      "count": 2
+    },
+    {
+      "period": "2026-06",
+      "label": "peretasan_pencurian_identitas",
+      "count": 61
+    },
+    {
+      "period": "2026-06",
+      "label": "phishing_rekayasa_sosial",
+      "count": 2
+    }
+  ],
+  "samples_by_vector": {
+    "phishing_rekayasa_sosial": [
+      {
+        "text": "Aku baru 1 minggu yang lalu. Tiba-tiba di call org yg ngaku nya petugas bank.. Katanya ada transaksi mencurigakan dari no rek ku... Tapi dia minta no rek ku ulang ya aku ngomong dong.. \" loh pak, kamu katanya tau ada transaksi mencurigakan di rek ku kok tanya rek ku ulang\" trs dia ngomong apa gtu trs ku tanya \" yakin pak ATM saya? Memang nama saya siapa? \" tu org diaammm.. Trs aku ngomong lagi \" pak kalau nipu tu yang pinter dikit bisa ngga? \" auto di matiin 🤣😭",
+        "confidence": 0.9880646315843613,
+        "platform": "youtube",
+        "date": "2025-06"
+      },
+      {
+        "text": "@12.geraldopranaa63 saya ga paham yg otp kak. Setau saya, saya tiba\" dapat SMS dan SMS nya itu aneh, tiba\" saya kirim pesan ke nmor ga di kenal. Teksnya \"nomor baru\". Pdhl saya ga kirim SMS ke spa\". Trus di WA saya muncul minta kode verifikasi tapi gak saya kasih. Wa aman. Tp apa benar itu SMS saya sudah kena sadap ??",
+        "confidence": 0.9879675862264586,
+        "platform": "youtube",
+        "date": "2024-03"
+      },
+      {
+        "text": "Banyak logo lembaga yg mereka pakai. Untuk meyakinkan calon yg di tipu.\nIni akibat PD sok \"pinter ngoceh, sisegala tahu ...\nJadi gak waspada....\nDan di gertak atau dirayu bisa ...bentar lagi yaa dipinjolin ..dong ..\nCuriga waktu pindah kepolisi harus pencet sana sini..apa lagi transfer..itu yg harus tidak dilakukan..... Jangan pernah transaksi transfer kecuali kita yg lakukan karena kita sendiri yg transaksi...itu",
+        "confidence": 0.9879623046394047,
+        "platform": "youtube",
+        "date": "2024-12"
+      },
+      {
+        "text": "Saya juga hampir kena, dan emang ga sadar klo ini penipuan. Untungnya ketika menunggu nomer OTP masuk, entah mengapa hp tidak mengirimnya, padahal saya melakukan sampai 15 kali mengikuti arahan layar. Yang jelas Allah telah melindungiku. Tapi yang tidak membuat nyaman, dia tlp mungkin sampe 50x dimana menggunakan nomer 4 hp yang berbeda, ketika dimatikan nomer satunya, nomer lain ganti tlp. Langsung saya blok, tapi itupun masih ga sadar jika kena penipuan. Setelah laporan ke asisten PIC BCA, baru tahu klo itu penipuan. Hati-hati ya teman-teman",
+        "confidence": 0.9879593374544028,
+        "platform": "youtube",
+        "date": "2022-11"
+      },
+      {
+        "text": "Nah kalo yg BRI itu gimana bang?saya pernah lg kerja di tlp katanya pihak asuransi atas nama BRI dia tau semua data saya dan bodohnya saya karena waktu itu lg kerja di lapangan gak fokus pas penelpon itu ngomong dan bilang Setuju gitu aja,saya gak klik apa-apa cuma gara-gara jawab setuju omongan dia,dan tiba-tiba ada notif saldo keluar 330 rb entah gatau kemana,. Lalu saya langsung kosongin saldo waktu itu,apa itu termasuk penipuan tp bukannya data itu harusnya pihak bank gk boleh bocorin ya.",
+        "confidence": 0.9879532842180573,
+        "platform": "youtube",
+        "date": "2022-12"
+      },
+      {
+        "text": "Makasih @Mr Bert ilmunya bermanfaat... Saya jadi inget setaun yg lalu istri saya kena tipu mengatasnamakan Bank BNI, dengan dalih naikan limit kartu kredit, dan akhirnya ketipu trx di BUKALAPAK sbsar 7jtlebih, padahal istri saya ngga ada account di BUKALAPAK dan aplikaai pun ngga ada di hp, kita coba lapor ke Polres mentok di perlindungan konsumen, dan sampai skarang masih kita cicil ketipu itu karena pihak bank ngga mau tau, alasan kesalahan istri saya ngasih OTP... Auto subrek dah... 👍",
+        "confidence": 0.9879380097523937,
+        "platform": "youtube",
+        "date": "2023-03"
+      },
+      {
+        "text": "Mungkin ibu itu gak sengaja tekan link gak jelas. Terus ada app yg instal di background yg gak bakal nemu di layar app maupun seting. Soalnya skrg lagi marak yg sebat link maut itu lewat WA di samarkan jadi tombol block, ato cek paket jnt,dll. Kalo sudah nekan link itu maka hp itu sudah bisa di kendalikan sama hacker. Pernah kena dulu. Untung hp itu gak ada mbanking. Cuman ada pulsa. Wa aja tanpa otp dia bisa ambil alih. Padahal gak permah saya kasihin otp. Sepertinya dia bisa pantau sms yg masuk ke hp saya",
+        "confidence": 0.9879255181367097,
+        "platform": "youtube",
+        "date": "2023-11"
+      },
+      {
+        "text": "Hello om bert, tetangga saya kemaren malem dpt SMS dari wa katanya dapat SMS dari bank bjb tentang tarif rupiah yng lama sama yang baru nah si ibunya udah pencet link dan mengirim nomer otp wa nya, tapi katanya wa dari bank bjb itu sudah centang biru, terus pas dia kirim kode otp katanya suruh nunggu wa nya 1 jam ke depan atau 24 jam, kira\" itu solusinya gimana ya Mr bert, apakah bisa kembali lagi akun wa nya? Mohon bantuannya om bert di cek om bert penipunya tempat tinggalnya dimana",
+        "confidence": 0.9878593300440918,
+        "platform": "youtube",
+        "date": "2024-08"
+      },
+      {
+        "text": "Betul saya pernah alami.ngaku2 dari pihak kurir .dengan alasan alamat tidak jelas .katanyh mau kirim paket.suruh donwload link yang mereka kirim.setelah donwload .tidak selang lama kode otp bermunculan di hp saya..tkpdia,shope,lazada,pin pasword nyh di rubah sama penipu.saya panik akhirnyh uang 500 rbu melayang ke rekening penipu..besok nyh sya reset hp saya..dan alhmdulilah aman.",
+        "confidence": 0.9878367399228978,
+        "platform": "youtube",
+        "date": "2024-02"
+      },
+      {
+        "text": "Kasus ini kalo dipersidangan , bisa dibuktikan sbb :\r\nKode OTP itu apakah dikirim ke No HP yg terdaftar di aplikasi M banking\r\ntersebut. Jika No HP yg memindahkan uang tersebut tidak sama dng yg terdaftar\r\nberarti pihak Bank juga perlu bertanggung jawab. Pihak polisi pun bisa menelusuri jejak penerima uang tersebut ( ada Print out ), tapi bank selalu menggunakan dalil kerahasian bank. OJK tugasnya apa di sini , minta bantuan PPATK juga bisa ( karena masuk kejahatan putih/cyber crime ).",
+        "confidence": 0.9878252714160459,
+        "platform": "youtube",
+        "date": "2023-07"
+      },
+      {
+        "text": "Gini. Aku bisa kirimkan Spyware. Jadi gw bisa liat sperti video apapun yang kamu ketikkan. Lalu. Gw tunggu sampai kmu transaksi. Jadi gw tahu apapun yang kmu ketikkan. Nahhh stelah itu gw pancing dirimu. Misalnya OTP muncul di hape mu. Yaaaa aku juga bisa baca kan?. Mungkin transaksi bca mu. Dgn token kecil bisa terjadi. Tapi gmn dgn email. Gmn dgn toped. Gw bisa beli tanpa sepengetahuan kamu. Lalu gmn dgn suara mu. Atau lagi di wc lagi duduk lagi liat youtube gw ini. Dan gw bisa liat km duduk manis. Disitu. Mustahil???",
+        "confidence": 0.9878141961108079,
+        "platform": "youtube",
+        "date": "2022-11"
+      },
+      {
+        "text": "⚠️Hati-hati kalau ada telepon ngaku dari bank ⚠️\r\n\r\nJangan panik kalau dapat telepon yang bilang akunmu bermasalah. CS asli nggak akan pernah minta kode OTP atau data pribadi kamu lewat telepon. Kalau merasa ragu, lebih baik langsung tutup dan cek sendiri di aplikasi resmi biar https://t.co/us924UrL5X",
+        "confidence": 0.987812746770059,
+        "platform": "x",
+        "date": "2026-05"
+      },
+      {
+        "text": "Betul bgt andro ngk seburuk itu, untuk perangkat base andro 10/keatas defaultny ngk mengizinkan buat instal aplikasi selain dr playstore, klo pun dipaksa ada beberapa langkah yg hrs dilewatin kyk td jd hrusny aman buat ortu apalagi yg gaptek\n\nMau apapun OS/app'ny klo tersedia pembaruan wajib update selain buat bug ya keamanan\n\nAndro juga punya play protect jd ngk perlu instal antivirus, dia rajin scan dan info klo ada app yg berbahaya\n\nPisah nomer utama untuk OTP ke HP \"nit-nit\" untuk lebih aman 😂",
+        "confidence": 0.987809330930757,
+        "platform": "youtube",
+        "date": "2023-09"
+      },
+      {
+        "text": "Tunggu ja azab dri Allah yah luh bi pet..babi ngepet..blasan Allah lbih pedih..adikku jg korban smpe 40 juta lbh duit dpt mnjem sana sini..klian tuh komplotan yg sarangx di sel..liatin ja yh cpt/lmbt blasan orng2 yg sdh klian tipu..lg OTW untuk melalui tngan Allah..ihhh serem lbh pedih dr yg kau tipu2.🙈",
+        "confidence": 0.9877913524580192,
+        "platform": "youtube",
+        "date": "2022-11"
+      },
+      {
+        "text": "@GJaki1223745 @kananlimira @GJaki1223745 Hi Kak, hati-hati ya! Akun GJaki1223745 sudah pasti bukan dari DANA, ya. Perlu Kakak tahu, DANA tidak punya layanan customer service lewat WhatsApp atau nomor pribadi. Jangan pernah kasih kode OTP, PIN, atau info pribadi ke siapa pun, ya Kak. Thx -FS-",
+        "confidence": 0.9877886231022112,
+        "platform": "x",
+        "date": "2026-05"
+      },
+      {
+        "text": "Bang pace, ini gimana saya udah kepasang itu aplikasi dan suruh masukin nomor, tak lama muncul kode otp WhatsApp dan saya tidak bisa akses WhatsApp saya karna si Hacker pasang pin pada akun WhatsApp saya. Minta reset password juga gk bisa karena mungkin pakai email dia, cara atasi nya gimana ya? Soalnya banyak Nomor-nomor dinas di grup, saya telah menghubungi admin grup agar nomor saya dikeluarkan dahulu. Terimakasih",
+        "confidence": 0.987774624356589,
+        "platform": "youtube",
+        "date": "2023-08"
+      },
+      {
+        "text": "analisa saya si penipu online pelaku phising itu sudah tau data2 pihak nasabah..link itu untuk kunci atau langkah  terakhir untuk membobol..tujuannya untuk mendapatkan KODE OTP LEWAT SMS. salahsatu cara agar aman adalah JANGAN MENARUH NO HP YG DIDAFTARKAN DI MOBILE BANKING di hape android atau IOS..taruh di hape jadul..jadi kalo sipenipu udah berhasil melakukan phising atau apapun namanya gak akan behasil mendapatkan kode OTP yg dikirim lewat SMS dari no hape yg didaftarkan di mobile banking.",
+        "confidence": 0.9877641773673892,
+        "platform": "youtube",
+        "date": "2023-07"
+      },
+      {
+        "text": "2minggu yg llu dpt telpon atas nama bank.tnya data dan nomor hp.jwb iya,.modus akan dpt krtu sehat,10hri kdepan dri bank.eh gx tau, saldo direkening.tiba mau narik, saldo tak bs.rupanya hbis..apakah sya terkena salah satu itu.mohon pencerahan.🙏🙏",
+        "confidence": 0.9877614309934799,
+        "platform": "youtube",
+        "date": "2024-02"
+      },
+      {
+        "text": "BANTU RT!! \r\norang ini udah sering bangett nipu army lewat vt, a pun sempet hampir kena krn tergiur dgn embel-embel ls gratis, dia selalu ganti pfp, usn, &amp; hapus upload kya gini, temen ku udah pernah ada yang ketipu 180k, tolong rnb akun dia ya guys biar ga ada korban lain lagi 🙏 https://t.co/uaqDvAWlp4",
+        "confidence": 0.9877601141797451,
+        "platform": "x",
+        "date": "2026-05"
+      },
+      {
+        "text": "Adik sy hampir kena kmren , modus nya perubahan tarip transfer, minta kode otp .. Trus aktifin direct debit di Ecomers.. , Penipu seperti ini lebih rendah dari seorang banci kaleng kalo emang laki2 duel kito pakek cap garpu tunjuk ke moncong kau ,... Cari rejeki tu yang halal ingat hidup di dunio ni cuma sementaro.. tunggu la gek malaikat maut cabut nyawo kamu",
+        "confidence": 0.9877461503060878,
+        "platform": "youtube",
+        "date": "2022-11"
+      },
+      {
+        "text": "Jgn sembarangan komen mr bert. Yg namanya bang itu gak bisa gegabah dalam mengambil keputusan , semua nya perlu dilakukan investigasi secara memdalam, kalau memang kesalahan sistem Bank atau krn ulah nakal oknum Bank, dana nasabah pasti dijamin dikembalikan, tapi kalau memang kesalahan nasabah semdiri sampai data pribadi nya spt pin Dan nomor otp sampai diketahui org lain, ya Bank mana mau lah memgganti, kok enak sekali",
+        "confidence": 0.9877375715488852,
+        "platform": "youtube",
+        "date": "2023-11"
+      },
+      {
+        "text": "TRIAD MNC..GRUP..PERMADI KUWIKIYANGI JAYA SUPRANA NUTURAL VURAL . ENKRIPSI . MODUS.. BAR KUI . KRISIS INFLASI . CANGKEMNYA PIM PINAN PUSAT PENJAHAT BANK.. TENAN.. SISTEMIK...ANDROUD.. KENTIR.. WARNET IJIH PAYU CAH.. TABLET ..PIL QR QIRIQ..",
+        "confidence": 0.987727037221892,
+        "platform": "youtube",
+        "date": "2022-11"
+      },
+      {
+        "text": "@IndonesiaD89790 @secondsweetener @IndonesiaD89790 Hi Kak, hati-hati ya! Akun IndonesiaD89790 sudah pasti bukan dari DANA, ya. Perlu Kakak tahu, DANA tidak punya layanan customer service lewat WhatsApp atau nomor pribadi. Jangan pernah kasih kode OTP, PIN, atau info pribadi ke siapa pun, ya Kak. Thx -FS-",
+        "confidence": 0.9877206531377595,
+        "platform": "x",
+        "date": "2026-05"
+      },
+      {
+        "text": "Mayoritas PEMBOBOLAN rekening / kartu kredit itu adalah SOCIAL ENGINEERING (baik secara sadar atau tidak sadar memberikan data penting ke penipu). Sistem perbankan ga semudah itu disusupi hacker dan sebagus apapun sistem keamanan kalau nasabahnya yang membocorkan data rahasia (baik secara sadar maupun tidak sadar) apakah bank harus bertanggung jawab? Secara tidak sadar itu banyak potensinya, entah pin terlalu mudah, hp disadap oleh aplikasi tertentu, kartu sim pernah di cloning, orang terdekat punya akses yang kita gak tau, dll",
+        "confidence": 0.9877204939863993,
+        "platform": "youtube",
+        "date": "2023-11"
+      },
+      {
+        "text": "@cumicumi5078 sy kasi contoh km y,kbnyakan mereka yg ditipu itu mengirimkan kode otp bank kepada pelaku,padahal kode otp itu rahasia hanya untuk pemilik,JD klo dilaporkan ke polisi tanpa bukti bahwa org siapa pelakunya y jelas polisi lepas tangan aplgi bank akan berdalih itu kesalahan km sendiri Krn memberi kode otp ke org . JD klo komen bos belajar dulu biar g goblok.",
+        "confidence": 0.9877120505472352,
+        "platform": "youtube",
+        "date": "2022-11"
+      },
+      {
+        "text": "saya setiap malam di telpon dan saya udah bilang saya tahu mereka menelpon. Kocaknya di ulang lagi, bukannya makin pinter nipunya, ini alasannya GAk jelas! Bahkan kocaknya saat itu umur saya baru 24 tahun, eh di laporkan anak saya masuk rumah sakit masuk UGD yang berusia 20 tahun. Lalu saya balas \" Saya punya anak pas umur 4 tahun!?\".",
+        "confidence": 0.9877043108078417,
+        "platform": "youtube",
+        "date": "2025-06"
+      },
+      {
+        "text": "Ini budak tipsani, di selapan banyak yg cak ini, kalian datang be ke tulung selapan dan sekitar nya, jangan heran, kalau rumah mereka(budak tipsani ini) megah2 cak istana gale, kalau nk jingok payo ku rewangi, aku mantan wg selapan, tp sd pindah. bukan warga sane lagi skrg.. hati2 dg segala modus yg mengatas namakan bank, undian dll, jng mudah percaya dan jng mudah panik itu kunci nyo, biar dk jadi korban,",
+        "confidence": 0.9876952786670714,
+        "platform": "youtube",
+        "date": "2022-11"
+      },
+      {
+        "text": "Di tempat saya lagi musim hipnotis lewat hp bang disuruh TF dengan ombgan doang bisa TF berapapun bang kek diteken omngan jadi nurut ,banyak yang ketipu 2jt 4jt ,terakhir saudara saya hidup sendirian janda bang di tipu 12 JT habis itu diminta lagi 25 untung bisa distop bang ,saudara saya ke orang Ling Ling kesana kemari nyari pinjemen utang semua orang yang dikenal disamperin bang",
+        "confidence": 0.9876901421113903,
+        "platform": "youtube",
+        "date": "2022-12"
+      },
+      {
+        "text": "Alahh itu soceng kan cuma akalan bang kan semua ada bang yg tau jyga pegawai bang .nasabah tidak punya banking .tidak punya link .transaksi juga dak .tidak ada yg nawari data tapi uang tetep hilang .kemana bang tau .itu akal2an aja agar seolah bang yg tidak salah .",
+        "confidence": 0.9876711017059185,
+        "platform": "youtube",
+        "date": "2025-06"
+      },
+      {
+        "text": "@MediaKonsumenID @ShopeeID @SeaBankID MediaKonsumenID Kasus ini menarik: korban klaim tak klik link/OTP, tapi ShopeePay + SeaBank terkait langsung kebobolan via transaksi tak sah 2 Mei lalu. CS Shopee Prioritas hanya sarankan hati-hati &amp; sebut app tertaut verifikasi wajah, tanpa bukti atau solusi cepat. \r\n\r\nShopeeID",
+        "confidence": 0.9876681671095718,
+        "platform": "x",
+        "date": "2026-05"
+      },
+      {
+        "text": "pengalaman saya 7th yg lalu. pembantu saya kena tipu seorang   tentara nama RJ dia tinggal dicijantung . dia pinjam uang ke pem   saya pake atm bri punya saya ke  wanìta dsl cab bri cipinang elok  rp 3 juta. saya kejar ke cijantung dan ketemu tapi tidak ngaku  tapi semua bukti ada walau sudah lama . Jadi mereka bersekongkol kenalan dll merayu dan endingnya nipu. Nanti kalau pingin bukti kongkrit bukti saya simpen yg menerima uang ituDew Set Les tinggal dicipinang.  pem saya trasf ke rek dia bri cipinang elok. HATI Hati  perempuan2 diluar sana jangan kenalan  lewat dunia maya",
+        "confidence": 0.9876659004441398,
+        "platform": "youtube",
+        "date": "2024-04"
+      },
+      {
+        "text": "@kumparan Nomer hanphone &amp; Email = sebagai OTP (One-Time Password) atau Verifikasi 2 Langkah (2FA). Kode ini berfungsi sebagai kunci pengaman kedua agar hanya Anda yang dapat masuk ke dalam akun atau login , ketika akun anda bermasalah. \r\n\r\nKementrian harusnya paham n mengerti masalah ini.",
+        "confidence": 0.9876549303945421,
+        "platform": "x",
+        "date": "2026-05"
+      },
+      {
+        "text": "@tiararoxeanne1318 Aplikasi myBCA/m-bca tidak bisa dipakai kalau kartu sim yg didaftarkan ke BCA tidak dipasang ponsel yg ada aplikasi tersebut (tidak bisa beda ponsel karena aplikasi akan cek apakah kartu sim ada di situ atau tidak), kalau OTP nya tidak di HP itu gimana ceritanya dia bisa pakai mBCA di HP itu?",
+        "confidence": 0.9876482773366227,
+        "platform": "youtube",
+        "date": "2023-11"
+      },
+      {
+        "text": "Tidak ada sistem yg 100% anti pembobolan, karena sistem itu perlu berinteraksi dgn manusia, kemungkinan besar titik lemah terbesarnya ada di sisi manusia, bukan pada sistem, sistem itu sangat susah dan mahal biayanya untuk di brute force, tp manusia gampang sekali dan murah biaya nya utk serangan social engineering, jadi 99.99999% itu lubang nya ada di sisi manusia, entah manusia dari pihak korban atau petugas BCA",
+        "confidence": 0.9876371682095331,
+        "platform": "youtube",
+        "date": "2023-11"
+      },
+      {
+        "text": "2bln lalu sdh kena dan saya buka link... Email sy simasuki email 10 akun.. Dan malamnya masuk sms minta kode otp e-commers.. Sy ga mau ambil pusing dg berat hati ya reset factory hp 😢",
+        "confidence": 0.987632653055943,
+        "platform": "youtube",
+        "date": "2023-06"
+      },
+      {
+        "text": "Luar biasa Mr. Bert,.... Terimakasih ilmunya, karena saya juga beberapa hari lalu mendapatkan wa dari orang tersebut atas nama bank **I, lalu saya juga menyampaikan pesan singkat kepada rekan saya agar hati2 jika ada orang yang mengatasnamakan bank menghubunginya... Selang beberapa hari kemudian, betul juga apa kata saya hanya saja dia atas nama bank **A... Informasi yang disampaikan oleh sang penipu juga sama persis tapi anehnya logo banknya saja yang berubah.",
+        "confidence": 0.9876279894069799,
+        "platform": "youtube",
+        "date": "2022-11"
+      },
+      {
+        "text": "@solihun9022 memang benar.. pintar menipu daya manusia. Tidak akan bermanfaat .. ya.. belum terasa aja.. semakin kayanya manusia akan semakin menjerit habisnya harta dan segala kekayaan.. (gila) mungkin. Lihat aja nanti akan ada jawabannya. Manusia yang sering menipu dan membohongi orang... Allah maha melihat dan mengetahui atas apa yang mereka perbuat.. Allahualambishowap... Wassalam",
+        "confidence": 0.9876160963477016,
+        "platform": "youtube",
+        "date": "2024-05"
+      },
+      {
+        "text": "Kalau penipuan kartu hallo, katanya aku dapat hadiah. Terus dia minta saya mengirim kode otp kartu hallo saya. Karena saya lagi di kelas saya sempat menklik kata ya. Nah setelah diteleponnya saya baca di kode otp itu gak boleh kasih tau sama orang sekalipun ke telkomsel. Aku ngerti ternyata mereka penipu. Dia beli pulsa 1 jt. Nanti kartu hallo aku yg bayar. Untung aku baca kode otp itu",
+        "confidence": 0.9876152774070581,
+        "platform": "youtube",
+        "date": "2023-11"
+      },
+      {
+        "text": "Palingan ntar dioper ma polisinya ke cyber crime, polisi mana ngurusin beginian, rekening gua pernah kesedot BCA karena tergiur hadiah lewat telpon, gua gak nyadar itu modus penipuan dengan kasih kode akses ke gua katanya tranfer uang hadiah. Pas gua cek lagi ada error code di ATM BCA, besoknya gua cek lagi isinya akunnya RP. 0.Banyak yg kena gini kayak gua cuma ngakunya dihipnotis padahal kena tipu",
+        "confidence": 0.9876127337562556,
+        "platform": "youtube",
+        "date": "2023-11"
+      },
+      {
+        "text": "Paling aman nabung di BCA. Timbang di BUMN karena di BCA klo nasabah download M-banking verifikasi nya berlapis, dari OTP, foto KTP, verifikasih wajah. Dan tidak serta merta MBCA lgsg bisa ditransaksikan, nasabah harus aktivasi lagi ke halo BCA/cab BCA terdekat untuk transaksi financial, sehingga dana kita aman. Ini bank BUMN semua seharusnya contoh BCA bank swasta tapi keamanan nasabah terjamin. OTP skrg tdk bisa diandalkan karena bisa disadap.",
+        "confidence": 0.9876095810580009,
+        "platform": "youtube",
+        "date": "2023-07"
+      }
+    ],
+    "penipuan_ewallet_qris": [
+      {
+        "text": "@onionsquash @JustDonzh @riraen @txtdrkuliner Nope. Nama yang tertera di akun qris kotak amal palsu itu adalah “Restorasi Masjid”, orang awam pasti mengira itu memang akun asli untuk infaq masjid. Jadi jamaah tidak bisa disalahkan. Nggak mungkin juga jamaah repot konfirmasi dulu ke takmir cuma buat ngasih infaq.",
+        "confidence": 0.9952277645025904,
+        "platform": "x",
+        "date": "2023-10"
+      },
+      {
+        "text": "🚨🕌Pengurus Masjid Istiqlal menemukan sedikitnya 50 stiker kode batang (barcode) QRIS palsu yang ditempelkan di sejumlah titik area masjid.\n\n“Ada 50-an (QRIS palsu),” kata kata Wakil Ketua Bidang Penyelenggara Peribadatan Masjid Istiqlal Jakarta Abu Hurairah saat dihubungi dari https://t.co/tt5W30RpM9",
+        "confidence": 0.9952136608304532,
+        "platform": "x",
+        "date": "2023-04"
+      },
+      {
+        "text": "Sekretaris DKM Masjid Nurul Iman Blok M Square, Habibi Katin, mengungkap bahwa penempelan QRIS palsu tak hanya dilakukan di satu titik. Menurut laporan jemaah, ternyata praktik ini juga terjadi di masjid-masjid lain. #focus #qris #news #oneliner https://t.co/Mx9F0qgzpy https://t.co/eDClJbTVAr",
+        "confidence": 0.99521221433062,
+        "platform": "x",
+        "date": "2023-04"
+      },
+      {
+        "text": "😱KASUS QRIS PALSU BIKIN GEGERRR!😱\n\nWASPADA!! Jangan sampai Sobat SeaBank terkena kasus penipuan QRIS palsu! Yuk simak baik-baik tips dari mimin, LIKE, REPLY “AMAN” dan RETWEET video ini supaya kalian bisa terus aman!🤩 https://t.co/HH9BaWQpl3",
+        "confidence": 0.9951964320030731,
+        "platform": "x",
+        "date": "2023-05"
+      },
+      {
+        "text": "Mohammad Iman Mahlil Lubis, pemasang Qris palsu di kotak amal sejumlah masjid besar di Jakarta, ditangkap polisi. Ia menukar stiker Qris yang merujuk ke rekening “Restorasi Masjid” ke lebih dari 30 masjid sejak awal April 2023.\n\nhttps://t.co/4VyctEjH5Z\n\n#VideoBerita #AdadiKompas",
+        "confidence": 0.9951962462377816,
+        "platform": "x",
+        "date": "2023-04"
+      },
+      {
+        "text": "@kegblgnunfaedh Jarang ke masjid, sekalinya ke masjid pengen sandal baru\n\nJarang ke masjid, sekalinya ke masjid pengen nyolong kotak amal.\n\nJarang ke masjid, sekalinya ke masjid nempelin qris palsu.\n\nDari kpn hari kok “ancamannya” cm mati/keranda, sekalian ky di atas gt lho klo mau roasting 🤣🤣",
+        "confidence": 0.9951923628612793,
+        "platform": "x",
+        "date": "2023-04"
+      },
+      {
+        "text": "tersangka MIML telah menempelkan stiker barcode QRIS palsu tsb di 38 lokasi Masjid..😠\n\nDengan terungkapnya kasus ini, diharapkan jemaah masjid hrs lebih cermat lagi ketika hendak berinfaq melalui QRIS, bukan malah dijadikan alasan utk tidak berinfaq 😊\n\nPelajaran dari kasus ini, https://t.co/cXEzb9IS4a",
+        "confidence": 0.9951902581067844,
+        "platform": "x",
+        "date": "2023-04"
+      },
+      {
+        "text": "@_fikri_auliya @zainfathoni @zakkafm @KawalMasjid @mhaidarhanif web app aja ga perlu install \n\ntapi benar itu UX flownya nggak masuk kalau fokusnya “kawal”, jadi sebenarnya objektif utamanya ini listing QRIS kotak amal aja\n\nIMHO main audience justru yang tidak sedang di masjid tapi mau donasi",
+        "confidence": 0.9951871263407442,
+        "platform": "x",
+        "date": "2023-04"
+      },
+      {
+        "text": "( M-I-M-L) Mohammad Iman Mahlil Lubis pelaku penipuan Qris Kotak Amal Masjid Palsu tertangkap. \n\nSetiap aksinya , pelaku raup 13 juta dalam sepekan.\n\nTerimakasih kepada Jajaran Kepolisian Republik Indonesia atas respon cepatnya , hingga tidak merugikan umat.\n\n@DivHumas_Polri \n🙏 https://t.co/YoCsIVbl8A",
+        "confidence": 0.9951843901268961,
+        "platform": "x",
+        "date": "2023-04"
+      },
+      {
+        "text": "🚨Polisi akhirnya menangkap pelaku yang menempelkan QRIS palsu di kotak amal sejumlah masjid di DKI Jakarta.\n\nPelaku yang teridentifikasi bernama Imam Mahlil Lubis (IML) ditangkap di kawasan Kebayoran Lama dan saat ini masih menjalani pemeriksaan intensif. https://t.co/t5CcBCuqmo",
+        "confidence": 0.9951816168583311,
+        "platform": "x",
+        "date": "2023-04"
+      },
+      {
+        "text": "Polisi tangkap Mohammad Iman Mahlil pelaku penempel stiker QRIS kotak amal Palsu, kepada Polisi pelaku mengaku sudah memasang 38 QRIS di beberapa Masjid. Bagaimana tanggapan dari Dewan Masjid Indonesia.\n\n[TALK] SekJen Pimpinan Pusat Dewan Masjid Indonesia - Imam Addaruquthni https://t.co/53tXelGIWL",
+        "confidence": 0.9951752358622568,
+        "platform": "x",
+        "date": "2023-04"
+      },
+      {
+        "text": "@SeputarTetangga Tau kan sekarang kenapa kalo berbuat baik itu sekarang susah? Kemarin ada kasus barcode QRIS palsu di kotak amal masjid, sekarang kasus pencurian motor &amp; penculikan anak dibawah umur (sebenernya butuh motornya aja sih).\n\nApapun itu, saran gue pikir 10x sebelum nolongin orang.",
+        "confidence": 0.9951663135454019,
+        "platform": "x",
+        "date": "2023-04"
+      },
+      {
+        "text": "M Iman Mahlil Lubis (39) ditangkap setelah menempelkan QRIS 'palsu' pada kotak amal di 38 masjid di Jakarta hingga Tangsel. Selama sepekan, eks karyawan bank itu telah menghimpun dana Rp 13 juta.\n\nBerikut kronologi Imam Mahlil Lubis sebar QRIS palsu. https://t.co/qeW1uyBeVO https://t.co/qqK7otQlOc",
+        "confidence": 0.9951577302146452,
+        "platform": "x",
+        "date": "2023-04"
+      },
+      {
+        "text": "Belum lama ini beredar QRIS palsu yang sengaja ditempel di kotak amal di sejumlah masjid di Jakarta. Merespons hal itu Gubernur Jawa Tengah @ganjarpranowo  mengimbau pengelola dan jemaah lebih waspada.\n#GanjarBawaKemajuan\n#sahabatganjar #ganjarpranowo #ganjar https://t.co/AqwDtsDXEu",
+        "confidence": 0.9951548656720535,
+        "platform": "x",
+        "date": "2023-04"
+      },
+      {
+        "text": "Oknum Brimob Polda Jabar di PTDH karena Terbukti Lakukan Penipuan (15/7/2025)\n\nKasus ini mencuat ke publik usai pemilik Distro Helmetz di Cileunyi Bandung, memviralkan rekaman CCTV pelaku saat melakukan transaksi fiktif menggunakan QRIS palsu di tokonya (8/6/2025) https://t.co/WRQomb4iJP",
+        "confidence": 0.995154859808336,
+        "platform": "x",
+        "date": "2025-07"
+      },
+      {
+        "text": "Kode batang (barcode) QRIS palsu yang ditempelkan juga ditemukan di Masjid Istiqlal, Jakarta. QRIS palsu itu tersebar di beberapa titik. \n\nSimak berita selengkapnya di https://t.co/qxRUgSj8sk\n#HardNews_Kriminal #NewsOne #CariBeritaditvOne #QRISPalsu https://t.co/6hgayZpxCc",
+        "confidence": 0.9951541737024315,
+        "platform": "x",
+        "date": "2023-04"
+      },
+      {
+        "text": "Bismillah memulai @KawalMasjid 😄\n\nKonsep: listing QRIS kotak amal masjid-masjid di Indonesia 🇮🇩 \n\nInspirasi: https://t.co/rtVfXUKJZP \n\nProblem statement: pemalsuan/penggantian QR code di kotak amal salah satu masjid 🤦‍♂️\n\nfounders: \n@ainunnajib @zainfathoni @mhaidarhanif",
+        "confidence": 0.9951418048264634,
+        "platform": "x",
+        "date": "2023-04"
+      },
+      {
+        "text": "Aksi penempelan QRIS palsu untuk mengumpulkan sedekah/infak juga menyasar Masjid Istiqlal, Jakarta Pusat. Pengurus Istiqlal bagian Peribadatan, Abu Hurairah, mengungkap peristiwa penempelan diduga terjadi 2 hari lalu. #focus #qris #news #videonews https://t.co/zcQzOGzC6M https://t.co/B1OFgY9OKC",
+        "confidence": 0.9951411271494751,
+        "platform": "x",
+        "date": "2023-04"
+      },
+      {
+        "text": "Kode batang (barcode) QRIS yang terintegrasi dengan 12 kotak amal di Masjid Agung Al-Azhar, Jakarta Selatan, diganti dengan barcode palsu oleh seorang pria.\n\nSetidaknya ada 2 rekening QRIS palsu yang ditempel oleh terduga pelaku. &lt; #Megapolitan #QRIS\nhttps://t.co/GdBNkypJzk",
+        "confidence": 0.9951391430794744,
+        "platform": "x",
+        "date": "2023-04"
+      },
+      {
+        "text": "#KaumMuda, seseorang tertangkap CCTV tengah memasang QRIS palsu di beberapa masjid di Jakarta. Menurut kabar yang beredar, selain Masjid Nurul Iman di Blok M Square, pelaku ternyata juga memasang stiker QRIS palsu di Masjid Nurullah, Kalibata.\nhttps://t.co/XrGT1rKA1G https://t.co/oaNhKnepUn",
+        "confidence": 0.9951382073908299,
+        "platform": "x",
+        "date": "2023-04"
+      },
+      {
+        "text": "Bajindul iki bocahe😡\nPolisi menangkap pria yang memasang QRIS palsu di Masjid Nurul Iman Blok M Square. Pelaku bernama Muhammad Iman Mahlil Lubis (38). Ia ditangkap pada Selasa (11/4) pagi. https://t.co/PU2Mm0EJeY",
+        "confidence": 0.9951357874944649,
+        "platform": "x",
+        "date": "2023-04"
+      },
+      {
+        "text": "Polda Metro Jaya menangkap Mohammad Iman Mahlil sebagai tersangka kasus stiker qris palsu kotak amal masjid. Tersangka merupakan mantan auditor BUMN yang telah beraksi di 38 masjid. KPJ\n\n#iNews #Pemalsuan #StikerQris #Penipuan #KotakAmal #Ditangkap #Polisi https://t.co/kCpxtgcpaU",
+        "confidence": 0.9951208501009186,
+        "platform": "x",
+        "date": "2023-04"
+      },
+      {
+        "text": "@belphegorsan Tp duitnya g masuk2 dan qrisnya g bunyi2. Ibunya bahkan nunjukin kek poto pembelian qriz bapaknya gitu ke gweh, cuma gweh juga masi agak awam bedain bukti qris palsu sm kgk. Ibunya bilang kek bapaknya tuh keukeuh dah bayar gitu lho dan nunjukin qrisnya, tp yh g masuk2",
+        "confidence": 0.9951195675156127,
+        "platform": "x",
+        "date": "2026-05"
+      },
+      {
+        "text": "Kasus penipuan anggota polisi dari satuan Brimob Polda Jabar yang melakukan penipuan pembayaran QRIS Palsu dinyatakan masuk ke Daftar Pencarian Orang ( DPO ).\n\nKoq bisa... bukannya pelaku atas nama Cecep Ridwan telah ditahan di Mako Brimob Polda Jabar.\n\nhttps://t.co/WiyBZgPEVY https://t.co/CPV6lVVa0C",
+        "confidence": 0.9951158272358371,
+        "platform": "x",
+        "date": "2025-07"
+      },
+      {
+        "text": "Ssst, hati-hati QRIS palsu! 🤫\n\nBiar nggak gampang kegocek kayak Bang Messi, yuk cari tahu gimana cara bedain QRIS asli dan palsu 🫣\n\nLangsung aja cek postingan ini yuuk!\n\n#BanggaSurabaya #Sapawargasby https://t.co/YH4TpQE06z",
+        "confidence": 0.995115569006703,
+        "platform": "x",
+        "date": "2023-04"
+      },
+      {
+        "text": "Dikatakan keterlaluan ya memang terlalu wong orang jahat, kenapa mereka jahat karena ada yang ditiru.\nDengan cara ini, uang pembayaran digital yang dilakukan oleh pembeli justru masuk ke rekening pelaku kejahatan, alih-alih ke rekening pedagang yang berhak.\nQRIS palsu dilaporkan https://t.co/wf5omfGVNl",
+        "confidence": 0.9951073098961283,
+        "platform": "x",
+        "date": "2025-10"
+      },
+      {
+        "text": "liat kasus qris palsu di masjid gini baru ketauan celahnya orang bisa asal ganti ganti aja pake qris rek pribadi, anjing juga 😂\n\nthen the question starts to arise, can this be solved? 🤨 biar authenticated barcode yang udah di print sama rek yg dituju",
+        "confidence": 0.9951025128954349,
+        "platform": "x",
+        "date": "2023-04"
+      },
+      {
+        "text": "kita harus lebih melek teknologi.\n\nDigitalisasi keuangan masjid, dengan menggunakan QRIS yg berfungsi utk transparasi keuangan masjid perlu terus diupayakan\n\nDan utk pengurus DKM masjid jangan berhenti memberi himbauan kpd para jemaahnya agar tidak terkecoh dgn barcode QRiS palsu https://t.co/DYcQM2QQNb",
+        "confidence": 0.9951012171912024,
+        "platform": "x",
+        "date": "2023-04"
+      },
+      {
+        "text": "Ssst, hati-hati QRIS palsu! 🤫\n\nBiar nggak gampang kegocek kayak Bang Messi, yuk cari tahu gimana cara bedain QRIS asli dan palsu 🫣\n\nLangsung aja cek postingan berikut ini 💁🏼‍♂️ https://t.co/Jm5rHj2WPY",
+        "confidence": 0.9950982158021785,
+        "platform": "x",
+        "date": "2023-04"
+      },
+      {
+        "text": "Tanpa menunggu LAMA...\nPelaku Penempelan Stiker QRIS Palsu Masjid Ditangkap, Dan langsung ditetapkan Tersangka Penipuan\n\nDia ditangkap petugas gabungan Polres Metro Jakarta Selatan dan Polda Metro Jaya.\n\nTernyata ada 38 masjid yang ditempeli stiker QRIS palsu di wilayah Jakarta https://t.co/11IEYmdh27",
+        "confidence": 0.9950968874715109,
+        "platform": "x",
+        "date": "2023-04"
+      },
+      {
+        "text": "Aksi penipuan dengan mengganti qris kotak amal yang terjadi di sejumlah masjid di Jakarta dan Tangerang mendapat sorotan dari Ketua Bidang Keagamaan DPP Partai Perindo. AAS\n\n#RCTI #News #SeputariNews #PartaiPerindo #QRIS #KotakAmal #PemalsuanQris #Masjid https://t.co/R31pMmjh0u",
+        "confidence": 0.9950950556258447,
+        "platform": "x",
+        "date": "2023-04"
+      },
+      {
+        "text": "M. Iman Mahlil menempel QRIS palsu di 38 lokasi hingga raup Rp 13 juta. Penipuan ini dilakukan seorang diri. Iman berhasil ditangkap di Kebayoran Lama, Selasa (11/4/2023). \nBerikut 38 lokasi penempelannya: https://t.co/FJ2dVL2w0P",
+        "confidence": 0.9950945012860993,
+        "platform": "x",
+        "date": "2023-04"
+      },
+      {
+        "text": "Pedagang di kawasan Pujasera depan Telkom University (Tel-U), Jalan Sukabirus, Kabupaten Bandung, menjadi korban kode QRIS palsu. QRIS palsu ditempel di atas QRIS asli di warung mereka oleh orang tak dikenal.\n\n#detikcom https://t.co/5ySrrjexyS",
+        "confidence": 0.9950929917089036,
+        "platform": "x",
+        "date": "2025-10"
+      },
+      {
+        "text": "@mhuseinali QRIS bukan inovasi. Ini cuma standar QR code China yang dibungkus logo BI.\n2025-2026, penipuan QRIS palsu meledak 160%.\nStiker palsu ditempel di mana-mana: SPBU, masjid, terminal, warung, bahkan posko mudik Lebaran.\nKorban scan, uang langsung lenyap ke rekening penipu.\nData Polda",
+        "confidence": 0.9950848636684024,
+        "platform": "x",
+        "date": "2026-04"
+      },
+      {
+        "text": "Seorang pria terekam kamera CCTV mengganti barcode Quick Response Code Indonesian Standard (QRIS) kotak amal di Masjid Nurul Iman Blok M Square, Jakarta Selatan pada Kamis, 6 April 2023 pukul 10.37 WIB.\n\nHarap berhati-hati ya!\n\n-\n\n#genvoice #QRIS Coldplay https://t.co/YjPqDvtHji",
+        "confidence": 0.995083536505959,
+        "platform": "x",
+        "date": "2023-04"
+      },
+      {
+        "text": "Pengurus Masjid Istiqlal pernah melaporkan ke Polsek Gambir soal pemalsuan QRIS palsu tapi gak diproses dengan alasan pihak Polsek ingin tahu berapa jumlah kerugian yg ditimbulkan.\n\nMau nunggu viral dulu baru mau bergerak😁\nhttps://t.co/8QZwFF9E1P https://t.co/9kenpoyZWJ",
+        "confidence": 0.9950769603615259,
+        "platform": "x",
+        "date": "2023-04"
+      },
+      {
+        "text": "Viral Kasus Penipuan Lewat QRIS Kotak Amal di Blok M, Polisi: Pelaku Pernah Lakukan di Kalibata: Polisi selidiki kasus penggantian QRIS kotak amal di masjid Nurul Iman Blok M Square, Kebayoran Baru, Jakarta Selatan. https://t.co/KMRHCGxNo7",
+        "confidence": 0.9950744908068245,
+        "platform": "x",
+        "date": "2023-04"
+      },
+      {
+        "text": "@tanyarlfes Tanggapan Kapolsek Pancoran, Kompol Panji Ali  terkait viralnya maling kotak amal dengan cara ganti QRIS palsu. Polisi akan mengecek dulu terkait kebenaran video tersebut.\n\"Mohon waktu sedang kami cek,\" kata https://t.co/NfvNhQYW84",
+        "confidence": 0.995073875343385,
+        "platform": "x",
+        "date": "2023-04"
+      },
+      {
+        "text": "Pelaku penipuan yang mengganti stiker QRIS kotak amal masjid, akhirnya ditangkap polisi. Identitas pelaku adalah pria berinisial MIM dan pelaku mengaku sudah beraksi di 38 masjid di Jakarta, termasuk Masjid Istiqlal. https://t.co/ns6OyEQSsE https://t.co/pvAyfpmKSJ",
+        "confidence": 0.9950738730470515,
+        "platform": "x",
+        "date": "2023-04"
+      },
+      {
+        "text": "Siapa yang tim pake QRIS buat bayar-bayar? 🙋🏻‍♀️​\n\nHati-hati ya! Banyak QRIS palsu beredar di mana-mana. Jangan sampe uang kamu masuk ke rekening penipu ya 😱​\n​\nSelalu double check nama merchant setiap kamu scan QRIS saat membayar. Jangan kasih celah buat penipu. Geser buat kenali https://t.co/CYvpDAbIfx",
+        "confidence": 0.9950709938537176,
+        "platform": "x",
+        "date": "2025-03"
+      }
+    ],
+    "malware_apk": [
+      {
+        "text": "*14:10** · **#Émndhinkk**'s \"APK UNDANGAN PÊNGURAS SALDO RÉKÊNING | TalKomputêr 60.0\"* (-4) *~*\n\n_~ \"07/06/24\" ~_",
+        "confidence": 0.9604507551046858,
+        "platform": "youtube",
+        "date": "2024-06"
+      },
+      {
+        "text": "Sempet ke klik bang tapi sempat cancel sebelum selesai download apk nya apakah aman bang, jadi belum sempat download apk nya",
+        "confidence": 0.9585541413205784,
+        "platform": "youtube",
+        "date": "2026-04"
+      },
+      {
+        "text": "Sy sdh uninsyal apk undangan x kira2 sdh aman ngga bang ​@bleckrock",
+        "confidence": 0.9584527298591947,
+        "platform": "youtube",
+        "date": "2024-06"
+      },
+      {
+        "text": "numpang tanya bang, klo sudah terlanjur install apk itu gmna buat putusin kodingnya? apa cukup di uninstall aja???",
+        "confidence": 0.9583517671342746,
+        "platform": "youtube",
+        "date": "2022-12"
+      },
+      {
+        "text": "Cek fav @Solodroid RT @Taufik_F20: @dokterdroid dok gw udah download apk bbm kok eror ya? katanya \"ada kesalahan menganalisa paket\" gmna?",
+        "confidence": 0.9581917063822378,
+        "platform": "x",
+        "date": "2014-01"
+      },
+      {
+        "text": "download apk ny dmna bg😭",
+        "confidence": 0.9581614525269216,
+        "platform": "youtube",
+        "date": "2025-03"
+      },
+      {
+        "text": "download APK di link ini http://t.co/fDUZqD91sb | @yprayitno13: uda 100% downloadnya, eh,skalinya muncul berkas paket tdk valid, it knp min?",
+        "confidence": 0.9581353776808114,
+        "platform": "x",
+        "date": "2013-10"
+      },
+      {
+        "text": "Yg sedih saya buat undangan website dikira nanti apk undangan website😢",
+        "confidence": 0.9580439024079032,
+        "platform": "youtube",
+        "date": "2023-09"
+      },
+      {
+        "text": "@ciixyzlaa @convomfs Pokoknya kalo formatnya .apk tuh jgn dibuka, kak. Takut keinstal apk penipuan dsb.",
+        "confidence": 0.9580328756436773,
+        "platform": "x",
+        "date": "2024-02"
+      },
+      {
+        "text": "@afyyh-r1d iya kebanyakan apk penipuan emang kayak gitu",
+        "confidence": 0.9579880326620585,
+        "platform": "youtube",
+        "date": "2024-05"
+      },
+      {
+        "text": "Bearti misalnya nya kita download apk mod dari yt misalnya kinemaster mod kita itu bahaya ya?",
+        "confidence": 0.9577890697935151,
+        "platform": "youtube",
+        "date": "2022-12"
+      },
+      {
+        "text": "@ctx8314 broo kalo kita download apk tersebut cuma masuk ke folder eksternal biasa kan ya ?",
+        "confidence": 0.9576632835528082,
+        "platform": "youtube",
+        "date": "2023-02"
+      },
+      {
+        "text": "@hasbilh_ @HIBIKUN_ Instal apk diluar play store jadi ga bisa login",
+        "confidence": 0.9575644233035335,
+        "platform": "x",
+        "date": "2026-05"
+      },
+      {
+        "text": "kak hp ku kena virus iklan, gara² dowload apk undangan pernikahan",
+        "confidence": 0.9574651778330001,
+        "platform": "youtube",
+        "date": "2023-03"
+      },
+      {
+        "text": "Bikin konten yg bnr aja la,bru download dpt 5juta,blg aja suruh org download apk",
+        "confidence": 0.9574055146297061,
+        "platform": "youtube",
+        "date": "2024-02"
+      },
+      {
+        "text": "@osky3301 dokumen  nya kan berbentuk apak  ga sengaja di klik terus saya batal alhasil ga jadi install apk tersebut apakah aman bg",
+        "confidence": 0.957268372799068,
+        "platform": "youtube",
+        "date": "2024-02"
+      },
+      {
+        "text": "@raifsoon @adakamiofficial @haiimlluu @kegblgnunfaedh Wkwk ngakak anjir ternyata apk penipuan ya ngeri cokkk kasian yg kejebak gini 🗿",
+        "confidence": 0.9572611580580205,
+        "platform": "x",
+        "date": "2023-06"
+      },
+      {
+        "text": "Ada berita ibu\" Di malang kebobolan 1,4 m dari apk undangan nikah. \n\nEndingnya cari info ke mr bert taunya uda 5 bulan yg lalu dibahas.",
+        "confidence": 0.9572497612722616,
+        "platform": "youtube",
+        "date": "2023-07"
+      },
+      {
+        "text": "Bang kalau dah terlanjur install apk begitu lalu kita hapus apk tersebut apakah sudah putuskan koneksi dari si BAJIGUR",
+        "confidence": 0.9572229145365675,
+        "platform": "youtube",
+        "date": "2022-12"
+      },
+      {
+        "text": "Hati² install apk live hot. Temen ku hilang 1 jutaan.",
+        "confidence": 0.9571778371189085,
+        "platform": "youtube",
+        "date": "2023-09"
+      },
+      {
+        "text": "Guys ada yang unistall apk line ga terus pas udah di install lagi pas mau login malah gini, ini kenapa ya?\r\nHelp mee guyss https://t.co/iBax1U6ApJ",
+        "confidence": 0.9571111055162426,
+        "platform": "x",
+        "date": "2026-05"
+      },
+      {
+        "text": "Bro kalo tiba-tiba muncul apk itu kenapa ya padahal gak pernah install apk tersebut",
+        "confidence": 0.9570724305721022,
+        "platform": "youtube",
+        "date": "2023-02"
+      },
+      {
+        "text": "Mau tanya saya barusan dapat WA undangan apk, tp sdh terlanjur saya download, tp setelah saya cari download apk nya tidak ada (hilang) bagaimana ya apakah aman?\n\nMohon pencerahannya terimakasih 🙏",
+        "confidence": 0.9570628866693411,
+        "platform": "youtube",
+        "date": "2024-05"
+      },
+      {
+        "text": "Terus cara mencegah nya Gimana bang bagi Yg sudah Terlanjur Install apk tersebut??",
+        "confidence": 0.9569229141339887,
+        "platform": "youtube",
+        "date": "2022-12"
+      },
+      {
+        "text": "7:02 ooh, sy sdh lama instal apk Kaspersky ini  di hp , tks infonya.",
+        "confidence": 0.9568141315911236,
+        "platform": "youtube",
+        "date": "2023-01"
+      },
+      {
+        "text": "Apa yang Harus Dilakukan jika Terlanjur Mengklik File APK Bodong? https://t.co/yuGJDIg162",
+        "confidence": 0.9568037480932082,
+        "platform": "x",
+        "date": "2023-07"
+      },
+      {
+        "text": "Bulan lalu sempat bongkarin apk undangan \ndan ini ada yang kena sampe 1.4 M 🙄",
+        "confidence": 0.9568004779624056,
+        "platform": "youtube",
+        "date": "2023-07"
+      },
+      {
+        "text": "Makasih ka soalnya saya baru banget dapet WA bermodus undangan pernikahan berbentuk APK dari orang gk di kenal     untung gk saya unduh APK nya😊",
+        "confidence": 0.9567863022061424,
+        "platform": "youtube",
+        "date": "2023-12"
+      },
+      {
+        "text": "Gimana ngeluarin apk kok aku nggak download apk kok ada ya di hp",
+        "confidence": 0.9566787809422742,
+        "platform": "youtube",
+        "date": "2025-10"
+      },
+      {
+        "text": "Apa yang Harus Dilakukan jika Terlanjur Mengklik File APK Bodong? #TempoTekno https://t.co/r9irYSNmHv",
+        "confidence": 0.9566328707642485,
+        "platform": "x",
+        "date": "2023-07"
+      },
+      {
+        "text": "Ini apk penipuan kah??? https://t.co/9JiQI7aky7",
+        "confidence": 0.9566068826360272,
+        "platform": "x",
+        "date": "2023-02"
+      },
+      {
+        "text": "Untuk orang awam emg lebih aman ios, karena ngga sebebas android install apk dari mana saja",
+        "confidence": 0.9566059680844362,
+        "platform": "youtube",
+        "date": "2023-09"
+      },
+      {
+        "text": "Kalau apk nya belum di install aman ya bang, soalnya ibu saya gak sengaja download file nya",
+        "confidence": 0.9565321880633275,
+        "platform": "youtube",
+        "date": "2024-05"
+      },
+      {
+        "text": "Jadi kalau baru klik APK, lgs didelete masih aman ya?Kalau klik pertama itu baru download app tp blm install ya?Jadi msh aman?",
+        "confidence": 0.9565123672768663,
+        "platform": "youtube",
+        "date": "2023-12"
+      },
+      {
+        "text": "Gue kalo lg download film bajakan pas download suka yg ke download bknnya .mp4 tp .apk langsung gue cancel",
+        "confidence": 0.9564255813928362,
+        "platform": "youtube",
+        "date": "2023-05"
+      },
+      {
+        "text": "Bang mohon dijawab, virusnua menginfeksi setelah kita install apk nya kan? Bukan saat kita download? Soalnya saya terlanjur download akan tetapi langsung saya cancel",
+        "confidence": 0.9563899836677822,
+        "platform": "youtube",
+        "date": "2023-09"
+      },
+      {
+        "text": "Kalau udah terlanjur klik gambar download apk tp belum selesai download, saya cancel gimana koh?? Apakah masih berbahaya...",
+        "confidence": 0.9563598614290073,
+        "platform": "youtube",
+        "date": "2023-07"
+      },
+      {
+        "text": "Ihhh bener bgt aku dapat uang juga gayssss setelah download apk ini + jual tanah bapak",
+        "confidence": 0.956343972092238,
+        "platform": "youtube",
+        "date": "2025-04"
+      },
+      {
+        "text": "Temen ku ada yang bikin apk virus buat matiin hp, apknya xxnx dan sejenisnya",
+        "confidence": 0.9562703531355283,
+        "platform": "youtube",
+        "date": "2023-02"
+      },
+      {
+        "text": "Lakukan langkah-langkah berikut jika sudah terlanjur mengklik file APK bodong yang membuat smartphone jadi bermasalah. https://t.co/kHNGMiYJMC",
+        "confidence": 0.9562330899662888,
+        "platform": "x",
+        "date": "2023-07"
+      }
+    ],
+    "judi_online_pinjol": [
+      {
+        "text": "Saya juga korban judol😢 dulu sebelum ada slot saya main di Poker tapi main masih ngotak masih di bawah 500 rb.tapi setelah kenal Slot gara² lihat temen pada menang akhirnya saya sempet ketagihan, andai saya tidak main Slot mungkin sekarang saya sudah punya mobil😭😭😭 emang dasar anjing😡😤👎 saya harap judol di berantas di Indonesia!!! #Terimakasih Bang Marcel dan Bang Ronald untuk penjelasannya🙏",
+        "confidence": 0.9922871222309368,
+        "platform": "youtube",
+        "date": "2024-12"
+      },
+      {
+        "text": "Saya masih muda udah kejebak judol dari 2020 ,tabungan saya habis 30jt ,hutang dimana mana ditotal nyampe 60jt motor kejual tanah ortu kejual😢sampe² saya kaya mau stres setiap malem cuma ngelamun,,dan alhamdulillah saya baru kali ini liat podcast ini bikin saya introspeksi diri dan mau berhenti judol,,tolong yang baru main .STOP JUDOL!! Bismillah dimudahkan untuk ngelunasi hutang²ku pengen bgt hidup normal kembali😢 JUDOL ANJINGG!!!",
+        "confidence": 0.9922825702732387,
+        "platform": "youtube",
+        "date": "2025-01"
+      },
+      {
+        "text": "Klw di kasih uang mau.. Klw suruh depo kagak mau... Slot bukan judi. Tpi penipuan... Kagak bklan menang judi slot. Karena algoritma slot di setting untuk memperkaya bandar. 1 banding 1000 Jadi jangan berharap menang jika main slot. 𝐒𝐀𝐘𝐀 𝐓𝐄𝐆𝐀𝐒 𝐊𝐀𝐍 𝐒𝐄𝐊𝐀𝐋𝐈 𝐋𝐀𝐆𝐈. 𝐒𝐋𝐎𝐓 𝐁𝐔𝐊𝐀𝐍 𝐉𝐔𝐃𝐈. (𝐓𝐀𝐏𝐈 𝐌𝐔𝐑𝐍𝐈 𝐏𝐄𝐍𝐈𝐏𝐔𝐀𝐍) Karena di slot Tdk akan ada yang namanya menang. Sampai kapan pun. Jika pun menang itu udah di setting sma bandar. ‼️‼️",
+        "confidence": 0.9922778641065223,
+        "platform": "youtube",
+        "date": "2025-01"
+      },
+      {
+        "text": "Alhamdulillahh,,,semenjak ada nya apa yang sering di katakan orang,,,apa itu judol,,,alias judi onlay,,,sekali pun saya tidak pernah main atau pasang nomor togel,,,karena bagi saya apapun itu judi,,,jika menang uang nya itu uang haram,,,apa lagi kalah,,sebanyak apa pun yang yang miliki pasti akan habis ludes tak tersisa,,",
+        "confidence": 0.9922634970045751,
+        "platform": "youtube",
+        "date": "2025-01"
+      },
+      {
+        "text": "Alhamdulillah saya sudah berhenti judol thn 2021 saya berhenti narkoba (sabu) otomatis berhenti judol krn narkoba(sabu) pasti sepaket dgn judol krn sabu pasti butuh kesibukan yg nyaman. klw sudah kena sabu main judolnya semakin betah dan gak perduli kalahnya berapa bakal bisa berhenti judol klw sudah tidak ada uang lagi atau efek sabunya sudah habis klw selama uang masih ada dan efek sabu masih ada gak bakalan berhenti main judol pengalaman pribadi saya yg bener2 bodoh",
+        "confidence": 0.9922618793627925,
+        "platform": "youtube",
+        "date": "2025-01"
+      },
+      {
+        "text": "stop judol saya adalah mantan pemain yang habis segalanya , tolong banget jangan kemakan sama iklan mereka yang menang sekian sekian, trus pesen saya jauhi orang\" yang main judol. karna racun sebenarnya adalah pemain judol itu sendiri , mungkin kalian lihat pas mereka menang, tapi kalian tidak tau berapa kalahnya dia , seperti saya. awalnya saya melihat teman saya main judol dan melihat beliau menang banyak, dari situlah awal mula kehancuran saya, DAN STOP PEMIKIRAN MAIN LAGI AH BALIKIN MODAL, IKhlaskan saja justru pemikiran itulah yang akan bikin kalian semakin hancur, tolong di pin kak marcel.",
+        "confidence": 0.9922573862725882,
+        "platform": "youtube",
+        "date": "2025-01"
+      },
+      {
+        "text": "Aq abis dikasih jp 2jt...njir malah pngen menang 10jt,akhirnya mnang 2jt abis..masih nambh 1juta modalnya.abis sudh..tai lah mmng judol..sakit hati gw am admin judol..padhl cantik lo adminnya,aq pikir aq kalh 1500 aq bs dpt wa admin yg cntik buat aq jadiin istri😢😢",
+        "confidence": 0.9922533909417912,
+        "platform": "youtube",
+        "date": "2024-12"
+      },
+      {
+        "text": "Y Allah berikan ke sadaran y Allah buat diriku dan teman2 kena judol,, subhanallah baru terasa ya Allah hancur impianku,,GK berani ngutang malah skrg bnyak utang gara2 judol sampe2 modal usaha jual bakso abis saya pakek main slot,,,,teman2 yg belum kenal judol sumpah lillahitaala demi Rasullullah,jangan di coba,,,",
+        "confidence": 0.9922495029520362,
+        "platform": "youtube",
+        "date": "2025-01"
+      },
+      {
+        "text": "Jangan smpai kalian coba2 judol gak ada yg namanya kalian main judi kalian akan kaya,bandar kaya kalian hancur kalian taruhan 5jt dia akan kasih kamu menang 7jt,kalian taruhan 7juta akan menang 10jt,stlh itu kalian pertaruhkan semua Kalian akan kalah,dan di situlah kalian gak akan terima minta uangnya balik lagi,dan dri situlah awal kehancuran kalian...sehancur2nya",
+        "confidence": 0.992247642256152,
+        "platform": "youtube",
+        "date": "2025-01"
+      },
+      {
+        "text": "Mkasih bang infonya aku sangat menyesal sekali sampek skrang dan aku sekarang ada jalan yg sesat .aku kalah terus main judol .aku dua kali hari raya ini gk prnah megang uang krna judol dan hutangpun banyak .alhamdulillah skrang tgl 22 maret 2025 ini aku ahiri aku iklaskan smua kekalahanku dri judol bismilla aku p3ngin tobat . Judol bamgsat emang bang",
+        "confidence": 0.9922411490320125,
+        "platform": "youtube",
+        "date": "2025-03"
+      },
+      {
+        "text": "alhamdulillah akhirnya youtuber terkenal membokar cara kerja Judol, terima kasih pesulap merah, ini konten edukasi yang bagus bagi negeri tercinta supaya gak main Judol, saya juga sebelum video ini di upload, sudah menjelaskan ke rekan kerja, teman, maupun kerabat kalau JUDOL itu sudah bikin banyak utang, Judi, dan juga Penipuan, sudah kasih pemahaman juga tetap aja menyangkal, entah memang IQ jongkok atau SDM nya jongkok tetep kekeuh main JUDOL",
+        "confidence": 0.992235747577707,
+        "platform": "youtube",
+        "date": "2025-01"
+      },
+      {
+        "text": "Alhamdulillah tahun 2021 saya kenal judol sampai akhirnya tahun 2022 saya dan istri sampai sempet mau cerai karena uang modal habis dipakai judol dan hutang dimana2, setelah berhenti ditahun 2022 alhamdulillah sampai saat ini saya tidak pernah lagi deposit apalagi buka situs judi yang membagongkan dan hutang saya bisa terlunasi keluarga kembali harmonis dan usaha kembali normal alhamdulillah jauhi judi apapun itu jenisnya jangan sampai dimanfaatkan yah semoga yang belum bisa berhenti judi bisa segera berhenti dan perbaiki perekonomiannya lagi, tidak ada yg kaya dari judi kecuali dia bandarnya",
+        "confidence": 0.992235473074743,
+        "platform": "youtube",
+        "date": "2024-12"
+      },
+      {
+        "text": "Sebelum nonton video ini aku sudah lama berhenti main judol krna aku adalah bodoh yg sudah menghabiskan uang bnyk hnya krna tergoda oleh iklan dn rayuan setan😭 , sblm terjermus jngn lah coba2 main judol krna menang itu bukan lah hoki tpi di kasih , hri ini kmu menang 1jt besoknya kmu bisa kalah 2 jt , klo mau menang stop bermain judol 😢",
+        "confidence": 0.9922345854604212,
+        "platform": "youtube",
+        "date": "2025-01"
+      },
+      {
+        "text": "KALO UDAH PENYAKIT MAH GAK BAKAL SEMBUH, ORANG DISINI KEBANYAKAN KAYA GINI MEREKA HANYA UNTUNG DI AWAL RUGI DI AKHIR. TAPI BODOHNYA MEREKA YANG JUDOL LALU DEPO GAK SADAR AKAN ITU. SUSAH UNTUK DI BERI TAU, NANTI KALO UDAH BANYAK UTANG GARA GARA BUAT DEPO BARU TAU RASA DAN KITA SEBAGAI ORANG YANG PERNAH MENASIHATI HANYA BISA TERTAWA MELIHAT MEREKA SUDAH MISKIN TAMBAH MISKIN GARA GARA JUDOL",
+        "confidence": 0.9922329913831869,
+        "platform": "youtube",
+        "date": "2025-06"
+      },
+      {
+        "text": "@yudhaanggara1061 pemain pasti ngerasain hal itu. gua juga pernah dikondisi itu tpi alhmdulillah, gua masih bisa berjuang dngan hasil gua sndiri untuk ngejauh dri hutang. hutang gua gegara judol cuma 500k , itu pun lunasnya dri hasil judol jga dan alhamdulillah, dalam beberapa bulan ini, gua udah ngejauh dr deposit. stiap ada duit, pasti gua gunain untuk makan.",
+        "confidence": 0.9922319921819353,
+        "platform": "youtube",
+        "date": "2025-01"
+      },
+      {
+        "text": "Gara2 judol gue udah rugkad hampir 1/2 M. Pinjol dan hutang dimana2, udah ngrasaim dampak luar biasa di kehidupan kluarga, masyarakat, bahkan smp ninggalin kampung halaman. Smp saat ini lagi berjuang keras untuk stop judol tapi masih berat krn lingkungan dan circel smua judol. Hanya bisa dirasakan bagi pecandu dan sangat susah nerima masukan dari orang lain. Tetap semangat untuk stop judol demi masa depan yg lebih baik",
+        "confidence": 0.992230042079639,
+        "platform": "youtube",
+        "date": "2025-01"
+      },
+      {
+        "text": "Alhamdulillah dulilah., setelah sekian lama saya penasaran sama orang\" yg main judol ., akhirnya saya daftar akun dan saya cobain., langsung depo 180k ., setelah itu langsung kalah,. itu adalah pertama & terakhir saya lakukan di dalam hidup saya, dan saya pada dasarnya tidak suka gambling., fuckkkk judul i hate u,.",
+        "confidence": 0.9922291289490421,
+        "platform": "youtube",
+        "date": "2024-12"
+      },
+      {
+        "text": "gua ada cerita bang wkt masuk ke pesantren dewasa,temen2 gua di situ dari berbagai background,ada yg pemake narkoba,kecanduan judol,sama peminum,alhamdulillah yg pemake sama minum2 udh ada progres berkurang dan bahkan ada yg sudah sampe berenti make narkoba tapi yg gua heran memang kalo buat yg kecanduan judol ampe skrg gua rasa nggk ada perubahan soalnya masih suka minjem2 duit ke tmn2 gua dan tmn2 gua sendiri udh berenti dengan masalah mereka masing2 (yg dulu peminum dan make narkoba), gokil emg dah judol wkwkkw",
+        "confidence": 0.9922290229951701,
+        "platform": "youtube",
+        "date": "2025-01"
+      },
+      {
+        "text": "Yaallah 😊.baru tau ini aku bg marcel.bner2 prcaya klo ini😊. Makasi bnyak bg 🥰.sudah bongkar smua penipuan judol. Sehat selalu bg ya🥰.makasihhh bnyak. Saya akhiri pngalam saya main di judol di menit ini detik ini🥰..sehat selalu bg🥰..nnti tak share aku ambil vidio nya buat di bagikan teman2 boleh ya bg..pengen nyelametin temen2 ku bnyak yg terjebak judol🥰🙏",
+        "confidence": 0.9922281733248637,
+        "platform": "youtube",
+        "date": "2025-01"
+      },
+      {
+        "text": "mau cerita sedikit, sebelum video ini di upload gua pemain judol dan udah habis banyak, dan awal video ini di upload gua langsung tonton dan gua langsung sadar bahwa judol itu penipuan otomatis langsung berhenti, tapi setelah beberapa bulan gua tergoda lagi untuk main dan habis banyak lagi, dan sekarang gua nonton video ini lagi biar sadar lagi, gua janji gua akan berhenti mulai detik ini. semangat untuk kalian pejuang berhenti judol",
+        "confidence": 0.9922258488745437,
+        "platform": "youtube",
+        "date": "2025-11"
+      },
+      {
+        "text": "SAYA TETMASUK SALAH SATU KORBAN JUDOL. ALHAMDULILAH SAYA UDH BERHENTI DARI JUDOL SETAHUN YG LALU. SAYA KALAH -+ SEKITAR 450 JT,PADAHAL ITU MAIN JUDOL CUMA SETAHUN SETENGAH. ADA YG LEBIH PARAH LAGI YAITU TETANGGA SAYA,DIA KALAH SAMPAI 1,5M,JUAL MOBIL TANAH SAMA GROSIR TEMPAT DIA USAHA. MARI KAWAN KITA JAUHI YG NAMA NYA JUDOL APAPUN ITU. KARENA JUDOL MEMBUAT KITA MISKIN BUKAN BUKIN KITA KAYA.",
+        "confidence": 0.9922213664421417,
+        "platform": "youtube",
+        "date": "2025-01"
+      },
+      {
+        "text": "Boro² mau berhenti, banyak temen² saya kecanduan slot padahal udah saya omongin jelasin baik² tpi tetep aja malah udah beberapa temen saya yg sampe jadi orang gila, bundir gara² semua hartanya ludes dan hutang dimana². Udah jelas banget itu loh didepan mata jadi tumbalnya slot tapi tetep aja karna udah ketagihan dan pernah di kasih menang banyak jadi ga bakalan stop... Kecuali yg bisa bikin stopnya kematian nya",
+        "confidence": 0.992218750551447,
+        "platform": "youtube",
+        "date": "2026-04"
+      },
+      {
+        "text": "Kalau kalian tidak pengen hidup kaliang sengsara jgn sesekali mendekati judi, ini pengalamanku habis puluhan juta sampai2 pinjol karena kalah di judol, tapi baiknya allah masih ngasih kesempatan aku memperbaiki semuanya yg awal nya hidupku berantakan rusak gk tau arah gara2 judol dan minum2an sekarang aku sadar aku bukan menambah beban kepada diri ku sendiri tapi kepada keluarga terdekat ku termasuk org tua ku",
+        "confidence": 0.9922179399111547,
+        "platform": "youtube",
+        "date": "2024-04"
+      },
+      {
+        "text": "Aku gara2 judol hidup susuh😭😭smpai detik ini hutang uda 12 jt gk lunas2.. Uda berhenti hampir 6 bulan. Semoga lancar dengan hidup baru.. Tinggal pusing lunasin hutang dari mana cari uang nya.. Karna kondisi uda berkeluarga., jadi susah buat lunasin hutang. 😢😢",
+        "confidence": 0.9922162814207753,
+        "platform": "youtube",
+        "date": "2024-12"
+      },
+      {
+        "text": "Temen gw ada yg nyandu maen Zeus. Percumah sih yg udah kecanduan itu, emang harus ngerasain dulu hancur sehancur-hancurnya. Susah tobatnya bjir klo udah nyandu banget. Menurut gw sih hanya ada 2 tipikal org yg susah di kasih nasihat. Kesatu, orang yg sedang di mabuk cinta. Kedua, org yg sedang kecanduan judol.",
+        "confidence": 0.99221310067298,
+        "platform": "youtube",
+        "date": "2024-12"
+      },
+      {
+        "text": "saya berani jamin seluruh komentar dsini pasti masih ada yg main walau mereka sbnrnya sudah nonton video ini,,sbnrnya judol bisa hilang d Indonesia.asalkan pemerintah nya bergerak...kalu cuman pemerintah makan hasil uang sogok dari judol sampe kiamat ga bakalan berhenti situs judi online nya😂 . terutama pemerintah dan kepolisian Indonesia...kalian tau lah pemerintah Indonesia gila uang",
+        "confidence": 0.9922094021074359,
+        "platform": "youtube",
+        "date": "2025-04"
+      },
+      {
+        "text": "Sumpah Demi apapun baru kali ini gw liat podcast ngena banget sama diri gw, pertama kali gw kenal sama judol dari tahun 2022 dan waktu detik ini gw baru sadar bahwa judol merusak semuanya dan gw sangat² berterima atas ada nya podcast ini pikiran gw jdi lebih jernih. Sekali lagi terimakasih banyak 🙏hari ini dan kedepan hidup gw bisa lebih baik dari sebelumnya Aamiin ya Alloh Yarobal alamin. 😊",
+        "confidence": 0.9922067219793954,
+        "platform": "youtube",
+        "date": "2026-04"
+      },
+      {
+        "text": "aku Uda pernah nasehatin Abang abangan kalo itu (judol) gabakal bisa menang, karena itu bisa di atur yang buat program nya, tapi malah mereka ngeyel dan ga percaya kalo bisa diatur, dan padahal temen aku yang paham it udah bilang kalo dia juga bisa bikin web kekgitu, malah tetep ngeyel,😂 emang batu ya bang😂",
+        "confidence": 0.9922066265967562,
+        "platform": "youtube",
+        "date": "2025-07"
+      },
+      {
+        "text": "saya korban judol parah,,,brulang-ulang melakukan kesalahan,,boongin istri,,berulang kali jg di maafin istri... dengan lihat podcast ini saya berjanji pada diri saya sendiri,,saya akan berhenti judol dan lbih manyayangi istri dan keluarga saya...do,a kan saya bisa istiqomah",
+        "confidence": 0.9922042994975908,
+        "platform": "youtube",
+        "date": "2025-02"
+      },
+      {
+        "text": "Judi gini cuma di awal aja dikasih menang ibaray buat daya tarik psikologi dari bandar ke player. Saya jujur aja pernah nyoba judol, awalnya nyoba\" bet 100k win 3jt langsung tarik tunai, delete akun 😂, kalo diterusin yakin dah 3jt cuma beberapa jam habis😂😂 Udahlah gada player judol tolol yang kaya selain bandar, dan jangan kepikiran jadi bandar juga, gak berkah duitlu",
+        "confidence": 0.992204038644262,
+        "platform": "youtube",
+        "date": "2025-01"
+      },
+      {
+        "text": "Saya kemarin pernah coba judol. Cuma 10K aja. Dan berjanji ke diri sendiri \"Kalau menang sudah, berhenti. Kalo kalah juga sudah, berhenti\". Hasilnya saya duit 10k itu turun 5k lalu naik lagi ke 10k. Coba lagi jadi 0k Dan saya langsung tutup situs judol itu, gak lagi lagi. Sudah merasakan sendiri kalau judol itu bikin rugi.",
+        "confidence": 0.99220088033384,
+        "platform": "youtube",
+        "date": "2026-05"
+      },
+      {
+        "text": "Gue bodoh kali yaa 😂😂😂😂😢😢😢 mending uang 50 jt gue dri 2023 smpe 2025 gue main dan rungkad , jadi bndar aja 😂😂😂 dari pada jadi member kalah terus wkkwkkkw 😂😂 bodoh aku, tpi entah knap blum bisa move smpe skrng dri judol😢 berharap admin atau bandar ngantuk kekekek😂😂😂😂",
+        "confidence": 0.992200114440444,
+        "platform": "youtube",
+        "date": "2025-09"
+      },
+      {
+        "text": "Alasan judi online menjadi jalan satu-satunya seseorang., Lingkungan, keuangan, Solusi \"karna efek dari judi online lebih dari narkoba, jika hanya pemblokiran situs tidak akan berpengaruh Dan .Badan REHABILITASI kecanduan JUDOL seharusnya dibuat \"Banyak faktor yang membuat seseorang terjerat oleh judol salah satunya ekonomi .Pemerintah seharusnya memberikan lapangan pekerjaan yang merata dan tepat sasaran untuk orang orang yang rentan masuk ke dalam judol \"Bahkan dari sekian anak sekolah sudah beberapa terperangkap dalam judi online . Membuat kegiatan sekolah yang lebih menarik dan menyenangkan agar siswa tidak terjatuh dalam hal hal negatif (judol)",
+        "confidence": 0.9921997224203002,
+        "platform": "youtube",
+        "date": "2025-01"
+      },
+      {
+        "text": "Baru kali ini edukasi yg membuat saya sadarr, setelah rungkat abis abisan, niat nonton ytb buat tenangin diri ,malah lwt podcast ini, dan sangat meng edukasi sekali bagi saya dan setelah liat podcast ini saya berusaha iklas dan berenti main judol mulai hari ini, terima kasih byk bg, smoga podcast ini jadi ladang pahala buat kalian💪🏻",
+        "confidence": 0.9921996068465845,
+        "platform": "youtube",
+        "date": "2025-01"
+      },
+      {
+        "text": "Gw judol Depo kecil dr 20 ribu smpe 50 ribu buat main iseng aja .eh sebulan gw hitung\" udh 2 juta lebih total nya ..sebelum terlambat lebih baik aq hentikan skrg .. Bner mana ada judol itu bikin lu kaya itu hanya sebuah permainan dan penipuan ..klo bandar mau ngasih lu hari ini menang lu menang ..tp klo g jgn harap ..",
+        "confidence": 0.9921957545069456,
+        "platform": "youtube",
+        "date": "2025-01"
+      },
+      {
+        "text": "Susah ngasih tau pemain judol ini, persis kyk nyuruh berhenti perokok, lu mau bilangin ini penipuan, lu tunjukin ribuan video penipuan judol juga dia pasti bilang\"ini ada caranya biar menang\"sama aja kyk perokok bilang\"buktinya ada org yg ngerokok sampe umur 80 tahun sehat² aja\", pemain judol ini kalo dia kalah bukannya berhenti malah makin gila buat main lagi, apalagi kalau udah kalah besar, otomatis pikirannya minimal gimana bisa balikkan modalnya dalam waktu singkat, yg ujung2nya ya tetap kalah juga",
+        "confidence": 0.9921950520291383,
+        "platform": "youtube",
+        "date": "2025-01"
+      },
+      {
+        "text": "Iya bang saya udh jalan 3bln main judol mahyong sama bonty alhasil setiap saya kalah saya catat di buku sudah lebih dari 15 jt wd baru 6 kali itu pun gak pernah di atas 1jt wd nya Paling besar 600 /700 rb an Pesan saya yang main judi online di situs mas77toto atau disitus lain mending kita tobat kerna di vidio bang marsel ini sudah terungkap rasa penarasan kita selama ini saya ucapkan terima kasih banyak buat bang marsel dan abng yang sudah membongkar kebodohan saya selama ini ...",
+        "confidence": 0.9921918536496431,
+        "platform": "youtube",
+        "date": "2025-01"
+      },
+      {
+        "text": "gw admin judol bang yang proses deposit sama wd , sampe saat ini pun gw masih kerja , penjelasan di atas kurang tepat bang , karna yang di tunjukin di atas biasa di pake buat narik member (marketing) , gw sebagai admin judol sangat tidak menyarankan untuk bermain slot (jika ingin berjudi) karna untuk algoritma nya sangat tipis 0,04%",
+        "confidence": 0.9921889539005512,
+        "platform": "youtube",
+        "date": "2025-11"
+      },
+      {
+        "text": "Stop JUDOL!! saya korban judol apa yang ada semua nya habis. buat yang belum pernah nyoba jangan di cobain buat yang masih main stop biar kalian gak makin gila. saya baru 1 tahun main judol udah habis hampir 1m nyata sampe keluarga dan orang terdekat khawatir atas apa yang udah ku lakuin. penyakit paling mematikan adalah fikiran ketika kita kalah bermain judi itu jadi bahan fikiran dan bisa membuat kita gila. KEMENANGAN TERBESAR SEORANG PENJUDI ADALAH KETIKA DIA BERHENTI BERMAIN. STOP JUDOL!!!",
+        "confidence": 0.9921886140317103,
+        "platform": "youtube",
+        "date": "2025-06"
+      },
+      {
+        "text": "Alhamdulillah sekarang gw dah Tobat,kekalahan gw di judol ±15jt...sama rumah tangga gw ancur. entah itu lu main di judi slot ataupun live casino,gw yakin lu ga bakal menang,soalnya gw udah ngalamin semuanya. yg belum tobat cepet tobat bro...semakin di lanjut lu bakaal semakin ancuuurrr...",
+        "confidence": 0.9921877468225359,
+        "platform": "youtube",
+        "date": "2025-02"
+      }
+    ],
+    "peretasan_pencurian_identitas": [
+      {
+        "text": "Tren serangan siber Indonesia, dari data yang bisa diverifikasi:\n2021 → 1,6 miliar anomali serangan (BSSN)\n2022 → Lonjakan ransomware +38% dibanding 2021\n2023 → 12 juta kasus kebocoran data\n2024 → Kerugian Rp18 triliun, naik 30% dari 2023\n\nIni bukan tren. Ini eskalasi.",
+        "confidence": 0.9867430211361461,
+        "platform": "x",
+        "date": "2026-06"
+      },
+      {
+        "text": "ada jasa hack akun gasi??😭😭 #zonauang ????😭😭 plis yang bisaaaa cman buat login trus hapus 1 tweet itu 😭😭",
+        "confidence": 0.9867174478046244,
+        "platform": "x",
+        "date": "2024-08"
+      },
+      {
+        "text": "Ngomong-ngomong LEAK yang lagi rame, ni aku kasih info kebocoran data yang sudah ada sejak 2023-2026 yang tercatat dalam berita.\n\n🚨3 tahun terakhir, Indonesia jadi salah satu negara dengan kasus kebocoran data terparah di dunia. 👇\n\n🔥 2023 – TAHUN KEKACAUAN\n🛡️ Dukcapil https://t.co/BUA8SfMK1k",
+        "confidence": 0.9867049113595451,
+        "platform": "x",
+        "date": "2026-04"
+      },
+      {
+        "text": "@zanatul_91 soal data, ini beberapa kasus kebocoran data besar sampai 2024:\r\n- 337 juta data warga di direktorat jenderal dan dukcapil kemendagri (2023)\r\n- 6 juta data npwp (2024)\r\n- 15 juta data nasabah bank syariah indonesia (2023)\r\n\r\nhttps://t.co/zPi9DrbstH",
+        "confidence": 0.9866959951381578,
+        "platform": "x",
+        "date": "2026-05"
+      },
+      {
+        "text": "infokan jasa hack akun sih anjing aku stress banget taik😭😭😭😭😭😭😭😭😭😭 https://t.co/cWAt8nWKbN",
+        "confidence": 0.9866791753425446,
+        "platform": "x",
+        "date": "2024-04"
+      },
+      {
+        "text": "🚨 GitHub Diretas! 3.800 Repositori Internal Bocor Lewat Ekstensi Visual Studio Code Berbahaya\n\nGitHub secara resmi mengonfirmasi kebocoran data internal pada Selasa (20/5/2026) setelah perangkat seorang karyawan dikompromikan melalui ekstensi Visual Studio Code yang telah https://t.co/2OWwA10vB0",
+        "confidence": 0.9866791134169244,
+        "platform": "x",
+        "date": "2026-05"
+      },
+      {
+        "text": "ShinyHunters dilapor mengeluarkan amaran akhir kepada Rockstar untuk membayar wang tebusan sebelum Selasa, 14 April 2026, atau berdepan risiko kebocoran data secara besar-besaran di dark web.\n\n#AWANInews #AWANI745\n\nhttps://t.co/Dnyb0PTdlX",
+        "confidence": 0.9866450317875108,
+        "platform": "x",
+        "date": "2026-04"
+      },
+      {
+        "text": "ada jasa hack ig ga ya? buat ig ku yg udah lamaaaa bgt lupa pw 😭😭😭 #zonauang\nlgsg tlg dm yap kl bisaa",
+        "confidence": 0.9866270584937881,
+        "platform": "x",
+        "date": "2024-03"
+      },
+      {
+        "text": "Ada Isu Kebocoran Data di Dark Web, Pakar Siber: Jangan Panik Berlebihan!\n\nKawan Inilah, isu kebocoran data yang menyeret sejumlah nama institusi perbankan belakangan ini memang memicu kekhawatiran. Namun, praktisi dunia digital sekaligus CEO Veda Praxis, Syahraki Syahrir (Raki), https://t.co/JXKeq2GVpz",
+        "confidence": 0.9866182670585842,
+        "platform": "x",
+        "date": "2026-05"
+      },
+      {
+        "text": "Berikut beberapa \"minus\" yg bikin Bitcoin maxi menghindari Ledger.👇\n\n1. Ledger pernah terjadi kebocoran data!\nYupz, kalian ga salah baca: kebocoran data/data breach. Yg bocor bukan seed phrase pengguna, karena pihak Ledger pun ga tau seed phrase penggunanya. Tapi tetep aja,",
+        "confidence": 0.9866149502957775,
+        "platform": "x",
+        "date": "2026-06"
+      },
+      {
+        "text": "@dapur_dani @LambeSahamjja Bener banget! Sensus 10 tahunan itu emang agenda resmi dunia (rekomendasi PBB) yang diatur UU No. 16 Tahun 1997, jadi juklaknya pasti jelas.\n\nHanya saja banyak yang udah gak nyaman dg kebocoran data dr kasus lainnya jadinya ya cukup bertanya2 mereka 🙏",
+        "confidence": 0.986604806313976,
+        "platform": "x",
+        "date": "2026-06"
+      },
+      {
+        "text": "ada yang buka jasa hack ig ga yaa????😭😭😭😭 perlu bgttt help (buat hack akun sndiri kok)",
+        "confidence": 0.9866024436582287,
+        "platform": "x",
+        "date": "2024-05"
+      },
+      {
+        "text": "@stevenhud3 @LazadaID @JNE_ID Hai kak Steven. Mohon maaf kak, mengenai kesamaan data dan dugaan kebocoran data customer masih harus diinvestigasi lebih lanjut ya kak. Kami selalu siap untuk melayani apabila kakak memiliki pertanyaan terkait kiriman kakak dan layanan JNE. Untuk informasi yang kaka sampaikan",
+        "confidence": 0.9865709760307216,
+        "platform": "x",
+        "date": "2026-04"
+      },
+      {
+        "text": "@blossompeachie Menarik ini. Weverse mmg punya \"dosa\" juga sampai ke masalah kebocoran data pribadi krn ulah karyawan mrk sendiri.\n\nMoga2 saja Spotify bisa jadikan ini catatan buat mereka tdk mengulangi spt Weverse.",
+        "confidence": 0.9865691770352523,
+        "platform": "x",
+        "date": "2026-05"
+      },
+      {
+        "text": "5/ Mengapa Ini Penting?\n\nMasalah utama yang dipecahkan adalah: percakapan personal pengguna selama ini mengalir melewati layanan pihak ketiga, sehingga rentan terhadap kebocoran data. Sebagai contoh nyata, platform AI companion https://t.co/PuVGKm0X35 mengalami kebocoran data https://t.co/ZNG8DkKbYQ",
+        "confidence": 0.9865586372658299,
+        "platform": "x",
+        "date": "2026-04"
+      },
+      {
+        "text": "Baca di sini: https://t.co/5pc9dz8oDn\n\nIsu dugaan kebocoran data nasabah Bank Central Asia (BCA) ramai diperbincangkan di media sosial dalam beberapa hari terakhir. Dalam sebuah unggahan disebutkan bahwa pelaku ancaman siber (threat actors) mengeklaim telah memiliki sekaligus https://t.co/jCTw5fTa4m",
+        "confidence": 0.986547758300642,
+        "platform": "x",
+        "date": "2026-05"
+      },
+      {
+        "text": "@Raditama0210 Ngebayanginnya aja dah pelik. Kaan, kf21 blok 3 (gen 5) pastinya jadi lawan potensial bagi su57e user di negara lain karena turki lawan potensial russia, korsel lawan potensial russia dan korut. Kebocoran data strategis di indonesia kalo memiliki ketiganya tentu jd concern",
+        "confidence": 0.9865456369900358,
+        "platform": "x",
+        "date": "2026-04"
+      },
+      {
+        "text": "(Part-9)\nyang seharusnya tidak boleh dibaca. Seperti metode saya, jika seperti itu ya seberapa profesionalnya orang ketika mereka sudah membaca, melihat, mendengar, maka \"itu bisa diaktifkan ya\" dan ya terjadi kebocoran data. Jika terjadi kebocoran data maka hilangnya kepercayaan",
+        "confidence": 0.9865272597259689,
+        "platform": "x",
+        "date": "2026-06"
+      },
+      {
+        "text": "MK menggelar sidang perbaikan permohonan mengenai Pasal 62 ayat (2) UU Pelindungan Data Pribadi (UU PDP) untuk Permohonan Nomor 133/PUU-XXIV/2026.\n\nPara Pemohon menyampaikan alat bukti tambahan terkait dugaan kerugian akibat risiko kebocoran data pribadi, dengan menyinggung kasus https://t.co/gJ1dKsdJ87",
+        "confidence": 0.9865184371183451,
+        "platform": "x",
+        "date": "2026-05"
+      },
+      {
+        "text": "Bukan Sekadar Film Alien\n\nBerbeda dari E.T. the Extra-Terrestrial atau Close Encounters of the Third Kind yang penuh wonder dan rasa kagum, Disclosure Day tampaknya bermain di wilayah ketidakpercayaan publik, kebocoran data, whistleblower, dan paranoia institusional.\n\nGuardian https://t.co/FoCismLxyZ",
+        "confidence": 0.9865112694873858,
+        "platform": "x",
+        "date": "2026-05"
+      },
+      {
+        "text": "IT 1,2T ni bos🤫😂\n\n⚠️Dugaan Kebocoran Data Besar Badan Gizi Nasional (BGN). \n\nKlaim data 1,1 juta petugas SIPGN-SIPSMO (sistem Program Makan Bergizi Gratis) bocor &amp; dijual di dark web seharga $325.\n\nData yang diklaim bocor: nama, alamat, nomor HP, email, tgl lahir, no SK, honor,",
+        "confidence": 0.9864928821418747,
+        "platform": "x",
+        "date": "2026-05"
+      },
+      {
+        "text": "@grok @ojkindonesia @bank_indonesia @grok jelaskan, dari mana pelaku bisa tahu detail kartu seperti nomor kartu, CVV dan expired date, sementara kartunya masih tersegel dan belum pernah dibuka? Apakah bisa aktivasi dan transaksi kartu kredit tanpa data-data tersebut? Apakah mungkin ada indikasi kebocoran data",
+        "confidence": 0.9864639682941254,
+        "platform": "x",
+        "date": "2026-06"
+      },
+      {
+        "text": "@ucoksugiantom @JNE_ID @tokopedia Mengenai kesamaan data dan dugaan kebocoran data customer masih harus diinvestigasi lebih lanjut ya kak. Kami turut menyesal atas kejadian ini, semoga tidak terjadi lagi di kemudian hari ya kak. Himbauan dan tips untuk menghindari penipuan bisa kakak lihat di channel tiktok dan",
+        "confidence": 0.9864529586601288,
+        "platform": "x",
+        "date": "2026-05"
+      },
+      {
+        "text": "@hidsan_kp @TokopediaCare @JNE_ID Hai kak Hidsan, maaf atas ketidaknyamanannya ya kak. Mengenai kebocoran data di JNE, Management JNE masih melakukan review dan koordinasi dengan pihak terkait untuk kebenaran informasinya. JNE senantiasi menjaga dengan baik data-data pelanggan. Jika kakak sdg tunggu paket, mohon",
+        "confidence": 0.9864512841298845,
+        "platform": "x",
+        "date": "2026-04"
+      },
+      {
+        "text": "@Jateng_Twit Fakta: 2024 aja ada 5+ kasus kebocoran data besar dari instansi negara. 💻\nBPS suruh percaya \"data aman dan gak buat pajak\". 🤡\nPDP Act udah disahkan, tapi implementasinya? Masih nol besar. 🦗",
+        "confidence": 0.986447529815302,
+        "platform": "x",
+        "date": "2026-06"
+      },
+      {
+        "text": "@NgkongRoses @prabowo Kalau nasa aja  dia bisa nemu lemah .harusnya dia bisa donk di sewa kenapa negara indonesia sering alami kebocoran data. \nDan selain dia sebenarnya banyak juga pasti banyak warlok yg jago beginian \n\nSekarang tinggal niat pemerintah apa emang mau diperbaiki / dibiarkan saja",
+        "confidence": 0.9864352225808284,
+        "platform": "x",
+        "date": "2026-04"
+      },
+      {
+        "text": "Meskipun macet, memangnya apa yg diurus prabowo sehingga memerlukan akses cepat? Kayak yg diurus masalah PLT nuklir, kebocoran data militer, atau ngurus tender pembuatan rudal jelajah anti kapal ke perusaan swasta lokal aja.\n\nKalau cuma ngurus MBG, kayaknya naik gerobak juga",
+        "confidence": 0.9864278740633221,
+        "platform": "x",
+        "date": "2026-05"
+      },
+      {
+        "text": "Kementerian Komunikasi dan Digital (Komdigi) tengah menjadi sorotan tajam setelah munculnya kritik pedas dari Riot Games dan para praktisi keamanan siber. Permasalahannya mulai dari kebocoran data yang berulang, sistem yang masih manual, hingga minimnya jumlah SDM ahli.\n\nKondisi https://t.co/zJjkzHkHOO",
+        "confidence": 0.986425436899383,
+        "platform": "x",
+        "date": "2026-04"
+      },
+      {
+        "text": "IGRS ternyata masih banyak kurangnya:\n\n&gt; Media luar negeri sudah mulai notice kebocoran data, game kaya 007 dan Echoes of Aincard udah jadi korban\n\n&gt; Salah satu orang yang ngurusin rating di Riot Games bilang IGRS itu timnya kecil dan masih serba manual, bahkan pake Google Drive https://t.co/A3V0kukTRm",
+        "confidence": 0.9864059844333114,
+        "platform": "x",
+        "date": "2026-04"
+      },
+      {
+        "text": "Contoh kebocoran data yang kami peroleh dan sudah kami sensor\n\nIngat kebocoran data ini bisa terjadi ke siapa saja.  Dan sangat memprihatinkan!!!\n\nMohon atensinya:\n@BPJSKesehatanRI \n@kemendagri https://t.co/kbRT9PvikC",
+        "confidence": 0.9863984525348384,
+        "platform": "x",
+        "date": "2026-06"
+      },
+      {
+        "text": "Dalam kegiatan ini, peserta dikenalkan pada berbagai ancaman digital yang sering terjadi, seperti penyebaran hoaks, penipuan online, peretasan akun, hingga kebocoran data pribadi akibat kurang waspada saat menggunakan media sosial maupun aplikasi digital. 💻⚠️",
+        "confidence": 0.9863976810297985,
+        "platform": "x",
+        "date": "2026-05"
+      },
+      {
+        "text": "@esya7 (1/2) Hi kak Esya, sekali lagi maaf atas hal tsb, terkait kebocoran data di JNE, Management JNE masih melakukan review dan koordinasi dengan pihak terkait untuk kebenaran informasinya. Thanks ^Ola",
+        "confidence": 0.9863913821499041,
+        "platform": "x",
+        "date": "2026-04"
+      },
+      {
+        "text": "@chul3x @JNE_ID Mohon maaf kak Nasrul. mengenai kesamaan data dan dugaan kebocoran data Customer masih harus diinvestigasi lebih lanjut ya kak. Kami pastikan kiriman kakak dalam kondisi aman. Kami selalu siap untuk melayani apabila kakak memiliki pertanyaan terkait kiriman kakak dan layanan JNE.",
+        "confidence": 0.9863878997621693,
+        "platform": "x",
+        "date": "2026-06"
+      },
+      {
+        "text": "@youngdae_stiny @txtdarigajelas Nextnya langsung bales aja tanya dia divisi apa ya kak, saya karyawan lazada. FYI lazada itu systemnya perlayer kak, dan kebocoran data terjadi karna pihak 3pl ya 🙏",
+        "confidence": 0.9863662751746008,
+        "platform": "x",
+        "date": "2026-05"
+      },
+      {
+        "text": "plisss ada kah jasa hack akun ig yang trusted 😭😭😭\n#zonauang #zonaba #zonabu",
+        "confidence": 0.986359401152479,
+        "platform": "x",
+        "date": "2024-10"
+      },
+      {
+        "text": "@meamoers @Telkomsel @byu_id tolong sebagai provider hati hati dalam kebocoran data nomor pengguna, soalnya yg kayak gini bisa diperjual belikan. Pengguna sudah hati hati tapi gampang banget kebocoran data yg menyebabkan kerugian https://t.co/p4o4mvgodp",
+        "confidence": 0.9863578405130506,
+        "platform": "x",
+        "date": "2026-04"
+      },
+      {
+        "text": "@Olikotor_ @farasalsabilla anak atau cucunya pernah ada yg pake gak nih, kebocoran data gini kasian bgt, semoga bukan dari keluarga yang pake datanya, tapi kalo bukan keluarga berarti sistem kebocoran data udh parah bgt",
+        "confidence": 0.9863463473977526,
+        "platform": "x",
+        "date": "2026-06"
+      },
+      {
+        "text": "𝙎𝙚𝙡𝙖𝙢𝙖𝙩 𝘿𝙖𝙩𝙖𝙣𝙜 𝙙𝙞 𝙀𝙧𝙖 \"𝙋𝙚𝙣𝙜𝙖𝙬𝙖𝙨𝙖𝙣 𝙄𝙡𝙚𝙜𝙖𝙡\" 💀\n​Dulu dikritik dibalas argumen. Sekarang dikritik dibalas:\n​Rekayasa gerakan palsu (\"BEM Bersatu\" KW)\n​Pemasangan GPS pelacak di mobil aktivis\n​Kebocoran data pribadi dari pihak yang punya akses hukum https://t.co/VMIT5GNhnm",
+        "confidence": 0.9863457168048625,
+        "platform": "x",
+        "date": "2026-06"
+      },
+      {
+        "text": "@mwld_agng @JNE_ID Hai kak. Mengenai kesamaan data dan dugaan kebocoran data Customer masih harus diinvestigasi lebih lanjut ya kak. Kami pastikan Kiriman dalam kondisi aman. Kami selalu siap untuk melayani apabila kakak memiliki pertanyaan terkait kiriman kakak dan layanan JNE. Untuk informasi",
+        "confidence": 0.9863456152701959,
+        "platform": "x",
+        "date": "2026-05"
+      },
+      {
+        "text": "JAWABAN DARI TIM BIMA\n\nIzin melaporkan terkait isu kebocoran data pada platform BIMA yang saat ini beredar di media sosial (X dan Threads).\n\nBerdasarkan hasil penelusuran tim BIMA:\n- Konten yang beredar merupakan data lama yang saat ini kembali diangkat (repost), bukan kejadian",
+        "confidence": 0.9863447014564655,
+        "platform": "x",
+        "date": "2026-04"
+      }
+    ],
+    "deepfake_penipuan_ai": [
+      {
+        "text": "⚠️Sisi keji fitnah dajjal AI deepfake, muka² artis 'keyP0P' 'BP' yg ditransform ke adegan² video 'P★rn .. ini sangat mengerikan... Allah SWT melindungi Perempuan dari fitnah dajjal yg nyata & mengerikan, berupa perintah. Semoga anak-anak indonesia, keluarga kita, anak-anak kita (Perempuan) diLindungi Allah SWT dari kejinya Fitnah Dajjal melalui AI. Naudzubillahimindzalik.",
+        "confidence": 0.9869577567032871,
+        "platform": "youtube",
+        "date": "2025-06"
+      },
+      {
+        "text": "Gue belom pernah sih ngeliat video deepfake give away atau semacamnya tapi sempet seliweran iklan-iklan jualan yang pake deepfake AI. Yang paling sering itu obat sendi sama susu lansia 😂. Oh iya, bahkan salah satu E-commerce lokal juga pake deepfake AI loh. Dia nyomot video influencer china biasanya.",
+        "confidence": 0.9866306988479173,
+        "platform": "youtube",
+        "date": "2025-06"
+      },
+      {
+        "text": "@deepseek_ai 📷 DEMOKRASI &amp; ETIKA TEKNOLOGI \n\n(16/50)  \n\nDeepfake &amp; AI-generated content akan membanjiri pemilu 2030. Hoaks jadi senjata pemilu paling mematikan!  \n\n📷 ACTION: Asah literasi digital kritis. Gunakan tools deteksi deepfake seperti https://t.co/O64xJsH38r",
+        "confidence": 0.9866056393993087,
+        "platform": "x",
+        "date": "2025-08"
+      },
+      {
+        "text": "Kebanyakan orang beranggapan mereka mampu mengesan kepalsuan. Malangnya, penipuan berasaskan AI direka khusus untuk memperdaya keyakinan tersebut.\r\n\r\nPeniruan suara, panggilan video deepfake secara langsung, mesej yang dijana AI dan nampak terlalu sempurna… Taktik-taktik kini https://t.co/s1mBvj83uM",
+        "confidence": 0.9866038812373931,
+        "platform": "x",
+        "date": "2026-05"
+      },
+      {
+        "text": "Menteri Komunikasi dan Digital (Menkomdigi) Meutya Hafid mengatakan saat ini krisis deepfake semakin mengancam ketahanan negara. Meutya menyoroti besarnya dampak kejahatan siber di Indonesia dan mengungkap nilai kerugian akibat penipuan digital atau scam di Indonesia mencapai https://t.co/4L1b4CTJwF",
+        "confidence": 0.9865716557945191,
+        "platform": "x",
+        "date": "2026-05"
+      },
+      {
+        "text": "Menteri Komunikasi dan Digital (Menkomdigi) Meutya Hafid mengatakan saat ini krisis deepfake semakin mengancam ketahanan negara. Meutya menyoroti besarnya dampak kejahatan siber di Indonesia dan mengungkap nilai kerugian akibat penipuan digital atau scam di Indonesia mencapai https://t.co/UZpib2ldrZ",
+        "confidence": 0.9865716557945191,
+        "platform": "x",
+        "date": "2026-05"
+      },
+      {
+        "text": "Bukan ai sih itu harusnya, suaranya aja ga mirip, kemarin bapak gw juga ditelpon baimwong suara ama videonya ga singkron, videonya cuma potongan aja kayanya bukan deepfake cuma video yg diputar divc aja, blm sampe deepfake",
+        "confidence": 0.9864835019917086,
+        "platform": "youtube",
+        "date": "2025-08"
+      },
+      {
+        "text": "Deepfake: Kebenaran atau Kebohongan? \nDengan kemajuan teknologi AI, deepfake semakin sulit dibedakan dari kenyataan. Bagaimana cara mendeteksi konten palsu ini?\nCiri-ciri deepfake:\n- Gerakan wajah tidak alami\n- Perubahan cahaya tidak konsisten\n#InterLink #ITLG #ITL",
+        "confidence": 0.986427413252118,
+        "platform": "x",
+        "date": "2026-02"
+      },
+      {
+        "text": "@yanez__ai resmi menjalin kemitraan dengan Bitmind untuk membangun model deteksi deepfake wajah yang lebih akurat di jaringan Bittensor.\n\nPenipuan deepfake di sektor keuangan dan kripto meningkat drastis hingga 2.137% dalam 3 tahun terakhir. https://t.co/OPoex6BB5W",
+        "confidence": 0.98635738192407,
+        "platform": "x",
+        "date": "2026-04"
+      },
+      {
+        "text": "Deepfake makin canggih.\r\nBesok-besok ada penipuan &amp; pelecehan pakai muka kita\r\n\r\n&gt; Setelah 22 &gt; Indomaret &gt; Arsenal  &gt; After 22 &gt; Arteta &gt; UFO &gt; copot gubernur bi &gt; The Gunners &gt; copot gubernur bi &gt; Pagii &gt; Sarapan",
+        "confidence": 0.9863563861251695,
+        "platform": "x",
+        "date": "2026-05"
+      },
+      {
+        "text": "Tujuan Deepfake berbasis AI dalam aplikasi InterLink agar tidak ada manusia palsu, bot atau mesin yang memalsukan manusia. \ndengan deteksi deepfake, deteksi yang berlapis-lapis serta biometrik Terenkripsi guna menjaga identitas manusia tetap original\n#InterLink #ITLG #ITL https://t.co/2mMEnD64mW",
+        "confidence": 0.9863115868609481,
+        "platform": "x",
+        "date": "2026-01"
+      },
+      {
+        "text": "sekarang teknologi udah makin canggih, kasus deepfake, fake voice, bahkan AI porn juga makin banyak dan itu honestly serem bgt. apalagi sebagai public figure, idol emang punya risiko lebih besar karena foto, video, dan suara mereka tersebar luas di internet",
+        "confidence": 0.9863098294742365,
+        "platform": "x",
+        "date": "2026-05"
+      },
+      {
+        "text": "Beberapa hal yang kita bisa lakukan sekarang itu :\n- mengenali ciri-ciri deepfake/face swap\n- merendahkan pelaku dan bukan korban\n- empati terhadap korban\n- memiliki kesadaran kalo nyebarin fogil itu kelakuan freak no life!!! https://t.co/Oh0QcItrFT",
+        "confidence": 0.9862885079032817,
+        "platform": "x",
+        "date": "2023-06"
+      },
+      {
+        "text": "Halo, twit ini lewat di aku dan aku notis kalo ini ai. Tolong jangan pake ai buat generate manips idol. Dengan kamu pake ai, kamu berkontribusi menyempurnakan database ai. Ini bahaya bgt. Amit amit ada deepfake idol kamu hasil generate ai ))))): apalagi mereka masih minor ))):",
+        "confidence": 0.9862789194853556,
+        "platform": "x",
+        "date": "2026-05"
+      },
+      {
+        "text": "hai kak, maaf ya tapi kalau bisa jangan pake ai kalau mau bikin manips, kasihan nanti data idols kaka bisa di pake orang2 yg ga bertanggung jawab di balik ai yg kaka pake entah jadi deepfake pic or vid yg bisa ngerugiin mereka :(",
+        "confidence": 0.9862744299985927,
+        "platform": "x",
+        "date": "2026-05"
+      },
+      {
+        "text": "Hati-hati! Penipuan AI Voice Cloning Mengancam!\n\nVoice Cloning adalah teknologi Deepfake Voice yang menggunakan sampel suara asli Anda (dari media sosial/video) untuk meniru suara Anda dengan sempurna.\n\n#WaspadaDeepfake #VoiceCloning #KeamananDigital #StopPenipuan https://t.co/fqOXfN1gWq",
+        "confidence": 0.9862602502854422,
+        "platform": "x",
+        "date": "2025-12"
+      },
+      {
+        "text": "Saya sudah upload versi tidak sensornya sebelumnya, karna saya pun tau wajah pelakunya itu DEEPFAKE alias AI,tapi sama youtube dianggap ujaran kebencian padahal baru 1 hari tayang, yang akhirnya saya sensor dan videonya aman sampai sekarang",
+        "confidence": 0.9862237820575722,
+        "platform": "youtube",
+        "date": "2024-04"
+      },
+      {
+        "text": "ga hanya public figure deh kayanya, akupun pernah ditelfon oleh dosen menggunakan whatsapp yang ternyata beliau merupakan hasil deepfake, untungnya tahu banget kalo fake dan aku sebar ke angkatan bahwa ada penipuan semacam itu",
+        "confidence": 0.9862195313648001,
+        "platform": "youtube",
+        "date": "2025-06"
+      },
+      {
+        "text": "🔎 AI bisa bikin konten luar biasa… tapi juga bisa disalahgunakan.\nKenali SynthID dari Google DeepMind: teknologi yang memberi digital watermark pada konten AI sehingga kita bisa tahu mana yang asli dan mana yang buatan mesin.\n\n💡 Kenapa penting?\n* Deteksi deepfake dan konten https://t.co/t0XneU5tuE",
+        "confidence": 0.98621919061415,
+        "platform": "x",
+        "date": "2025-11"
+      },
+      {
+        "text": "awalnya saya bikin video tanpa sensor, tapi sama youtube di takedown videonha karna dianggap ujaran kebencian, tapi kalo mau tau mukanya bisa ditonton disini https://youtu.be/gwXj0dT2NfQ\n\nTapi mukanya itu deepfake bang, alias Rekayasa AI",
+        "confidence": 0.9862112667311719,
+        "platform": "youtube",
+        "date": "2024-05"
+      },
+      {
+        "text": "2️⃣ Layered Security Approach\nDeteksi deepfake + face recognition + enkripsi bekerja sebagai sistem berlapis, bukan tunggal.\n3️⃣ Privacy by Design\nStruktur sistem sejak awal dirancang untuk minimisasi data, bukan eksploitasi data.\n#InterLink #ITLG #ITL",
+        "confidence": 0.9862040644038989,
+        "platform": "x",
+        "date": "2026-03"
+      },
+      {
+        "text": "u tau bahaya ai nggak sih even u nggak macem-macem sama fotonya? data itu bisa di save sama ai, terus bisa disalahgunakan oleh orang lain, oon.\r\nbukan perkara punya duit apa enggak nya.\r\ntau deep fake, kan? itu juga karena kalian masukin data ke ai. padahal idol juga udah ada yang-",
+        "confidence": 0.9861206854867661,
+        "platform": "x",
+        "date": "2026-05"
+      },
+      {
+        "text": "🗣 : Deepfake bahaya dan bisa merugikan orang lain. Menimbulkan fitnah. Also netizen pas ada meme deepfake Pak Prabowo dan Pak Jokowi : \" Awokokok lucu \" Kocak Mulyono \" , \" mana sprei yang kau janjikan itu Wok. Itu nggak respect banget 😂 \" Gua nggak paham kenapa orang kek gitu. Gua yang nggak suka dengan kedua pejabat tersebut nggak sampe berlebihan. Deepfake , AI tuh bahaya. Jangan sampe di salah gunakan untuk hal - hal yang buruk. Tau kan orang kita gampang di bego-begoin, gampang percaya. Malah nyebar hoax jadinya. So jangan terlalu di nornalisasikan yang seperti ini. Apalagi sampe di jadiin meme. Dan yang paling bahaya bisa di pake buat penipuan.",
+        "confidence": 0.9861086792952388,
+        "platform": "youtube",
+        "date": "2025-08"
+      },
+      {
+        "text": "Gw sekarang bukan takut dibidang kreatif bakalan pekerjaan bisa digantikan atau hilang dengan adanya AI generate deepfake gini,tapi takut beneran kayak dipake buat kriminal,apalagi kita hidup di negara Indonesia,yang regulasi AInya belum ada,hukumnya belum jelas, Instasi kita banyak yang cacad, keamanan data cyber kita masih sering kecolongan, ditambah SDM kita masih ada yang rada rada Kalo masih hidup di Indonesia gw gak bakal terus mikir positif tentang kemajuan AI",
+        "confidence": 0.9860786342882287,
+        "platform": "youtube",
+        "date": "2025-06"
+      },
+      {
+        "text": "Kemaren saya upload.full wajah nya bro, karna saya pun tau itu deepfake wajahnya (palsu) tapi sama youtube di takedown dalam waktu 1 hari tayang, jadi saya sensor dan ternyata aman sampai sekarang",
+        "confidence": 0.9860414959198932,
+        "platform": "youtube",
+        "date": "2024-04"
+      },
+      {
+        "text": "Dengan menghubungkan deteksi deepfake, enkripsi biometrik, ZX proofs, dan Federated Learning, Interlink membangun benteng digital yang kokoh. ini bukan sekedar teknologi, ini adlah standar baru dlm melindungi, kedaulatan Identitas manusia di dunia digital.\n#interlink #itlg #itl. https://t.co/7gCEtDnV53",
+        "confidence": 0.9860142155402079,
+        "platform": "x",
+        "date": "2026-03"
+      },
+      {
+        "text": "Bu Sri mulyani politisi yg Jd korban pertama. Jd inget kasus ahok, jaman kasus ahok aja belum ada beginian netijen kita udah parah. Gimana waktu jaman pak ahok di demo dah pake deep fake 😂😂",
+        "confidence": 0.9858704787006862,
+        "platform": "youtube",
+        "date": "2025-08"
+      },
+      {
+        "text": "Saya pernah lihat video mirip banget sama Pak Menteri Kebudayaan Fadli Zon sedang menyanyikan lagu potong Bebek angsa sambil joget-joget tapi kata-katanya diubah menjelekkan pemimpin bangsa dan mengidentifikasinya sebagai PKI. Rasanya gak masuk akal seorang Menteri Kebudayaan mengubah-ubah lagu tanpa izin penciptanya dan menjelekkan pemerintahan dimana dia bagian dari pemerintahan itu sendiri kan? Kalau dibuat sebelum jadi Menteri pun aneh aja soalnya Pak Prabowo saat itu menjadi Menteri dan bagian dari pemerintahan juga. Kalau dibuat sebelumnya lagi, masa dipilih jadi Menteri Kebudayaan orang yang tidak menghargai hak cipta dari sebuah lagu yang sudah menjadi budaya Bangsa Indonesia. Pasti deepfake menyasar Pak Fadli Zon untuk menjatuhkan citranya yang sedang berusaha memperbaiki penulisan sejarah Bangsa Indonesia.",
+        "confidence": 0.9858637109712926,
+        "platform": "youtube",
+        "date": "2025-06"
+      },
+      {
+        "text": "Makasih kak atas vodio nya, ini sgt sgt membuka sy secara pribadi sprt apa deepfake atau penipuan penipuan yg akan semakin canggih dg menggunakan AI, terutama bg para orang tua orang tua yg suka main medsos tp gaptek terutama akan AI, konten yg sgt bermanfaat sekali👍👍👍",
+        "confidence": 0.9857940771197047,
+        "platform": "youtube",
+        "date": "2025-06"
+      },
+      {
+        "text": "Wajahnya AI bang, setelah saya cek lebih teliti hasil rekaman saya, mukanya dia hasil deepfake :(\n\nDan ini bukan hoax, saldo saya habis semua karna penipu ini",
+        "confidence": 0.985792911956184,
+        "platform": "youtube",
+        "date": "2024-04"
+      },
+      {
+        "text": "Pernah lewat di youtube deepfake tntang najwa shihab jualan obat kurus . Ga masuk akal aja masa iya mba najwa jualan itu. Malah dari mulut ga singkron",
+        "confidence": 0.9857523479414048,
+        "platform": "youtube",
+        "date": "2025-06"
+      },
+      {
+        "text": "Implementasi deteksi deepfake dan pengenalan wajah bukan sekadar soal keamanan teknologi. Ini tentang membangun kepercayaan digital di dalam ekosistem.\n\n#InterLink #ITLG #ITL https://t.co/nmL7BvaMvL",
+        "confidence": 0.9855814699783444,
+        "platform": "x",
+        "date": "2026-03"
+      },
+      {
+        "text": "Ini salah satu tools cek deepfake, namanya Deepware. \n\nCaranya gampang, buka https://t.co/BXgZa0pxH6, paste link atau upload, langsung ketauan asli atau deepfake\n\nGRATIS. Tanpa daftar. Tanpa ribet. https://t.co/lOqA485yCL",
+        "confidence": 0.9854902541775051,
+        "platform": "x",
+        "date": "2026-05"
+      },
+      {
+        "text": "tetap harus dicek aplikasi yang berjalan/terpasang bisa saja ada code cave di app lain yang menjalankan deep fake. ketika kamera terhubung ke jaringan itu ada banyak layer yang dia bisa bermain. apakah sudah semua sys info ter log di waktu terjadi kontak? itu sangat berguna bagi orang forensik untuk menguji keaslian identitas pelaku.",
+        "confidence": 0.985397735555648,
+        "platform": "youtube",
+        "date": "2022-11"
+      },
+      {
+        "text": "🚔 UNTUK POLRI:\n\n1. Prediktif Analytics — AI bisa prediksi hotspot kejahatan, tapi perlu guardrails agar tidak jadi surveillance state\n2. Deteksi Deepfake &amp; Disinformasi — Hoax makin canggih, perlu AI untuk verifikasi\n3. Training Etika AI — SOP ketat untuk facial recognition dll",
+        "confidence": 0.9853337207876416,
+        "platform": "x",
+        "date": "2026-01"
+      },
+      {
+        "text": "@ico_dai @bengkeldodo Video Lebih rumit, Facebook sedang mengembangkan AI untuk deteksi deepfake foto &amp; video.",
+        "confidence": 0.9853336489962132,
+        "platform": "x",
+        "date": "2019-09"
+      },
+      {
+        "text": "Di YouTube juga sering muncul iklan-iklan deepfake, pakai tokoh-tokoh terkenal.tapi ko lolos aja ya?iklan obat herbal",
+        "confidence": 0.9853096969061451,
+        "platform": "youtube",
+        "date": "2025-06"
+      },
+      {
+        "text": "😂😂 deepfake indo suara AInya ngebut bgt. Lagian gampang bgt bedainnya, gibran ngomong aja ga becus, ga mungkin ngomong secepet itu 🤣🤣",
+        "confidence": 0.9853081730764519,
+        "platform": "youtube",
+        "date": "2025-06"
+      },
+      {
+        "text": "Update ekstensi Chrome BitMind deteksi deepfake viral dlm hitungan detik. Tanpa tebak/jeda. Mudah langsung di browser Anda. Cukup Gunakan BitMind!\n\n#BitMind - SN34. #Bittensor $TAO",
+        "confidence": 0.9852507919015407,
+        "platform": "x",
+        "date": "2025-04"
+      },
+      {
+        "text": "bukan deep fake itu. polisi palsu itu aja bahkan ga pake lencana polisi. sampean aja yg lagi ga fokus,mas.",
+        "confidence": 0.9851047110678162,
+        "platform": "youtube",
+        "date": "2024-05"
+      }
+    ]
+  }
+}
