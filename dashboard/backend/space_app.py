@@ -16,11 +16,24 @@ import sys
 from pathlib import Path
 
 import gradio as gr
+import spaces
 import uvicorn
 
 sys.path.insert(0, str(Path(__file__).resolve().parent / "dashboard" / "backend"))
 
 from app.main import app as fastapi_app  # noqa: E402
+
+
+@spaces.GPU
+def _zerogpu_probe():
+    """Marker only - the ZeroGPU hardware tier requires >=1 @spaces.GPU
+    function to exist or the Space fails startup validation. This backend
+    is designed for CPU inference (CLAUDE.md Sec 9) and never calls this;
+    @spaces.GPU is documented as a no-op outside an actual GPU-requesting
+    call, so its mere presence here has no effect on the real inference
+    path in pipeline.py."""
+    pass
+
 
 with gr.Blocks() as _demo:
     gr.Markdown(
