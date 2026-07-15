@@ -6,6 +6,7 @@ CLAUDE.md Sec 5 / docs/HANDOFF_FRONTEND.md Sec 4.1 ClassifyResponse.
 """
 from __future__ import annotations
 
+import os
 import sys
 import time
 from pathlib import Path
@@ -45,6 +46,25 @@ def is_loaded() -> bool:
     return _state["loaded"]
 
 
+def _resolve_checkpoint(filename: str) -> Path:
+    """Local models/<filename> if present (unchanged local-dev behavior, M0-M4);
+    otherwise download from the HF_MODEL_REPO model repo (HF Spaces deployment,
+    where models/ isn't part of the deployed image - CLAUDE.md Sec 9)."""
+    local_path = REPO_ROOT / "models" / filename
+    if local_path.exists():
+        return local_path
+
+    hf_model_repo = os.environ.get("HF_MODEL_REPO")
+    if not hf_model_repo:
+        raise FileNotFoundError(
+            f"{local_path} tidak ada dan env var HF_MODEL_REPO tidak diset - "
+            "tak ada sumber checkpoint yang bisa dipakai."
+        )
+    from huggingface_hub import hf_hub_download
+
+    return Path(hf_hub_download(repo_id=hf_model_repo, filename=filename))
+
+
 def load_models() -> None:
     import torch
     from transformers import AutoTokenizer
@@ -54,7 +74,7 @@ def load_models() -> None:
 
     model_a = make_model_a()()
     model_a.load_state_dict(
-        torch.load(REPO_ROOT / "models" / "model_a_layer1_best.pt", map_location=device)
+        torch.load(_resolve_checkpoint("model_a_layer1_best.pt"), map_location=device)
     )
     model_a.eval().to(device)
 
@@ -63,7 +83,7 @@ def load_models() -> None:
     # src/phase9_model_b_layer2.py names it `classifier`. Shapes match exactly (see
     # M0 sanity check, scripts/sanity_check.py) - safe rename-only remap.
     state_dict_b = torch.load(
-        REPO_ROOT / "models" / "model_b_layer2_best.pt", map_location=device
+        _resolve_checkpoint("model_b_layer2_best.pt"), map_location=device
     )
     state_dict_b = {
         (k.replace("clf.", "classifier.", 1) if k.startswith("clf.") else k): v
