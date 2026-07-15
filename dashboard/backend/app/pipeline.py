@@ -41,6 +41,10 @@ LABEL_DISPLAY = {
 _state: dict = {"loaded": False}
 
 
+def is_loaded() -> bool:
+    return _state["loaded"]
+
+
 def load_models() -> None:
     import torch
     from transformers import AutoTokenizer
