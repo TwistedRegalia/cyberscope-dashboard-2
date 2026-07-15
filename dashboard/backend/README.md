@@ -63,6 +63,11 @@ runtime (bukan seluruh `src/`, bukan `data/`, bukan `models/`).
    `Path(__file__).resolve().parents[3]` di `pipeline.py` tetap menunjuk ke root yang benar):
    ```
    <folder-space>/
+     requirements.txt                    <- WAJIB di ROOT (bukan nested) - HF Spaces cuma
+                                             auto-install requirements.txt yang ada di root repo,
+                                             disalin dari dashboard/backend/requirements.txt.
+                                             Nested-only pernah bikin Space RUNTIME_ERROR (ModuleNotFoundError)
+                                             karena torch/transformers/emoji/dll tak ke-install sama sekali.
      space_app.py                        <- salin dari dashboard/backend/space_app.py
      README.md                           <- salin file ini (sudah ada YAML frontmatter)
      src/
@@ -72,7 +77,8 @@ runtime (bukan seluruh `src/`, bukan `data/`, bukan `models/`).
        anchor_patterns.py                <- salin dari PI2/src/
      dashboard/
        backend/
-         requirements.txt                <- salin dari dashboard/backend/
+         requirements.txt                <- salin juga di sini (opsional, konsisten dgn lokal;
+                                             yang di root di atas yang benar-benar dipakai HF Spaces)
          app/
            main.py                       <- salin dari dashboard/backend/app/
            pipeline.py                   <- salin dari dashboard/backend/app/
@@ -81,17 +87,19 @@ runtime (bukan seluruh `src/`, bukan `data/`, bukan `models/`).
    Ini "vendoring" yang disengaja (CLAUDE.md Sec 8) - Space jadi self-contained, tak butuh akses ke
    `src/` versi lengkap monorepo (yang punya banyak script training/labeling tak relevan utk
    inference).
-6. **Push ke Space** (dari `<folder-space>/`, kamu yang jalankan):
-   ```
-   git init
-   git remote add space https://huggingface.co/spaces/<username>/<nama-space>
-   git add .
-   git commit -m "Deploy CyberScope backend"
-   git push space main
-   ```
-7. **Set Variable + Secret** di pengaturan Space (Settings -> Variables and secrets):
+6. **Push ke Space.** `hf auth login --token <token>` (tanpa `--add-to-git-credential`) TIDAK
+   memberi `git` sendiri kredensial - `git push` polos akan gagal "Authentication failed". Dua opsi:
+   - **Opsi A (dipakai, tak sentuh git credential store):** `huggingface_hub.HfApi().upload_folder(
+     folder_path="<folder-space>", repo_id="<username>/<nama-space>", repo_type="space")` - pakai
+     token yang sama dari `hf auth login`, tanpa git sama sekali.
+   - **Opsi B (git manual):** `git init && git remote add space https://<token>@huggingface.co/spaces/
+     <username>/<nama-space> && git add . && git commit -m "Deploy" && git push space main` - token
+     ada di URL remote, cuma di repo folder deploy lokal (bukan git credential store global).
+7. **Set Variable + Secret** (Settings -> Variables and secrets di web UI, atau via
+   `HfApi().add_space_variable(repo_id, "HF_MODEL_REPO", "<nama-model-repo>")` +
+   `HfApi().add_space_secret(repo_id, "HF_TOKEN", "<token>")`):
    - Variable `HF_MODEL_REPO` = `<nama-model-repo>` dari langkah 2.
-   - Secret `HF_TOKEN` = token HF kamu (perlu akses baca ke model repo privat).
+   - Secret `HF_TOKEN` = token HF (perlu akses baca ke model repo privat).
 8. **Verifikasi**: `curl https://<username>-<nama-space>.hf.space/health` harus mengembalikan
    `models_loaded: true` setelah cold start (~30-60 detik, unduh checkpoint + IndoBERT base).
 
