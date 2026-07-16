@@ -108,14 +108,14 @@ Catatan pemetaan: late fusion = **mekanisme** di Modelling (**3.8.4**), **hasil/
 **Cetak biru BAB 3:**
 - **3.1** Gambaran Umum
 - **3.2** Analisis Kebutuhan
-- **3.3** Perancangan — 3.3.1 model, 3.3.2 dashboard
+- **3.3** Perancangan Awal — 3.3.1 Flowchart Program, 3.3.2 Unified Modelling Language (UML), 3.3.3 Use Case Diagram, 3.3.4 Activity Diagram, 3.3.5 Struktur Navigasi Prototype Aplikasi
 - **3.4** Pengumpulan Data
 - **3.5** Persiapan Dataset — 3.5.1 Preprocessing, 3.5.2 Snorkel, 3.5.3 Gold Standard, 3.5.4 Validasi Weak Label
 - **3.6** Pemisahan Dataset
 - **3.7** Hyperparameter Tuning
-- **3.8** Modelling — 3.8.1 arsitektur dasar, 3.8.2 Model A, 3.8.3 Model B, 3.8.4 Late Fusion
+- **3.8** Pelatihan Model — 3.8.1 arsitektur dasar, 3.8.2 Model A, 3.8.3 Model B
 - **3.9** Pengujian Data
-- **3.10** Evaluasi — 3.10.1 Model A, 3.10.2 Model B, 3.10.3 Ablation Fusion, 3.10.4 XAI LIME, 3.10.5 Perbandingan SOTA
+- **3.10** Evaluasi — 3.10.1 Model A, 3.10.2 Model B, 3.10.3 Ablation Fusion, 3.10.4 XAI LIME, 3.10.5 Perbandingan SOTA 3.10.6 Confussion Matrix, 3.10.7 Hasil Metrik Evaluasi
 - **3.11** Deployment
 - **3.12** Pengembangan Prototype
 - **3.13** Evaluasi Prototype (Blackbox, SUS, uji data)
