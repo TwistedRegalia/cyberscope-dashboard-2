@@ -55,7 +55,7 @@ export default function KlasifikasiPage() {
 
       <Card>
         <p className="mb-2 text-[12px] font-medium uppercase tracking-wide text-steel">
-          Contoh siap-klik
+          Contoh siap-klik, klik ulang untuk contoh berikutnya
         </p>
         <ExampleChips onPick={pick} disabled={status === "loading"} />
         <div className="mt-4">
