@@ -45,9 +45,9 @@ export const VectorTable = memo(function VectorTable({
       <div className="overflow-x-auto">
         <table className="w-full border-collapse text-[14px]">
           <caption className="sr-only">
-            Distribusi enam vektor ancaman siber: jumlah, persentase, dan
-            proporsi platform YouTube dan X. Klik nama vektor untuk melihat
-            contoh komentar.
+            Distribusi enam vektor ancaman siber yang diperbincangkan di media
+            sosial: jumlah, persentase, dan proporsi platform YouTube dan X.
+            Klik nama vektor untuk melihat contoh komentar.
           </caption>
           <thead>
             <tr className="border-b border-ash text-left text-[12px] font-medium uppercase tracking-wide text-steel">

@@ -48,6 +48,10 @@ export function VectorDrilldown({ selected, samples, onClose }: Props) {
         </button>
       </div>
 
+      <p className="mb-3 text-[13px] text-fog">
+        Komentar asli dari dataset, 40 dengan keyakinan tertinggi menurut model.
+      </p>
+
       {list.length === 0 ? (
         <p className="text-[14px] text-fog">
           Tidak ada contoh tersimpan untuk vektor ini.

@@ -47,7 +47,7 @@ export default function KlasifikasiPage() {
     <div className="space-y-6">
       <PageHeader
         title="Klasifikasi on-demand"
-        subtitle="Tempel teks atau pilih contoh siap-klik untuk mendapatkan vektor + tingkat keyakinan."
+        subtitle="Tempel komentar atau unggahan media sosial, atau pilih contoh siap-klik, untuk melihat vektor ancaman siber yang dibicarakan beserta tingkat keyakinan model."
         actions={<BackendStatus />}
       />
 

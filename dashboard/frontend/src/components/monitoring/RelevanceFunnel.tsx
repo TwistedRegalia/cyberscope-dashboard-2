@@ -32,7 +32,7 @@ export const RelevanceFunnel = memo(function RelevanceFunnel({
   return (
     <ChartCard
       title="Alur klasifikasi"
-      subtitle="Dari total data ke 6 vektor (Model A -> Model B)"
+      subtitle="Model A menyaring unggahan yang relevan, Model B mengelompokkannya ke 6 vektor"
     >
       <div className="space-y-4">
         <FunnelStage
