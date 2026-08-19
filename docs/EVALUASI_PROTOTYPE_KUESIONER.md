@@ -2,7 +2,8 @@
 
 > Naskah kuesioner untuk **BAB 3.13 Evaluasi Prototype** (bagian SUS). Dashboard: **CyberScope**.
 > Generator Google Form: `docs/sus_form_generator.gs`.
-> Status: **instrumen siap; data responden belum dikumpulkan.** Jangan tulis skor apa pun di 3.13 sebelum Form benar-benar diisi.
+> Status (19 Agu 2026): **SUS sudah dijalankan — 15 responden, rata-rata 81,33** (median 82,50 · SD 7,13 · rentang 67,5–90,0), kategori *Excellent* & acceptable. Hasilnya sudah masuk naskah sebagai **Tabel 3.17** (jawaban mentah) dan **Tabel 3.18** (skor akhir).
+> Dokumen ini tetap dipakai sebagai **rujukan instrumen** (naskah item, skala, prosedur skoring). **EUCS** disiapkan tapi dilaporkan terpisah — jangan campur skornya dengan SUS.
 
 ---
 

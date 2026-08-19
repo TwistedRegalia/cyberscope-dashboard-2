@@ -1,13 +1,16 @@
-# HANDOFF — Sesi Penulisan Tesis
+# HANDOFF — Sesi Penulisan
 
 > Handoff untuk sesi penulisan (BAB 1–4). Baca ini + `CONTEXT.md` sebelum menulis. Angka di sini = sumber kebenaran; jangan mengarang, laporkan keterbatasan apa adanya.
+
+> **Status per 19 Agu 2026:** naskah **lengkap 4 bab** dan **sudah disidangkan 8 Agu 2026 (lulus)**. Naskah berjalan: `Ray Siraj_51423248_R4.docx` (revisi pasca-sidang, 15 Agu 2026). **SUS sudah dijalankan** (n=15, rata-rata 81,33) dan sudah masuk 3.13 — bagian mana pun di dokumen ini yang dulu menulis "SUS pending" kini sudah diperbarui. Pekerjaan yang tersisa = revisi/penyempurnaan, bukan penulisan dari nol.
 
 ---
 
 ## 1. Identitas penelitian
 
-**Judul:** Klasifikasi Otomatis Diskursus Vektor Ancaman Siber pada Media Sosial Indonesia Menggunakan Pendekatan Hybrid Machine Learning Berbasis OSINT dan Explainable AI.
-**Peneliti:** Ray (skripsi S1). **Bahasa:** Indonesia. **Sitasi:** APA.
+**Judul (final, sesuai R4):** Klasifikasi Otomatis Diskursus Serangan Siber pada Media Sosial Indonesia Menggunakan Pendekatan Triple-Hybrid Machine Learning dan Explainable Artificial Intelligence.
+*(Judul lama "…Diskursus Vektor Ancaman Siber… Berbasis OSINT dan Explainable AI" sudah tidak dipakai.)*
+**Peneliti:** Ray Siraj (NPM 51423248), Penulisan Ilmiah — Informatika, Universitas Gunadarma. Pembimbing: Dr. Guntur Eka Saputra, S.T., M.M.S.I. **Bahasa:** Indonesia. **Sitasi:** APA.
 
 **REFRAMING (prinsip fundamental):** penelitian ini **TIDAK** mendeteksi serangan siber langsung. Ia **mengklasifikasikan diskursus publik** tentang vektor ancaman — konten yang membicarakan ancaman (laporan korban R1, kesaksian R2, edukasi R3, promosi pelaku R4, diskusi netral R5). Setiap label mencakup seluruh spektrum diskursif ini. Prinsip ini memandu semua interpretasi.
 
@@ -30,13 +33,13 @@
 - 3.9 Pengujian Data · 3.10 Evaluasi (3.10.1 Model A, 3.10.2 Model B, 3.10.3 Ablation Fusion, 3.10.4 XAI LIME, 3.10.5 Perbandingan SOTA)
 - 3.11 Deployment · 3.12 Pengembangan Prototype · 3.13 Evaluasi Prototype (Blackbox, SUS, uji data)
 
-> **✅ Dashboard SELESAI & LIVE** (frontend `https://cyberscope-webapp.vercel.app`, backend `https://twistedregalia-cyberscope-backend.hf.space`). Jalur Prototyping **bukan lagi** perencanaan — **3.11 Deployment / 3.12 Pengembangan Prototype / 3.13 Evaluasi Prototype kini ditulis dari fakta nyata di §9**. (SUS tetap **pending** — butuh responden.)
-> Draf BAB 3 lama berbasis CRISP-DM = **bank materi**, perlu restrukturisasi ke kerangka ini.
+> **✅ Dashboard SELESAI & LIVE** (frontend `https://cyberscope-webapp.vercel.app`, backend `https://twistedregalia-cyberscope-backend.hf.space`). **3.11 Deployment / 3.12 Pengembangan Prototype / 3.13 Evaluasi Prototype sudah ditulis** dari fakta nyata di §9 — **termasuk SUS (n=15, rata-rata 81,33)**.
+> Restrukturisasi dari draf CRISP-DM lama **sudah selesai**: R4 mengikuti kerangka dua-metode ini.
 > Lampiran data siap kutip: `docs/phase9_fusion_ablation.md`, `docs/phase9_xai_lime.md`, `docs/phase6_preprocessing_examples.md`.
 
 ---
 
-## 3. Sebelas temuan (ringkas) — detail di `CONTEXT.md` §6
+## 3. Dua belas temuan (ringkas) — detail di `CONTEXT.md` §6
 
 1. **Timestamp X = snapshot 7 hari** (13–20 Mei 2026), BUKAN multi-tahun. `created_at` akurat (Snowflake). X = cross-sectional OSINT snapshot; jangan klaim tren temporal X.
 2. **Timestamp YouTube valid** (2022–2026). Karakteristik temporal dua platform BERBEDA — jelaskan terpisah.
@@ -49,13 +52,18 @@
 9. **Phase 9 training:** Model A + B (Triple-Hybrid), split 80/10/10 seed 42, max_len 128. Metrik = imitasi weak label, bukan gold manusia.
 10. **Late fusion:** L1 recall relevan +0,87pp (safety net); L2 redundan (interpretabilitas). 0,50:0,50 TIDAK dipilih (test-set optimization).
 11. **XAI LIME:** sinyal domain tervalidasi (`apk` +0,91); confusion phishing-judi **DUA-POLA** — Temuan #4 terkonfirmasi SEBAGIAN; idx 778 = ambiguitas gold.
+12. **Dashboard CyberScope live + dievaluasi:** monitoring = **prediksi model 9.748** (bukan Snorkel 9.212, bukan test set 922); **SUS n=15 = 81,33** (Excellent). Detail §9.
 
 ---
 
 ## 4. Angka lengkap (sumber kebenaran)
 
 ### 4.1 Dataset lineage
-`70.241 raw (59 file)` → filter+dedup → `48.496 (v1)` → scraping tambahan+dedup → `55.300 (v2)` → Snorkel → **`9.212 relevan`**.
+`69.651 raw (59 file)` → filter+dedup (reduksi 30,4%) → `48.496 (v1)` → akuisisi tambahan `8.618 raw` (YT 6.663 + X 1.955) → filter `6.830` → buang 26 duplikat lintas-tahap → `+6.804` → **`55.300 (v2)`** → Snorkel → **`9.212 relevan`**.
+- **Total raw seluruh akuisisi = 78.269** (69.651 + 8.618) — angka ini yang dipakai di Kesimpulan R4.
+- ⚠️ Angka **"70.241 raw"** di draf/handoff lama **SALAH**; sumber resmi: `docs/phase5_filter_report.md` (69.651) + `docs/phase5_merge_report.md` (8.618).
+- **Platform v2:** YouTube 51.739 (93,56%) · X 3.561 (6,44%). Baris baru dari akuisisi tambahan: YouTube **4.968** + X **1.836** = 6.804.
+- ⚠️ **Jangan campur irisan platform dengan irisan `source_category`.** Angka merge report (malware 4.060 · peretasan 1.176 · deepfake 1.043 · ewallet 525) adalah per **kategori asal kueri**, dan malware+deepfake di situ memuat 84+51 = **135 baris dari X**. Itu sebabnya 4.060+1.043 ≠ 4.968. Bukan dedup yang hilang.
 - Platform v2: YouTube 51.739 · X 3.561.
 - Snorkel LF: **46 LF vektor + 10 LF Layer-1 = 56 total** (seed 42). *(Draf yang menyebut "30 LF" SALAH — verifikasi source: `src/phase7_labeling.py` = 46 `@labeling_function`, `src/phase7_layer1.py` = 10.)*
 
@@ -118,9 +126,9 @@ accuracy **0,9819** · macro-F1 **0,9680** · recall relevan **0,9674** · CM `[
 4. **46 disagreement gold tidak direkonsiliasi** — gold = validasi via subset sepakat (n=311), **bukan test set**. Sah, tapi catat eksplisit.
 5. **LIME = aproksimasi lokal linear** — token tak-intuitif (kata sambung `dan`/`gua`) wajar muncul.
 6. **X = snapshot 7 hari**; **deepfake 107 = ceiling** dari sumber tersedia (scarcity nyata).
-7. **Cold start HF Spaces free tier ~25–60 dtk** (unduh checkpoint + IndoBERT) — dimitigasi badge status + timeout frontend, tapi tetap keterbatasan deployment gratis; laporkan apa adanya di 3.11.
+7. **Cold start backend ~25–60 dtk** (unduh checkpoint + IndoBERT) — dimitigasi badge status + timeout frontend. ⚠️ **Penyebabnya auto-sleep 1800 detik, bukan tier gratis:** Space berjalan di hardware **`cpu-upgrade` (berbayar)**; yang gratis hanya frontend Vercel. **R4 §3.11 masih menulis "tier gratis" di dua tempat — perlu dikoreksi**; kalimat pengganti sudah disiapkan di `docs/BUKTI_DEPLOY_VERCEL.md`.
 8. **LIME lambat** (opsional, non-blocking; frontend menandai "±30–60 detik") — bukan fitur real-time.
-9. **SUS belum dijalankan** — butuh responden manusia (semi-teknis). Jangan tulis skor SUS sebelum ada; 3.13 bagian SUS = rencana/pending.
+9. **SUS: n=15, convenience sampling.** Cukup di atas ambang minimal (5) dan masuk rentang ideal (12–20), tapi responden direkrut dari lingkaran terdekat dan berprofil semi-teknis → **jangan generalisasi ke pengguna awam atau analis keamanan profesional**. SUS mengukur *usability*, bukan akurasi model maupun kemanfaatan operasional.
 10. **Temporal monitoring 2013–2026** berasal dari `published_at` mentah → caveat Temuan #1 (X = snapshot 7 hari) & #2 (dua platform beda) TETAP berlaku; jangan klaim tren temporal X dari dashboard.
 
 ---
@@ -147,14 +155,14 @@ Kontribusi = **rekayasa masalah + data + taksonomi + interpretabilitas**, bukan 
 - Bahasa Indonesia akademik; sitasi **APA**.
 - **Jangan over-claim.** Laporkan keterbatasan apa adanya (bagian 6). Bila hasil ambigu (Temuan #4 dua-pola), tulis "terkonfirmasi sebagian" — jangan paksa narasi tunggal.
 - Bedakan tegas metrik weak-label vs validasi manusia.
-- **3.11–3.13 KINI boleh ditulis** (dashboard live, fakta §9) — tulis apa adanya; **SUS tetap dilaporkan sebagai pending/rencana**, bukan hasil.
+- **3.11–3.13 sudah tertulis** dari fakta §9 (dashboard live, SUS n=15 = 81,33) — pertahankan nada apa adanya saat merevisi.
 - Angka dari file ini / `CONTEXT.md`; bila ragu, verifikasi ke sumber (`data/`, `docs/`, `src/`), jangan mengarang.
 
 ---
 
 ## 9. Prototype & Deployment — fakta untuk 3.11–3.13 (dashboard SELESAI + live)
 
-> Semua fakta di sini **terverifikasi langsung** (dari `monitoring.json`, backend `README.md`/`requirements.txt`, dan URL live: `curl /health` 200 + uji klasifikasi di browser) saat sesi pembangunan/deploy. Bab 3.11–3.13 ditulis dari sini. **SUS tetap pending.**
+> Semua fakta di sini **terverifikasi langsung** (dari `monitoring.json`, backend `README.md`/`requirements.txt`, dan URL live: `curl /health` 200 + uji klasifikasi di browser) saat sesi pembangunan/deploy. Bab 3.11–3.13 sudah ditulis dari sini, **SUS termasuk** (§9.6).
 
 ### 9.1 Ikhtisar & URL live
 - **Nama produk:** CyberScope. **Tipe:** dashboard klasifikasi on-demand + monitoring (Tipe 1, dua halaman).
@@ -190,7 +198,7 @@ Kontribusi = **rekayasa masalah + data + taksonomi + interpretabilitas**, bukan 
 
 ### 9.4 Deployment (untuk 3.11)
 - **Frontend → Vercel:** build statis (5 route prerender) + CDN global. Env **build-time** `NEXT_PUBLIC_API_BASE_URL=<url-space>` + `NEXT_PUBLIC_USE_MOCK=false` (persisten di project). Domain produksi publik `cyberscope-webapp.vercel.app`.
-- **Backend → HF Spaces (SDK Gradio, free tier):** checkpoint (~484 MB ×2) di **HF model repo privat**, diunduh saat startup via `hf_hub_download` (di luar Git Space); IndoBERT base terunduh saat instansiasi; model dimuat **sekali** saat startup.
+- **Backend → HF Spaces (SDK Gradio, hardware `cpu-upgrade` berbayar, auto-sleep 1800 dtk):** checkpoint (~484 MB ×2) di **HF model repo privat**, diunduh saat startup via `hf_hub_download` (di luar Git Space); IndoBERT base terunduh saat instansiasi; model dimuat **sekali** saat startup. Bukti tier + kalimat siap pakai: `docs/BUKTI_DEPLOY_VERCEL.md`.
 - **`GET /health`** (dari sanity nyata `scripts/sanity_check.py`): `models_loaded=true`, `model_a_f1=0,9686`, `model_b_f1=0,9747`.
 - **Cold start ~25–60 dtk** (unduh checkpoint + IndoBERT) → dimitigasi badge health frontend + timeout (classify 30 dtk, explain 120 dtk).
 - **Latensi classify teramati ~239 ms (warm)** — jauh di bawah estimasi CPU 1–3 dtk pada dokumen desain → **indikasi inferensi GPU-backed (ZeroGPU** via paket `spaces`). *(Konfirmasi tier hardware Space bila butuh angka pasti di tulisan.)*
@@ -218,7 +226,12 @@ Batch inference Model A+B atas seluruh **55.300** baris → **9.748 diprediksi r
 ### 9.6 Evaluasi Prototype (untuk 3.13)
 - **Blackbox testing (terverifikasi di URL live):** Monitoring memuat data nyata (tanpa banner DATA CONTOH; 11 surface chart render); classify per vektor → label + confidence + 6 bar; gate "tidak relevan" untuk off-topic; LIME → token berbobot; dark mode berfungsi; badge backend **online**; **nol error konsol**.
 - **Uji data (contoh per vektor):** teks contoh → label + confidence, mis. contoh judi → **"Judi Online & Pinjol" 99,1%** (latensi ~239 ms); off-topic → "tidak relevan". Sarankan tabel uji **1 contoh/vektor + kasus negatif** di tulisan.
-- **SUS (System Usability Scale) — PENDING:** butuh **responden manusia**, profil **semi-teknis** (mahasiswa informatika/dosen), **min 5, ideal 12–20**. Bottleneck non-teknis → amankan responden lebih awal. **Jangan tulis skor SUS sebelum dijalankan.**
+- **SUS (System Usability Scale) — ✅ SUDAH DIJALANKAN, n=15** responden semi-teknis (mahasiswa Informatika, dosen, praktisi IT), skala Likert 1–5, skoring baku SUS (item ganjil = nilai−1, item genap = 5−nilai, jumlah ×2,5).
+  - **Rata-rata 81,33** · median 82,50 · SD 7,13 · rentang **67,5–90,0** → di atas ambang 68, kategori **Excellent** dan *acceptable*.
+  - Rata-rata jawaban tertinggi: **Q3** "sistem ini mudah digunakan" (4,60) dan **Q5** "fitur berjalan semestinya" (4,47). Skor kontribusi **terendah Q4** (2,87) — pernyataan soal kebutuhan bantuan orang lain/teknisi.
+  - Tabel di naskah: **Tabel 3.17** (jawaban mentah per responden) dan **Tabel 3.18** (skor kontribusi + nilai akhir). Instrumen & naskah kuesioner: `docs/EVALUASI_PROTOTYPE_KUESIONER.md`; generator Form: `docs/sus_form_generator.gs`.
+  - ⚠️ Keterbatasan yang wajib disebut: convenience sampling, profil semi-teknis → jangan generalisasi ke pengguna awam/analis profesional (§6 poin 9).
+  - Catatan: instrumen **EUCS** ikut disiapkan sebagai konstruk terpisah (kepuasan pengguna). Bila hasilnya tidak dipakai di naskah, jangan campur skornya dengan SUS.
 
 ### 9.7 Integritas dashboard (jangan dilanggar di 3.11–3.13)
 - **Tiga angka "relevan" berbeda peran — jangan tertukar:**
@@ -227,4 +240,5 @@ Batch inference Model A+B atas seluruh **55.300** baris → **9.748 diprediksi r
   - **922** = subset test set Layer-2 → metrik model (§4.5).
 - Monitoring = **prediksi model**, bukan Snorkel. Metrik `/health` dari **sanity nyata**, bukan tebakan.
 - **Speaker Role R1–R5 TIDAK ada** di dashboard v1 (model tak memprediksinya; jangan tampilkan seolah ada).
-- Tulis 3.11–3.13 apa adanya; **SUS belum ada → laporkan sebagai rencana/pending**, bukan hasil.
+- **Fitur yang dibatalkan sebelum implementasi:** tombol ambil data manual/scraping-triggered dan upload CSV. Jangan menulis seolah ada — Monitoring memang membaca berkas statis.
+- **SUS = 81,33 (n=15)** — angka nyata, boleh dikutip. Yang tidak boleh: melaporkannya sebagai bukti akurasi model, atau menggeneralisasi ke populasi pengguna yang lebih luas.

@@ -182,7 +182,7 @@ Target respons **< 3 dtk** (XAI dikecualikan). `relevant=false` → tampil "tida
 ```
 Boleh dipakai untuk badge status backend + memperingatkan cold-start.
 
-> Backend belum dibangun (status: PERENCANAAN). Kontrak di atas adalah **kesepakatan** yang backend & frontend implementasikan bersama. Kalau backend memutuskan bentuk lain, **update kontrak ini dulu** sebelum coding, jangan diam-diam menyimpang.
+> ✅ **Backend sudah dibangun & live** (`https://twistedregalia-cyberscope-backend.hf.space`) dan mengimplementasikan kontrak di atas — ketiga endpoint terverifikasi end-to-end. Kontrak ini tetap mengikat kedua sisi: kalau salah satu berubah bentuk, **update kontrak ini dulu**, jangan diam-diam menyimpang.
 
 ---
 

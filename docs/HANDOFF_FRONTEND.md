@@ -1,5 +1,9 @@
 # HANDOFF — Frontend "CyberScope" → Sesi Backend FastAPI
 
+> ⚠️ **Dokumen historis (Jul 2026).** Backend yang dijelaskan di sini **sudah selesai dibangun dan live**;
+> dokumen ini kini bernilai sebagai **arsip kontrak API + rasional desain**, bukan daftar tugas.
+> Status terkini: `CONTEXT.md` §4c dan `docs/HANDOFF_WRITING.md` §9.
+>
 > Dokumen **self-contained** untuk memulai pengerjaan **backend FastAPI**. Frontend sudah selesai
 > (mode mock) dan menunggu backend yang memenuhi **kontrak di dokumen ini**. Kamu **tidak perlu**
 > membuka repo frontend — semua kontrak (API + data) di-inline di sini.
@@ -30,7 +34,7 @@ Recharts**, deploy target **Vercel**.
 `3a224c6` M4 Klasifikasi · `953bde8` M5 LIME · `cd47148` M6 polish · `abcbc3f` rebrand CyberScope ·
 `6e0055c` dark mode.
 
-**Status backend:** `dashboard/backend/` **kosong** — belum dikerjakan. Itu tugas sesi ini.
+**Status backend:** ✅ **sudah dibangun & live** — `dashboard/backend/` berisi `app/main.py`, `app/pipeline.py`, `app/schemas.py`, `scripts/`, `space_app.py`; berjalan di `https://twistedregalia-cyberscope-backend.hf.space`. Frontend **tidak lagi mode mock** (`NEXT_PUBLIC_USE_MOCK=false`) dan sudah di-deploy ke `https://cyberscope-webapp.vercel.app`.
 
 ---
 

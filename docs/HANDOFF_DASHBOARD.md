@@ -1,5 +1,7 @@
 # HANDOFF — Sesi Pembuatan Dashboard (Prototyping)
 
+> ⚠️ **Dokumen historis (Jul 2026).** Dashboard **sudah dibangun, di-deploy, dan dievaluasi** — dokumen ini kini menjelaskan **kenapa lingkupnya dipilih begitu**, bukan pekerjaan yang menunggu. Status & fakta terkini: `CONTEXT.md` §4c dan `docs/HANDOFF_WRITING.md` §9.
+>
 > Handoff untuk sesi dashboard di **`PI2/dashboard/`** (subdirektori repo ini, bukan repo terpisah). Baca ini + `CONTEXT.md` §4a/§4b/§4c sebelum mulai.
 
 ---
@@ -163,10 +165,12 @@ Input model = kolom **`text_clean`** dari `src/phase6_preprocess.py`:
 
 ---
 
-## 10. Untuk 3.13 Evaluasi Prototype
+## 10. Untuk 3.13 Evaluasi Prototype — ✅ SELESAI
 
-- **Blackbox testing** + **uji data** (klasifikasi teks contoh per vektor).
-- **SUS (System Usability Scale)** butuh **responden manusia**: **min 5, ideal 12–20**. **Profil responden = semi-teknis** (mahasiswa informatika, dosen) — bukan awam total, bukan pakar; prinsip desain §3 (nilai langsung terlihat, contoh siap-pakai, hasil dapat dipahami, <3 dtk) menyasar profil ini. → **Ray perlu mengamankan responden sejak awal** (rekrut + jadwal), karena ini bottleneck non-teknis yang tak bisa dikejar di akhir.
+- **Blackbox testing** + **uji data** per vektor: selesai, diuji langsung di URL live (Tabel 3.16 di naskah).
+- **SUS: selesai — 15 responden semi-teknis, rata-rata 81,33** (median 82,50 · SD 7,13 · rentang 67,5–90,0), kategori *Excellent* & acceptable. Angka lengkap + catatan keterbatasan: `docs/HANDOFF_WRITING.md` §9.6.
+
+> Dokumen ini = **riwayat keputusan desain** (kenapa lingkupnya begini). Untuk fakta hasil yang dipakai menulis, rujuk `docs/HANDOFF_WRITING.md` §9.
 
 ---
 

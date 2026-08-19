@@ -6,13 +6,21 @@
 
 ## 1. Identitas Penelitian
 
-**Judul:** Klasifikasi Otomatis Diskursus Vektor Ancaman Siber pada Media Sosial Indonesia Menggunakan Pendekatan Hybrid Machine Learning Berbasis OSINT dan Explainable AI
+**Judul (final, sesuai naskah R4):** Klasifikasi Otomatis Diskursus Serangan Siber pada Media Sosial Indonesia Menggunakan Pendekatan Triple-Hybrid Machine Learning dan Explainable Artificial Intelligence
 
-**Peneliti:** Ray (skripsi S1)
+> Judul lama "…Diskursus Vektor Ancaman Siber… Hybrid Machine Learning Berbasis OSINT dan Explainable AI" **sudah tidak dipakai**. Bila menemukannya di draf/dokumen lain, itu versi usang.
 
-**Arsitektur model target:** Triple-Hybrid IndoBERT + BiGRU + BiLSTM + Rule-based Regex, late fusion 0.75:0.25, XAI via SHAP/LIME.
+**Peneliti:** Ray Siraj (NPM 51423248), Penulisan Ilmiah — Informatika, Universitas Gunadarma. Pembimbing: Dr. Guntur Eka Saputra, S.T., M.M.S.I.
+
+**Arsitektur model target:** Triple-Hybrid IndoBERT + BiGRU + BiLSTM + Rule-based Regex, late fusion 0.75:0.25, XAI via LIME.
 
 **Environment:** Python, Kaggle T4 GPU untuk training. Bahasa kerja: Indonesia.
+
+### Status penelitian (per 19 Agu 2026) — SELURUH PIPELINE SELESAI
+
+**Sidang 8 Agustus 2026, dinyatakan lulus tanggal yang sama.** Naskah berjalan: `Ray Siraj_51423248_R4.docx` (revisi pasca-sidang, 15 Agu 2026) — 4 bab lengkap termasuk SUS.
+
+Semua jalur tuntas: model (Model A/B + fusion + XAI), dashboard **CyberScope live**, dan **evaluasi prototype termasuk SUS (n=15, rata-rata 81,33)**. Tidak ada fase yang tersisa dalam status "perencanaan".
 
 ---
 
@@ -51,14 +59,14 @@ Metadata tambahan: `speaker_role` (R1-R5) sebagai dimensi terpisah, bukan label 
 
 ---
 
-## 4. Status Pipeline (Technical Roadmap 8 Fase)
+## 4. Status Pipeline — SELURUHNYA SELESAI
 
 | Phase | Nama | Status |
 |-------|------|--------|
 | 0 | Audit data | ✅ SELESAI |
 | 1 | Pattern Library | ✅ Terdokumentasi (perlu refinement di Snorkel) |
 | 2 | Scraping Plan tambahan | ✅ SIAP (eksekusi conditional pada hasil Snorkel) |
-| 3 | YouTube Data API v3 | 🟡 BERIKUTNYA — deps terpasang, script siap; butuh kurasi `video_candidates.csv` (fokus malware/deepfake) + `YOUTUBE_API_KEY` |
+| 3 | YouTube Data API v3 | ✅ SELESAI — dieksekusi 21 Jun 2026 (rincian di baris "3 (scraping)" di bawah) |
 | 4 | Tweet scraping (Jalur C) | ✅ DIJALANKAN (21 Jun 2026) — X via Tweet Harvest, +1.836 baris unik (lihat Temuan #7) |
 | 5 | Filter & Dedup | ✅ SELESAI — output `unified_dataset.csv` (48.496 baris) |
 | 6 | Preprocessing | ✅ SELESAI — v1 `preprocessed_dataset.csv`; **v2 `preprocessed_dataset_v2.csv` (55.300 baris)** via `--input/--output` |
@@ -68,6 +76,8 @@ Metadata tambahan: `speaker_role` (R1-R5) sebagai dimensi terpisah, bukan label 
 | 7.1 | Scraping 4 vektor lemah | ✅ SELESAI (X+YT). Relevan v1→v2: ewallet 23→548, peretasan 46→365, malware 36→214, deepfake 62→107 (tetap floor) |
 | 8 | Gold Standard Annotation | 🟢 SELESAI (23 Jun 2026) — A=Ray, B=Nabilla Putri. IAA EXCELLENT (κ L1 0,925/L2 0,976/role 0,825). Weak-label tervalidasi pada subset sepakat n=311: **akurasi L1 90,0% / L2 96,9%, precision 0,91–1,00** (Temuan #8). Gold = VALIDASI saja |
 | 9 | Training Triple-Hybrid | 🟢 **Model A + B + Late Fusion + XAI SELESAI** (24 Jun–8 Jul 2026) — branch `feat/phase9-training`. Layer 1: acc 0,9819 · macro-F1 0,9680 · recall-relevan 0,9674. Layer 2: acc 0,9881 · **macro-F1 0,9767** (phishing F1 0,91 terendah — scam umbrella). Fusion 0,75:0,25 (a priori): L1 recall-relevan +0,87pp (→0,9761, 8 FN diselamatkan), L2 redundan/interpretabilitas. XAI LIME: sinyal domain tervalidasi (`apk` +0,91), confusion phishing-judi **dua-pola** (scam-umbrella + sinyal judi tersirat). Lihat Temuan #9–#11 |
+| 10 | Deployment + Dashboard CyberScope | ✅ SELESAI (14–31 Jul 2026) — backend FastAPI di HF Spaces + frontend Next.js di Vercel, keduanya **live** (lihat §4c dan `docs/HANDOFF_WRITING.md` §9) |
+| 11 | Evaluasi Prototype (blackbox, uji data, SUS) | ✅ SELESAI — SUS **n=15, rata-rata 81,33** (median 82,50 · SD 7,13 · rentang 67,5–90,0), kategori *Excellent* & acceptable |
 
 ---
 
@@ -87,21 +97,23 @@ Metadata tambahan: `speaker_role` (R1-R5) sebagai dimensi terpisah, bukan label 
 
 | Tahap kerangka | Pekerjaan aktual |
 |---|---|
-| Pengumpulan Data | Scraping OSINT X + YouTube (Phase 3/4), 70.241 raw |
+| Pengumpulan Data | Scraping OSINT X + YouTube (Phase 3/4), **78.269 raw** (akuisisi awal 69.651 dari 59 CSV + tambahan 8.618) |
 | Persiapan Dataset | Preprocessing (Phase 6) · **Snorkel weak supervision (46 LF vektor + 10 LF Layer-1 = 56 total)** (Phase 7) · **Gold Standard (357 sampel, κ 0,925/0,976/0,825)** (Phase 8) · validasi weak-label |
 | Pemisahan Dataset | Split 80/10/10 stratified, seed 42 (Phase 9) |
 | Hyperparameter Tuning | max_len 128, LR 2e-5, batch 16, class weights (Phase 9) |
 | Modelling | Model A + Model B (Triple-Hybrid) + **mekanisme late fusion 0,75:0,25** |
 | Pengujian Data | Inference test set |
 | Evaluation | Metrik Model A/B · **ablation late fusion** · **XAI LIME** · perbandingan SOTA |
-| Deployment | **BELUM** (checkpoint tersimpan; belum ada layanan inferensi) |
-| **Jalur Prototyping (dashboard)** | **BELUM dikerjakan — status: PERENCANAAN** (lihat `docs/HANDOFF_DASHBOARD.md`) |
+| Deployment | ✅ Backend FastAPI di HF Spaces + frontend Next.js di Vercel, live (3.11) |
+| **Jalur Prototyping (dashboard)** | ✅ **SELESAI** — CyberScope dibangun, di-deploy, dan dievaluasi (blackbox + uji data + SUS n=15). Riwayat keputusan: `docs/HANDOFF_DASHBOARD.md`; fakta untuk tulisan: `docs/HANDOFF_WRITING.md` §9 |
 
 Catatan pemetaan: late fusion = **mekanisme** di Modelling (**3.8.4**), **hasil/ablation** di Evaluation (**3.10.3**). XAI LIME = sub-bagian Evaluation (**3.10.4**). Snorkel + Gold Standard = sub-tahap Persiapan Dataset (**3.5.2–3.5.4**).
 
 ---
 
-## 4b. Struktur Penulisan Tesis (4 Bab) + Cetak Biru BAB 3
+## 4b. Struktur Naskah (4 Bab) + Cetak Biru BAB 3
+
+> **Catatan istilah:** dokumen kerja di repo ini (CONTEXT, HANDOFF) terlanjur menulis "tesis"/"skripsi". Yang benar: naskah ini **Penulisan Ilmiah (PI)** Universitas Gunadarma — "Diajukan Guna Melengkapi Sebagian Syarat Dalam Mencapai Gelar Setara Sarjana Muda". **Naskah R4 sendiri sudah bersih** dari kedua istilah itu; jaga tetap begitu saat merevisi.
 
 **4 Bab:** BAB 1 Pendahuluan · BAB 2 Tinjauan Pustaka · BAB 3 Pembahasan · BAB 4 Penutup. **Semua hasil masuk BAB 3.**
 
@@ -120,18 +132,24 @@ Catatan pemetaan: late fusion = **mekanisme** di Modelling (**3.8.4**), **hasil/
 - **3.12** Pengembangan Prototype
 - **3.13** Evaluasi Prototype (Blackbox, SUS, uji data)
 
-**Catatan:** draf BAB 3 lama berbasis CRISP-DM = **bank materi**, perlu **restrukturisasi** ke kerangka dua-metode ini. Handoff penulisan: `docs/HANDOFF_WRITING.md`.
+**Catatan:** restrukturisasi dari draf CRISP-DM lama **sudah dikerjakan** — naskah R4 mengikuti kerangka dua-metode ini. Handoff penulisan: `docs/HANDOFF_WRITING.md`.
 
 ---
 
-## 4c. Keputusan Dashboard (Prototyping — BARU, Jul 2026)
+## 4c. Dashboard CyberScope (Prototyping — ✅ SELESAI & LIVE)
 
-Status jalur Prototyping = **PERENCANAAN** (belum dikerjakan). Keputusan lingkup yang sudah difinalkan (isi awal 3.2 Analisis Kebutuhan). Handoff: `docs/HANDOFF_DASHBOARD.md`.
+- **Frontend (Vercel):** `https://cyberscope-webapp.vercel.app`
+- **Backend (HF Spaces, SDK Gradio):** `https://twistedregalia-cyberscope-backend.hf.space`
+- **Lokasi kode:** `PI2/dashboard/` (**subdirektori**, BUKAN repo terpisah) → impor langsung dari `src/`, checkpoint satu tempat. Handoff teknis: `dashboard/backend/CLAUDE.md`, `dashboard/frontend/CLAUDE.md`.
 
-- **Lokasi:** `PI2/dashboard/` (**subdirektori**, BUKAN repo terpisah) → impor langsung dari `src/`, checkpoint satu tempat, tak perlu sinkronisasi snapshot antar-repo.
-- **Lingkup: Tipe 1 + batch manual.** (1) Klasifikasi **on-demand** — pengguna menempel teks → pipeline penuh (Model A → Model B → fusion) → hasil + confidence; (2) **visualisasi dataset**; (3) **tombol ambil data manual** (trigger scraping). **TANPA penjadwal otomatis.**
-- **Alasan tanpa otomasi (jujur, untuk 3.2):** scraping X butuh `auth_token` (cookie sesi — kedaluwarsa, tak dapat diperbarui otomatis, risiko suspend akun); YouTube Data API punya kuota harian. Manual-triggered lebih **andal & jujur** daripada scheduler yang rapuh.
-- **Kendala XAI (non-fungsional):** LIME butuh ratusan forward pass → di **CPU 2–5 menit** dengan `num_samples=500`. Mitigasi: turunkan ke **100–150**, jadikan **tombol opsional terpisah** dengan indikator progres (jangan blok UI utama).
+**Lingkup FINAL yang benar-benar dibangun — dua halaman, dua jalur data:**
+1. `/` **Monitoring** — membaca `monitoring.json` statis pra-agregat dari CDN Vercel (hasil batch inference Model A+B atas 55.300 baris). Tidak memanggil model saat halaman dibuka → kebal cold start.
+2. `/klasifikasi` **Klasifikasi on-demand** — contoh siap-klik atau tempel teks → API live backend → pipeline penuh (Model A → gate → Model B + anchor → fusion) → label + confidence. **LIME opsional** (tombol terpisah, `num_samples` diturunkan, non-blocking).
+
+> ⚠️ **Lingkup yang DIBATALKAN (jangan hidupkan lagi di tulisan):** **tombol ambil data manual / scraping-triggered** dan **upload CSV** — dua-duanya dicoret sebelum implementasi. Alasan: scraping X butuh `auth_token` cookie (kedaluwarsa, risiko suspend) dan YouTube API berkuota → rapuh di HF Spaces. Data monitoring = batch statis, bukan pengambilan live. Rasional lengkap: `docs/HANDOFF_DASHBOARD.md` §2.
+
+- **Speaker role R1–R5 TIDAK ada di dashboard** — model tidak memprediksinya (keputusan ditunda, bukan fitur v1).
+- **Kendala terdokumentasi:** cold start backend ~25–60 detik setelah idle; LIME lambat (ditandai eksplisit di UI).
 
 ---
 
@@ -139,7 +157,7 @@ Status jalur Prototyping = **PERENCANAAN** (belum dikerjakan). Keputusan lingkup
 
 Jangan ubah keputusan ini tanpa alasan kuat — semuanya hasil diskusi panjang:
 
-1. **Sumber data:** Bangun ulang dari raw mentah (70.241 baris, 59 file CSV). `master_dataset.csv` lama (17.374) DIPENSIUNKAN, hanya untuk pembanding hasil.
+1. **Sumber data:** Bangun ulang dari raw mentah (**69.651 baris, 59 file CSV** — angka resmi `docs/phase5_filter_report.md`; angka "70.241" di draf lama SALAH). `master_dataset.csv` lama (17.374) DIPENSIUNKAN, hanya untuk pembanding hasil.
 
 2. **Bahasa X:** Hanya `lang=in`. Non-Indonesia dibuang.
 
@@ -213,6 +231,12 @@ Catat untuk Bab 3 & Bab 4 tesis:
      - **Kesimpulan jujur:** kesalahan boundary sebagian scam-umbrella (Pola A), sebagian **ketidakmampuan model menangkap referensi judi tersirat** (Pola B). Temuan #4 nyata tapi **bukan penjelasan tunggal**.
    - ⚠️ **Temuan 3 — keterbatasan (ambiguitas gold label):** idx 778 → token `rekt`/`bca`/`mutasii` (soal rekening bank) mendorong prediksi; gold=judi karena teks menyebut "pinjaman online". Teks itu sendiri **ambigu** (saldo BCA hilang vs judi/pinjol) → sebagian "kesalahan" mencerminkan **ambiguitas anotasi**, bukan kelemahan model semata.
    - **Catatan interpretasi:** LIME = aproksimasi lokal linear → token tak-intuitif (kata sambung "dan", "gua") wajar muncul. XAI ini pada komponen neural (0,75); komponen **anchor (0,25) transparan terpisah** (rule-based dapat dibaca langsung). **Nilai tesis:** memenuhi komponen Explainable AI di judul dengan bukti konkret; token domain benar memperkuat kredibilitas; analisis dua-pola = pembacaan data teliti (bukan over-claim).
+
+12. **Dashboard CyberScope dibangun, di-deploy, dan dievaluasi (14 Jul–2 Agu 2026).** Detail lengkap untuk tulisan ada di `docs/HANDOFF_WRITING.md` §9; yang wajib diingat di sini:
+   - **Tiga angka "relevan" yang berbeda peran — JANGAN tertukar:** **9.748** = prediksi Model A atas 55.300 (isi halaman Monitoring) · **9.212** = weak label Snorkel (label dataset training) · **922** = subset test set Layer-2 (metrik model). Monitoring menampilkan **prediksi model**, bukan label Snorkel.
+   - **Distribusi prediksi (monitoring):** judi 7.645 (78,4%) · phishing 704 (7,2%) · ewallet 549 (5,6%) · peretasan 425 (4,4%) · malware 316 (3,2%) · deepfake 109 (1,1%).
+   - **SUS dijalankan: n=15 responden semi-teknis, rata-rata 81,33** (median 82,50 · SD 7,13 · rentang 67,5–90,0) → di atas ambang 68, kategori *Excellent* & acceptable. Item tertinggi Q3 "mudah digunakan" (4,60) dan Q5 "fitur berjalan semestinya" (4,47); skor kontribusi terendah Q4 (2,87 — soal kebutuhan bantuan teknis). Instrumen: `docs/EVALUASI_PROTOTYPE_KUESIONER.md`.
+   - ⚠️ **Diskrepansi yang belum diberesi di naskah:** R4 §3.11 menulis backend "tier gratis", padahal Space berjalan di hardware **`cpu-upgrade` (berbayar)** dengan auto-sleep 1800 detik — auto-sleep inilah penyebab cold start 25–60 detik, jadi klaim cold start tetap sah. Koreksi + kalimat pengganti: `docs/BUKTI_DEPLOY_VERCEL.md`.
 
 ---
 
@@ -397,7 +421,7 @@ Letakkan semua file ini di project Anda:
 
 ## 11. SARAN ALUR KERJA DI CLAUDE CODE
 
-1. Mulai: *"Baca CONTEXT.md, docs/01_Technical_Roadmap.md Bagian 8, dan docs/02_Pattern_Library.md. Kita lanjut Phase 6 Preprocessing."*
+1. Mulai: *"Baca CONTEXT.md"* — lalu handoff sesuai jenis pekerjaan: penulisan → `docs/HANDOFF_WRITING.md`; dashboard → `dashboard/{backend,frontend}/CLAUDE.md`. (Poin 2–5 di bawah = catatan historis pipeline; seluruh fase sudah selesai.)
 
 2. Setup environment dulu:
    ```bash
@@ -415,13 +439,16 @@ Letakkan semua file ini di project Anda:
 
 ---
 
-## 12. HAL YANG BELUM DIPUTUSKAN (Untuk Didiskusikan Nanti)
+## 12. SISA PERTANYAAN TERBUKA
 
-- Apakah perlu rekonstruksi timestamp X untuk analisis temporal? (Tidak, created_at sudah akurat — hanya interpretasi yang perlu jujur)
-- Strategi handling konten distress (G4.2 di judi_online_pinjol) — etika riset, perlu protokol
+Sudah tertutup: split final (80/10/10 stratified seed 42 dari `weak_labeled_dataset_v2.csv`) dan rekonstruksi timestamp X (tidak perlu — `created_at` akurat, cukup jujur di interpretasi).
+
+Masih terbuka, semuanya untuk penelitian lanjutan (sudah masuk bagian Saran di naskah), bukan pekerjaan tertunda:
+
+- Strategi handling konten distress (G4.2 di `judi_online_pinjol`) — etika riset, perlu protokol
 - Apakah `judi_online_pinjol` dipisah jadi 2 label di iterasi mendatang?
-- Split train/test final — apakah Opsi C (data lama sbg pembanding) atau murni data baru
+- Perluasan platform (TikTok/Instagram), varian pra-latih lain, LIME + SHAP berdampingan, pipeline data berkala untuk monitoring
 
 ---
 
-*Dokumen ini adalah snapshot status per akhir Phase 5. Update saat phase berikutnya selesai.*
+*Status per 19 Agu 2026: seluruh pipeline selesai; sidang 8 Agu 2026 (lulus); naskah berjalan `Ray Siraj_51423248_R4.docx`.*
