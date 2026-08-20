@@ -221,7 +221,9 @@ Perbandingan terkendali antara class weight berbasis inverse frequency, focal lo
 
 Pertanyaan penguji menyebut "w=0.75 untuk neural dan w=0.50 untuk rule-based". Perlu diluruskan lebih dulu: bobot sistem akhir adalah **0,75 untuk jalur neural dan 0,25 untuk jalur aturan**, jumlahnya satu. Angka 0,50 yang dimaksud adalah konfigurasi pembanding 0,50 berbanding 0,50 yang muncul pada sweep, bukan salah satu sisi dari konfigurasi terpilih. Luruskan ini lebih dulu saat menjawab, karena selebihnya pertanyaannya sah.
 
-Naskah sudah menjawab sebagian pada subbab 3.10.3, yaitu bahwa keunggulan itu teridentifikasi pada data uji sehingga memilihnya menimbulkan bias evaluasi. Yang perlu ditambahkan adalah bukti bahwa keunggulan tersebut memang rapuh.
+Naskah sudah menjawab sebagian pada subbab 3.10.3, yaitu bahwa keunggulan itu teridentifikasi pada data uji sehingga memilihnya menimbulkan bias evaluasi. Yang perlu ditambahkan adalah penjelasan mengapa keunggulan itu tidak cukup kuat untuk mengubah keputusan.
+
+> **Penting, baca `REVISI_03.md` lebih dulu.** Penguji menunjuk Lampiran L-30 (Sel D2) yang memperlihatkan macro-F1 Layer 2 lebih tinggi sepanjang rentang bobot 0,55 sampai 0,45. Jangan menyebut keunggulan itu artefak atau variasi acak, karena lampiran Anda sendiri membuktikan sebaliknya. Argumen yang benar adalah membedakan kestabilan terhadap bobot dari kestabilan statistik. `REVISI_03.md` memuat uraian lengkapnya beserta jawaban lisan.
 
 **Lokasi:** subbab 3.10.3, setelah kalimat "Bobot 0,75:0,25 dipertahankan sebagai keputusan rancangan a priori, dan angka empat sampel tersebut justru memperlihatkan betapa rapuhnya keunggulan yang terlihat."
 
@@ -229,7 +231,7 @@ Naskah sudah menjawab sebagian pada subbab 3.10.3, yaitu bahwa keunggulan itu te
 
 **Teks:**
 
-Kerapuhan tersebut dapat ditunjukkan dari tiga sisi. Pertama, selisih macro-F1 sebesar 0,0067 bertumpu pada empat sampel dari 922 data uji atau setara 0,43 persen, dan tidak disertai uji signifikansi statistik, sehingga selisih itu berada dalam rentang yang wajar disebabkan variasi acak. Kedua, keempat sampel tersebut berasal dari satu pasangan kategori yang sama, yaitu batas antara phishing dan judi, sehingga keunggulannya bersifat lokal pada satu titik kebingungan model dan bukan peningkatan kemampuan memisahkan keenam kategori secara menyeluruh. Ketiga, dan yang paling menentukan, bobot 0,50 berbanding 0,50 justru merusak Layer 1, yaitu precision kelas relevan anjlok menjadi 0,5047 yang berarti hampir separuh prediksi relevan sebenarnya keliru. Sebuah bobot yang unggul pada satu lapis tetapi runtuh pada lapis lain menunjukkan bahwa keunggulannya terikat pada karakteristik data uji tertentu, bukan sifat umum dari mekanisme fusion.
+Keterbatasan keunggulan tersebut dapat ditunjukkan dari tiga sisi. Pertama, penyapuan pada rentang sempit di sekitar 0,50 memang memperlihatkan nilai yang stabil, yaitu 0,9780 pada bobot 0,55 sampai 0,52, 0,9797 pada 0,51, dan 0,9814 pada 0,50 ke bawah, sehingga keunggulan itu bukan artefak pemilihan titik. Akan tetapi kestabilan terhadap bobot perlu dibedakan dari kestabilan secara statistik, sebab penelusuran nilai F1-score kategori phishing memperlihatkan keseluruhan rentang tersebut dihasilkan oleh empat sampel yang sama, yaitu false positive kategori phishing menurun dari enam menjadi empat, tiga, lalu dua seiring bobot aturan diperbesar. Dasar keunggulannya tetap empat sampel dari 922 data uji atau 0,43 persen, tanpa disertai uji signifikansi statistik. Kedua, keempat sampel tersebut berasal dari satu pasangan kategori yang sama, yaitu batas antara phishing dan judi, sehingga keunggulannya bersifat lokal pada satu titik kebingungan model dan bukan peningkatan kemampuan memisahkan keenam kategori secara menyeluruh. Ketiga, dan yang paling menentukan, bobot 0,50 berbanding 0,50 justru merusak Layer 1, yaitu precision kelas relevan anjlok menjadi 0,5047 yang berarti hampir separuh prediksi relevan sebenarnya keliru. Karena rancangan sistem memakai satu bobot untuk kedua lapis, bobot yang unggul pada satu lapis tetapi runtuh pada lapis lain tidak dapat diadopsi.
 
 Prosedur yang sah untuk memilih bobot 0,50 sebenarnya tersedia, yaitu menjalankan sweep pada data validasi, mengunci bobot terpilih, lalu baru mengukurnya sekali pada data uji. Prosedur tersebut tidak ditempuh pada penelitian ini karena sweep dijalankan setelah pelatihan selesai sebagai sarana ablation study, bukan sebagai tahap penyetelan. Karena itu bobot 0,75 berbanding 0,25 dipertahankan sebagaimana ditetapkan sejak awal pada ruang lingkup penelitian, dan penyetelan bobot melalui data validasi dicatat sebagai pengembangan lanjutan.
 
@@ -270,6 +272,8 @@ sehingga sistem yang dihasilkan dapat menjadi dasar bagi pengembangan sistem per
 ## Poin 8 — Jelaskan perbandingan late fusion yang terbaik
 
 Naskah sudah memaparkan kedua lapis pada subbab 3.10.3, tetapi tabel sweep hanya tersedia untuk Layer 1 dan hanya memuat tiga baris bobot, sedangkan Layer 2 diuraikan dalam bentuk narasi tanpa tabel. Penguji meminta perbandingan yang terbaca sekaligus. Dua sisipan berikut menutupnya.
+
+> Ketiadaan tabel sweep Layer 2 inilah yang membuat jawaban saat sidang mengambil Tabel 3.15, padahal tabel itu memuat sweep **Layer 1** sementara yang ditanyakan adalah macro-F1 **Layer 2**. Sisipan 8a di bawah menutup celah tersebut. Lihat `REVISI_03.md` untuk duduk perkaranya.
 
 ### Sisipan 8a — tabel sweep Layer 2
 
