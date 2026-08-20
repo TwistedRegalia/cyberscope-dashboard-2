@@ -98,4 +98,10 @@ Satu peringatan sebelum menjalankannya. Model B sudah mencapai macro-F1 0,9767 p
 
 ## Temuan sampingan, di luar poin 9
 
-Paragraf penutup subbab Kontribusi dan Kebaruan Penelitian memuat rujukan silang yang belum selesai, tertulis "Tabel 2._" pada kalimat terakhir. Perbaiki nomornya saat menyunting.
+Paragraf penutup subbab Kontribusi dan Kebaruan Penelitian memuat rujukan silang yang belum selesai, tertulis "Tabel 2._" pada kalimat terakhir:
+
+> Kombinasi inilah yang membedakan penelitian ini dari penelitian terdahulu pada **Tabel 2._**, yang umumnya kuat pada satu aspek namun terputus pada aspek lainnya.
+
+Yang dimaksud adalah **Tabel 2.3 Ringkasan Penelitian Terdahulu (State of The Art)**. Ganti `Tabel 2._` menjadi `Tabel 2.3`.
+
+Dasarnya: di seluruh BAB 2 hanya ada tiga tabel, yaitu Tabel 2.1 Enam vektor ancaman E-ICTT, Tabel 2.2 Interpretasi Skor System Usability Scale, dan Tabel 2.3 Ringkasan Penelitian Terdahulu. Hanya Tabel 2.3 yang memuat penelitian terdahulu, dan dua paragraf sebelumnya pada subbab yang sama sudah merujuk ke Tabel 2.3 untuk maksud yang persis sama, yaitu celah penelitian terdahulu.
