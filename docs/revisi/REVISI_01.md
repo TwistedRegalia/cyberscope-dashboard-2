@@ -309,29 +309,11 @@ Perbandingan menyeluruh terhadap kedua lapis memperlihatkan bahwa konfigurasi te
 
 ## Poin 9 — Kenapa penambahan BiGRU dan BiLSTM lebih baik daripada IndoBERT saja
 
-### Peringatan sebelum menjawab
+Poin ini dipindahkan ke berkas tersendiri, `REVISI_02.md`, karena isinya berubah setelah penggalian literatur dan perlu berdiri sendiri sebagai bahan sesi terpisah.
 
-Penelitian ini **tidak pernah menjalankan ablasi IndoBERT tanpa lapisan rekuren**. Yang dijalankan hanya ablasi bobot late fusion. Karena itu klaim keunggulan tidak boleh dinyatakan sebagai temuan empiris penelitian ini. Teks di bawah menjawab dari sisi rancangan dan literatur, lalu menyatakan keterbatasan itu secara terbuka. Ini sikap yang paling aman: kalau penguji menuntut angka internal dan naskah mengklaim lebih dari yang diuji, posisi Anda justru lemah.
+Ringkas perubahannya: Mujilahwati dkk. (2026) ternyata **tidak** memuat baseline IndoBERT-saja, sedangkan Talaat (2023) yang sudah ada di daftar pustaka justru membandingkan langsung terhadap model BERT standalone. Jawabannya juga di-reframe, dari mengklaim keunggulan menjadi menyatakan arsitektur diadopsi dari penelitian rujukan sementara kebaruan penelitian ini ada di tempat lain.
 
-**Lokasi:** subbab 3.8.1, setelah kalimat "Lapisan rekuren karenanya berperan sebagai kepala pemroses yang ringan di atas encoder, bukan komponen yang memikul beban representasi utama."
-
-**Tindakan:** sisipkan tiga paragraf berikut.
-
-**Teks:**
-
-Penambahan lapisan rekuren di atas IndoBERT dilandasi perbedaan cara kedua komponen memperlakukan urutan. Mekanisme self-attention memperhitungkan seluruh token secara serentak dan memperoleh informasi posisi melalui positional encoding, sedangkan peringkasan kalimat pada penggunaan umum diambil dari token khusus di awal barisan atau dari perataan seluruh token. Lapisan rekuren dua arah membaca barisan token secara berurutan dari dua sisi, sehingga progresi antarbagian kalimat dimodelkan secara eksplisit. Karakteristik tersebut sejalan dengan bentuk diskursus ancaman siber yang umumnya tersusun sebagai rangkaian peristiwa, misalnya menerima tautan, menekan tautan, lalu kehilangan saldo, di mana urutan kejadian menentukan makna sekaligus peran pembicara.
-
-Kedua lapisan rekuren yang dipakai memiliki pembagian peran. BiGRU dengan struktur gerbang yang lebih sederhana meringkas representasi 768 dimensi menjadi 512 dimensi, kemudian BiLSTM yang memiliki gerbang tambahan beserta memori sel menyaringnya menjadi 256 dimensi. Penyusunan bertingkat tersebut menghasilkan penyempitan representasi secara bertahap dengan biaya yang kecil, yaitu 2.234.886 parameter atau sekitar 1,8 persen dari keseluruhan model, sehingga penambahannya tidak memperbesar risiko overfitting secara berarti dan tidak menambah waktu pelatihan secara mencolok.
-
-Landasan tersebut sejalan dengan temuan penelitian lain. Mujilahwati dkk. (2026) membandingkan IndoBERT yang dipadukan BiGRU, IndoBERT yang dipadukan BiLSTM, dan gabungan ketiganya pada tugas deteksi hoaks berbahasa Indonesia, dan memperoleh hasil terbaik pada gabungan ketiganya dengan accuracy 98,73 persen sekaligus waktu pelatihan yang lebih singkat dibandingkan model tunggal. Xiong dkk. (2024) memperoleh pola serupa pada klasifikasi teks pengaduan layanan publik, yaitu arsitektur gabungan berbasis BERT dengan BiLSTM mengungguli arsitektur hibrida pembanding. Meskipun demikian, perlu dinyatakan secara terbuka bahwa penelitian ini tidak menjalankan ablasi terhadap arsitektur, yaitu tidak melatih varian IndoBERT tanpa lapisan rekuren sebagai pembanding langsung, sehingga keunggulan susunan triple-hybrid pada penelitian ini bersandar pada pertimbangan rancangan dan temuan penelitian terdahulu, bukan pada perbandingan internal. Ablasi arsitektur tersebut dicatat sebagai pengembangan lanjutan.
-
-**Sumber angka:** jumlah parameter dari naskah subbab 3.8.1; angka Mujilahwati dkk. dari abstrak IJAAS 15(1), 322–332, https://doi.org/10.11591/ijaas.v15.i1.pp322-332; Xiong dkk. (2024) sudah dicantumkan pada poin 1.
-
-**Tambahan untuk Saran (BAB 4):** sisipkan pada paragraf saran sisi model.
-
-Selain itu, ablasi arsitektur perlu dijalankan dengan melatih varian IndoBERT tanpa lapisan rekuren, varian dengan BiGRU saja, dan varian dengan BiLSTM saja pada pemisahan data yang sama, sehingga kontribusi tiap lapisan terhadap performa dapat diukur secara langsung dan tidak hanya disandarkan pada temuan penelitian terdahulu.
-
-**Catatan bila Anda punya waktu:** ablasi ini sebenarnya murah, hanya perlu melatih ulang Model B tanpa dua lapisan rekuren pada split yang sama, kira-kira 30 sampai 45 menit di Kaggle T4. Bila dijalankan, paragraf ketiga di atas dapat diganti dengan angka nyata dan poin 9 berubah dari pembelaan menjadi temuan. Bilang saja kalau mau notebooknya disiapkan.
+Jangan pakai versi lama poin 9 yang sempat ada di berkas ini.
 
 ---
 
